@@ -5,6 +5,12 @@ ConsoleRails::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
+  namespace :ajax do
+    resources :boards do
+      resources :widgets
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
