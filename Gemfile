@@ -26,7 +26,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 # Database
-gem 'mongoid'
+gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
 # Views

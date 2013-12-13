@@ -6,8 +6,8 @@ ConsoleRails::Application.routes.draw do
   # root 'welcome#index'
 
   namespace :ajax do
-    resources :boards do
-      resources :widgets
+    resources :boards, defaults: {format: :json} do
+      resources :widgets, defaults: {format: :json}
     end
   end
 
