@@ -1,4 +1,3 @@
-//= require angular-underscore/angular-underscore.js
 var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore'])
 	.constant('path', '/console');
 

@@ -1,25 +1,7 @@
-- content_for(:head) do
-  != stylesheet_link_tag "console"
 - content_for(:scripts) do
   !=javascript_include_tag('//cdnjs.cloudflare.com/ajax/libs/holder/2.0/holder.js')
-  !=javascript_include_tag('console.js')
   :javascript
     mixpanel.track("Boards");
-
-.navbar-wrapper
-  .container
-    .navbar.navbar-inverse.navbar-static-top
-      .container
-        .navbar-header
-          %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.navbar-brand{href: "#"} TeamStatus.TV
-        .navbar-collapse.collapse
-          %ul.nav.navbar-nav
-            %li.active
-              %a{:href => link_to('/boards')} Boards
 
 .container
   .boards

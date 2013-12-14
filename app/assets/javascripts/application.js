@@ -19,6 +19,7 @@
 //= require angular-resource
 //= require angular-strap/dist/angular-strap
 //= require angular-ui-bootstrap
+//= require angular-underscore/angular-underscore.js
 //= require underscore/underscore
 //= require_tree .
 
