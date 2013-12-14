@@ -3,7 +3,7 @@ class Board
     store_in collection: "boards"
 
     belongs_to :user
-    embeds_many :widgetsettings, store_as: "settings"
+    embeds_many :widget_settings, store_as: "settings", class_name: "Widget::Setting"
 
     before_create :generate_publicId
 

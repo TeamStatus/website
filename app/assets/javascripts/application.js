@@ -13,4 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require twitter/bootstrap
+//= require angularjs/angularjs
+//= require angular-strap/angular-strap
+//= require angular-ui-bootstrap/ui-bootstrap
+//= require underscore
 //= require_tree .
+
+$(function() {
+	$('footer a').click(function () {
+		mixpanel && mixpanel.track('Footer clicked', {'Destination' : $(this).attr('href')});
+	});
+});

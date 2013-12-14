@@ -1,0 +1,10 @@
+{
+  "name": "teamstatus-console",
+  "dependencies": {
+  	"angularjs": "*",
+    "angular-underscore": "*",
+    "underscore": "*",
+    "angular-strap": "*",
+    "angular-ui-bootstrap": "*"
+  }
+}

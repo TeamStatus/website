@@ -18,3 +18,4 @@
 /.env
 
 /vendor/bundle
+/vendor/assets/components

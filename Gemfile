@@ -31,6 +31,9 @@ gem 'bson_ext'
 
 # Views
 gem 'haml-rails'
+gem 'therubyracer'
+gem 'font-awesome-rails'
+gem 'twitter-bootstrap-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
