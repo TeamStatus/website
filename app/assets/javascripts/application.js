@@ -14,10 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require twitter/bootstrap
-//= require angularjs/angularjs
-//= require angular-strap/angular-strap
-//= require angular-ui-bootstrap/ui-bootstrap
-//= require underscore
+//= require angular
+//= require angular-route
+//= require angular-resource
+//= require angular-strap/dist/angular-strap
+//= require angular-ui-bootstrap
+//= require underscore/underscore
 //= require_tree .
 
 $(function() {

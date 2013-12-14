@@ -1,10 +1,12 @@
 {
   "name": "teamstatus-console",
   "dependencies": {
-  	"angularjs": "*",
+    "angularjs": "*",
     "angular-underscore": "*",
     "underscore": "*",
-    "angular-strap": "*",
-    "angular-ui-bootstrap": "*"
+    "angular-strap": "*"
+  },
+  "resolutions": {
+    "bootstrap": ">=3.0 <4.0"
   }
 }
