@@ -4,7 +4,8 @@
     "angularjs": "*",
     "angular-underscore": "*",
     "underscore": "*",
-    "angular-strap": "*"
+    "angular-strap": "*",
+    "holderjs": "*"
   },
   "resolutions": {
     "bootstrap": ">=3.0 <4.0"

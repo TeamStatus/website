@@ -11,6 +11,12 @@ ConsoleRails::Application.routes.draw do
     end
   end
 
+  resources :boards do
+    resources :widgets
+  end
+
+  get 'partials/:partial_id' => 'partials#show'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

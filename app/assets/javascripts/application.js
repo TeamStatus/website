@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require underscore/underscore
 //= require twitter/bootstrap
 //= require angular
 //= require angular-route
@@ -20,7 +20,6 @@
 //= require angular-strap/dist/angular-strap
 //= require angular-ui-bootstrap
 //= require angular-underscore/angular-underscore.js
-//= require underscore/underscore
 //= require_tree .
 
 $(function() {

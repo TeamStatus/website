@@ -1,5 +1,5 @@
 class ConsoleController < ApplicationController
 	def index
-		@boards = @user.boards
+		redirect_to :controller => 'boards'
 	end
 end

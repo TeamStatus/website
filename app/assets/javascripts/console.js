@@ -1,15 +1,16 @@
+//= require holderjs/holder
 var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore'])
-	.constant('path', '/console');
+	.constant('partials', '/partials');
 
-var JiraCtrl = ['$scope', '$log', '$http', '$window', 'path', function($scope, $log, $http, $window, path) {
-	$http.get(path + "/ajax/jiraServer").success(function(data) {
+var JiraCtrl = ['$scope', '$log', '$http', '$window', 'partials', function($scope, $log, $http, $window, partials) {
+	$http.get(partials + "/ajax/jiraServer").success(function(data) {
 		$scope.jira = data;
 	});
 
 	$scope.saveJira = function() {
 		$scope.saved = false;
 		$scope.sending = true;
-		$http.post(path + "/ajax/jiraServer", $scope.jira).success(function(data) {
+		$http.post(partials + "/ajax/jiraServer", $scope.jira).success(function(data) {
 			$scope.saved = true;
 			$scope.sending = false;
 			$scope.jira = data;
@@ -92,11 +93,11 @@ angular.module('teamstatus.console.widget', ['teamstatus.console'])
 	}]);
 
 angular.module('teamstatus.console.widget.add', ['teamstatus.console.widget'])
-	.config(['$routeProvider', 'path', function($routeProvider, path) {
+	.config(['$routeProvider', 'partials', function($routeProvider, partials) {
 		$routeProvider.when('/welcome', {
-			templateUrl: path + '/partials/add-widget-welcome'
+			templateUrl: partials + '/new_widget_welcome'
 		}).when('/:id', {
-			templateUrl: path + '/partials/add-widget-form',
+			templateUrl: partials + '/new_widget_form',
 			controller: 'WidgetCtrl'
 		}).otherwise({
 			redirectTo: '/welcome'
@@ -104,15 +105,15 @@ angular.module('teamstatus.console.widget.add', ['teamstatus.console.widget'])
 	}]);
 
 angular.module('teamstatus.console.widget.edit', ['teamstatus.console.widget'])
-	.config(['$routeProvider', 'path', function($routeProvider, path) {
+	.config(['$routeProvider', 'partials', function($routeProvider, partials) {
 		$routeProvider.when('/:id', {
-			templateUrl: path + '/partials/add-widget-form',
+			templateUrl: partials + '/new-widget-form',
 			controller: 'WidgetCtrl'
 		});
 	}]);
 
-var WidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'path', 'widgets', 'board',
-	function($scope, $routeParams, $log, $http, $window, path, widgets, board) {
+var WidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'partials', 'widgets', 'board',
+	function($scope, $routeParams, $log, $http, $window, partials, widgets, board) {
 	$scope.widgets = widgets;
 	$scope.board = board;
 	$scope.$on('$routeChangeSuccess', routeChanged);
@@ -133,14 +134,14 @@ var WidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'path',
 	}
 }];
 
-var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'path', 'widgets', 'board',
-	function($scope, $routeParams, $log, $http, $window, path, widgets, board) {
+var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'partials', 'widgets', 'board',
+	function($scope, $routeParams, $log, $http, $window, partials, widgets, board) {
 	$scope.editing = true;
 	$scope.widgetsMap = _.indexBy(widgets, 'id');
 	$scope.board = board;
 	$scope.$on('$routeChangeSuccess', routeChanged);
 
-	$http.get(path + '/ajax/boards/' + board.boardId + '/widgets').success(function(data) {
+	$http.get(partials + '/ajax/boards/' + board.boardId + '/widgets').success(function(data) {
 		$scope.boardWidgets = data;
 	});
 
@@ -159,7 +160,7 @@ var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'pa
 	}
 }];
 
-var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'path', 'widgets', 'board', function($scope, $http, $compile, $window, path, widgets, board) {
+var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets', 'board', function($scope, $http, $compile, $window, partials, widgets, board) {
 	$scope.$on('currentWidgetChanged', function(event, widget) {
 		widgetChanged(widget);
 	});
@@ -172,9 +173,9 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'path', 'widgets', '
 		$scope.settings = widget.settings || {};
 		$scope.widgetSettings = widget.widgetSettings || { title: "Widget" };
 		if (widget.configurable) {
-			$http.get(path + "/ajax/integrations/" + widget.id + "/js").success(function (data) {
+			$http.get(partials + "/ajax/integrations/" + widget.id + "/js").success(function (data) {
 				eval.apply(window, [data]);
-				$http.get(path + "/ajax/integrations/" + widget.id).success(function (data) {
+				$http.get(partials + "/ajax/integrations/" + widget.id).success(function (data) {
 					$scope.settings = widget.settings || {};
 					angular.element('.settings').html($compile(data)($scope));
 				});
@@ -184,7 +185,7 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'path', 'widgets', '
 
 	$scope.addWidget = function() {
 		if ($scope.editing) {
-			$http.post(path + '/ajax/boards/' + $scope.board.boardId + '/widgets/' + $scope.currentWidget._id, {
+			$http.post(partials + '/ajax/boards/' + $scope.board.boardId + '/widgets/' + $scope.currentWidget._id, {
 				settings: $scope.settings,
 				widgetSettings: $scope.widgetSettings
 			}).success(function(data) {
@@ -193,7 +194,7 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'path', 'widgets', '
 				}
 			});
 		} else {
-			$http.post(path + '/ajax/boards/' + $scope.board.boardId + '/widgets', {
+			$http.post(partials + '/ajax/boards/' + $scope.board.boardId + '/widgets', {
 				widget: $scope.currentWidget.id,
 				settings: $scope.settings,
 				widgetSettings: $scope.widgetSettings
