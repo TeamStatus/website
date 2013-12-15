@@ -6,9 +6,30 @@ class ApplicationController < ActionController::Base
 	before_action :load_user
 	after_filter :set_csrf_cookie_for_ng
 
+	protected
+		def standalone
+			ENV['STANDALONE'] == "true"
+		end
+
+		def user_id
+			return session[:user_id]
+		end
+
 	private
 		def load_user
-			@user = ::User.find("5295063b32328cf35d000001")
+			if standalone
+				@user = ::User.where({ :email => "admin@localhost" }).first
+				if @user.nil?
+					@user = ::User.create!({:email => "admin@localhost", :fullName => "Administrator", :callingName => "admin" })
+				end
+			elsif not user_id.nil?
+				@user = ::User.find(user_id)
+				unless @user.exists?
+					redirect_to('http://teamstatus.tv/beta') and return false
+				end
+			else
+				redirect_to('http://teamstatus.tv/beta') and return false
+			end
 		end
 
 		def set_csrf_cookie_for_ng
