@@ -90,7 +90,7 @@ angular.module('teamstatus.console.widget.add', ['teamstatus.console.widget'])
 angular.module('teamstatus.console.widget.edit', ['teamstatus.console.widget'])
 	.config(['$routeProvider', 'partials', function($routeProvider, partials) {
 		$routeProvider.when('/:id', {
-			templateUrl: partials + '/new-widget-form',
+			templateUrl: partials + '/new_widget_form',
 			controller: 'WidgetCtrl'
 		});
 	}]);
@@ -169,7 +169,7 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets
 
 	$scope.addWidget = function() {
 		if ($scope.editing) {
-			$http.post(path + '/boards/' + $scope.board.boardId + '/widgets/' + $scope.currentWidget._id + '.json', {
+			$http.put(path + '/boards/' + $scope.board.boardId + '/widgets/' + $scope.currentWidget._id + '.json', {
 				settings: $scope.settings,
 				widgetSettings: $scope.widgetSettings
 			}).success(function(data) {

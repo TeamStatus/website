@@ -1,11 +1,8 @@
 - content_for(:head) do
-  %meta{:name => "ts.board.publicId", :content => board.publicId}
-  %meta{:name => "ts.board.id", :content => board._id}
-  %meta{:name => "ts.board.editUrl", :content => board.edit_url}
-  != stylesheet_tag "console"
+  %meta{:name => "ts.board.publicId", :content => @board.publicId}
+  %meta{:name => "ts.board.id", :content => @board._id}
+  %meta{:name => "ts.board.editUrl", :content => board_edit_url(@board)}
 - content_for(:scripts) do
-  !=javascript_tag('//cdnjs.cloudflare.com/ajax/libs/holder/2.0/holder.js')
-  !=javascript_tag('console.js')
   :javascript
     mixpanel.track("Edit widget viewed");
 
@@ -23,14 +20,3 @@
           {{widget.widgetSettings.title}}
           %span.label.label-default.pull-right {{widgetsMap[widget.widget].name}}
     .col-md-8{"ng-view" => ""}
-
-  %hr.footer-divider/
-
-  %footer
-    %p.pull-right
-      %a{href: "#"} Back to top
-    %p
-      \&#169; 2013 Team Status
-      \&#183;
-      %a{href: "mailto:pawel@teamstatus.tv"} Contact us
-

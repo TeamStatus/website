@@ -41,6 +41,17 @@
 
     != yield
 
+    .container
+      %hr.footer-divider/
+
+      %footer
+        %p.pull-right
+          %a{href: "#"} Back to top
+        %p
+          \&#169; 2013 Team Status
+          \&#183;
+          %a{href: "mailto:pawel@teamstatus.tv"} Contact us
+
     !=javascript_include_tag "application"
 
     %script{src: "https://teamstatus.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_USonyyzk-1988229788/6204/8/1.4.0-m8/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=b7a346ce", type: "text/javascript"}

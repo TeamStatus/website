@@ -1,13 +1,16 @@
 class WidgetsController < ApplicationController
 
 	before_action :set_board
-	before_action :set_widget, only: [:show, :edit, :update, :destroy]
+	before_action :set_widget, only: [:update, :destroy]
 
 	def index
 		@widgets = @board.widgets
 	end
 
 	def new
+	end
+
+	def edit
 	end
 
 	def destroy
@@ -17,6 +20,18 @@ class WidgetsController < ApplicationController
 			format.json { head :no_content }
 		end
 	end
+
+	def update
+   respond_to do |format|
+     if @widget.update_attributes(widget_update_params)
+       format.html { redirect_to [@board, @widget], notice: 'Widget was successfully updated.' }
+       format.json { head :no_content }
+     else
+       format.html { render action: 'edit' }
+       format.json { render json: @widget.errors, status: :unprocessable_entity }
+     end
+   end
+ 	end
 
 	def create
 		@widget = @board.widgets.new(widget_params)
@@ -48,4 +63,7 @@ class WidgetsController < ApplicationController
 			params.slice(:widget, :settings, :widgetSettings).permit!
 		end
 
+		def widget_update_params
+			params.slice(:settings, :widgetSettings).permit!
+		end
 end
