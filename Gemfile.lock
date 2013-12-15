@@ -66,7 +66,10 @@ GEM
     commonjs (0.2.7)
     connection_pool (1.2.0)
     erubis (2.7.0)
+    excon (0.27.6)
     execjs (2.0.2)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
     font-awesome-rails (4.0.3.0)
       railties (>= 3.2, < 5.0)
     haml (4.0.4)
@@ -77,6 +80,7 @@ GEM
       haml (>= 3.1, < 5.0)
       railties (~> 4.0.1)
     hike (1.2.3)
+    httpauth (0.2.0)
     i18n (0.6.9)
     intercom (0.1.17)
     jbuilder (1.5.3)
@@ -86,6 +90,8 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.1)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     kgio (2.8.1)
     less (2.4.0)
       commonjs (~> 0.2.7)
@@ -96,6 +102,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mandrill-api (1.0.49)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     mime-types (1.25.1)
     minitest (4.7.5)
     moped (2.0.0.beta4)
@@ -103,7 +112,16 @@ GEM
       connection_pool (~> 1.2)
       optionable (~> 0.2.0)
     multi_json (1.8.2)
+    multi_xml (0.5.5)
+    multipart-post (1.2.0)
     newrelic_rpm (3.6.8.164)
+    oauth2 (0.9.2)
+      faraday (~> 0.8)
+      httpauth (~> 0.2)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
     optionable (0.2.0)
     origin (2.0.0)
     polyglot (0.3.3)
@@ -180,8 +198,10 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   less-rails
+  mandrill-api
   mongoid!
   newrelic_rpm
+  oauth2
   rack-cors!
   rack-google-analytics
   rails (= 4.0.2)

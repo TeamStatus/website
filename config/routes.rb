@@ -9,6 +9,9 @@ ConsoleRails::Application.routes.draw do
     resources :widgets
   end
 
+  get 'login' => 'login#index'
+  get 'login/google' => 'login#google'
+  get 'login/google_callback' => 'login#google_callback'
   get 'partials/:partial_id' => 'partials#show'
   get 'partials/integrations/:widget_id/js' => 'partials#widget_js'
   get 'partials/integrations/:widget_id' => 'partials#widget'

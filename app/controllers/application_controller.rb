@@ -23,12 +23,12 @@ class ApplicationController < ActionController::Base
 					@user = ::User.create!({:email => "admin@localhost", :fullName => "Administrator", :callingName => "admin" })
 				end
 			elsif not user_id.nil?
-				@user = ::User.find(user_id)
-				unless @user.exists?
-					redirect_to('http://teamstatus.tv/beta') and return false
+				@user = ::User.where({ :id => user_id }).first
+				if @user.nil?
+					redirect_to(:controller => 'login') and return false
 				end
 			else
-				redirect_to('http://teamstatus.tv/beta') and return false
+				redirect_to(:controller => 'login') and return false
 			end
 		end
 

@@ -9,6 +9,9 @@ gem 'rack-google-analytics'
 # CORS
 gem 'rack-cors', :require => 'rack/cors', :github => 'pawelniewie/rack-cors'
 
+# Authentication
+gem 'oauth2'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -36,6 +39,7 @@ gem 'bson_ext'
 
 # Mails
 gem 'intercom'
+gem 'mandrill-api', :require => "mandrill"
 
 # Views
 gem 'haml-rails'
