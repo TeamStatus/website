@@ -126,9 +126,8 @@ var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'pa
 
 	$http.get(path + '/boards/' + board.boardId + '/widgets.json').success(function(data) {
 		$scope.boardWidgets = data;
+		routeChanged();
 	});
-
-	routeChanged();
 
 	function routeChanged() {
 		var widgetId = $routeParams.id;
