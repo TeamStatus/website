@@ -5,12 +5,6 @@ ConsoleRails::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'console#index'
 
-  namespace :ajax do
-    resources :boards, defaults: {format: :json} do
-      resources :widgets, defaults: {format: :json}
-    end
-  end
-
   resources :boards, only: [:index] do
     resources :widgets
   end
