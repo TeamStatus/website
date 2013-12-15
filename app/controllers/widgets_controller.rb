@@ -1,12 +1,21 @@
 class WidgetsController < ApplicationController
 
 	before_action :set_board
+	before_action :set_widget, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@widgets = @board.widgets
 	end
 
 	def new
+	end
+
+	def destroy
+		@widget.destroy
+		respond_to do |format|
+			format.html { redirect_to board_widgets_url(@board) }
+			format.json { head :no_content }
+		end
 	end
 
 	def create
@@ -20,19 +29,23 @@ class WidgetsController < ApplicationController
 				format.json { render action: 'show', status: :created, location: board_widget_path(@board, @widget) }
 			else
 				format.html { render action: 'new' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+				format.json { render json: @comment.errors, status: :unprocessable_entity }
 			end
 		end
 	end
 
 	private
 		def set_board
-		  @board = ::Board.find(params[:board_id])
+			@board = ::Board.find(params[:board_id])
+		end
+
+		def set_widget
+			@widget = @board.widgets.find(params[:id])
 		end
 
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def widget_params
-		  params.slice(:widget, :settings, :widgetSettings).permit!
+			params.slice(:widget, :settings, :widgetSettings).permit!
 		end
 
 end

@@ -6,6 +6,9 @@ gem 'rails', '4.0.2'
 # Google Analytics
 gem 'rack-google-analytics'
 
+# CORS
+gem 'rack-cors', :require => 'rack/cors', :github => 'pawelniewie/rack-cors'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 

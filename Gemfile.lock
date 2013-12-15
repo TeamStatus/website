@@ -16,6 +16,12 @@ GIT
       origin (~> 2.0)
       tzinfo (~> 0.3.37)
 
+GIT
+  remote: git://github.com/pawelniewie/rack-cors.git
+  revision: 9fa8f7a3f164b33b2eb7b62e9b08b7f62251d80b
+  specs:
+    rack-cors (0.2.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -176,6 +182,7 @@ DEPENDENCIES
   less-rails
   mongoid!
   newrelic_rpm
+  rack-cors!
   rack-google-analytics
   rails (= 4.0.2)
   sass-rails (~> 4.0.0)
