@@ -13,6 +13,9 @@ gem 'rack-cors', :require => 'rack/cors', :github => 'pawelniewie/rack-cors'
 # Authentication
 gem 'oauth2'
 
+# Bower support
+gem "bower-rails", "~> 0.6.0"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
