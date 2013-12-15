@@ -34,7 +34,7 @@ module ConsoleRails
           puts "including asset: " + full_path
           true
         else
-          puts "excluding asset: " + full_path
+          # puts "excluding asset: " + full_path
           false
         end
       else
