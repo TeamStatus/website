@@ -11,7 +11,7 @@ ConsoleRails::Application.routes.draw do
     end
   end
 
-  resources :boards do
+  resources :boards, only: [:index] do
     resources :widgets
   end
 

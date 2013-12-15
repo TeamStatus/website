@@ -1,24 +1,7 @@
 //= require holderjs/holder
 var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore'])
+	.constant('path', '')
 	.constant('partials', '/partials');
-
-var JiraCtrl = ['$scope', '$log', '$http', '$window', 'partials', function($scope, $log, $http, $window, partials) {
-	$http.get(partials + "/ajax/jiraServer").success(function(data) {
-		$scope.jira = data;
-	});
-
-	$scope.saveJira = function() {
-		$scope.saved = false;
-		$scope.sending = true;
-		$http.post(partials + "/ajax/jiraServer", $scope.jira).success(function(data) {
-			$scope.saved = true;
-			$scope.sending = false;
-			$scope.jira = data;
-		}).error(function(data) {
-			$scope.sending = false;
-		});
-	};
-}];
 
 angular.module('teamstatus.console.widget', ['teamstatus.console'])
 	.directive('bsHolder', function() {
@@ -134,14 +117,14 @@ var WidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'partia
 	}
 }];
 
-var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'partials', 'widgets', 'board',
-	function($scope, $routeParams, $log, $http, $window, partials, widgets, board) {
+var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'path', 'widgets', 'board',
+	function($scope, $routeParams, $log, $http, $window, path, widgets, board) {
 	$scope.editing = true;
 	$scope.widgetsMap = _.indexBy(widgets, 'id');
 	$scope.board = board;
 	$scope.$on('$routeChangeSuccess', routeChanged);
 
-	$http.get(partials + '/ajax/boards/' + board.boardId + '/widgets').success(function(data) {
+	$http.get(path + '/boards/' + board.boardId + '/widgets.json').success(function(data) {
 		$scope.boardWidgets = data;
 	});
 
@@ -160,7 +143,8 @@ var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'pa
 	}
 }];
 
-var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets', 'board', function($scope, $http, $compile, $window, partials, widgets, board) {
+var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets', 'board', 'path',
+	function($scope, $http, $compile, $window, partials, widgets, board, path) {
 	$scope.$on('currentWidgetChanged', function(event, widget) {
 		widgetChanged(widget);
 	});
@@ -185,7 +169,7 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets
 
 	$scope.addWidget = function() {
 		if ($scope.editing) {
-			$http.post(partials + '/ajax/boards/' + $scope.board.boardId + '/widgets/' + $scope.currentWidget._id, {
+			$http.post(path + '/boards/' + $scope.board.boardId + '/widgets/' + $scope.currentWidget._id + '.json', {
 				settings: $scope.settings,
 				widgetSettings: $scope.widgetSettings
 			}).success(function(data) {
@@ -194,7 +178,7 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets
 				}
 			});
 		} else {
-			$http.post(partials + '/ajax/boards/' + $scope.board.boardId + '/widgets', {
+			$http.post(path + '/boards/' + $scope.board.boardId + '/widgets.json', {
 				widget: $scope.currentWidget.id,
 				settings: $scope.settings,
 				widgetSettings: $scope.widgetSettings

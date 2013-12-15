@@ -1,0 +1,1 @@
+json.extract! @widget, :widget, :widgetSettings, :settings
