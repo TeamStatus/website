@@ -32,7 +32,8 @@ gem 'bson_ext'
 # Views
 gem 'haml-rails'
 gem 'less-rails'
-gem 'twitter-bootstrap-rails'
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
+gem 'font-awesome-rails'
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
 
