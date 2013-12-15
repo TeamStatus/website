@@ -1,6 +1,6 @@
 class User
   include Mongoid::Document
-  store_in collection: "users", session: 'default'
+  # store_in collection: "users", session: 'default'
 
   has_many :boards
   has_many :servers
