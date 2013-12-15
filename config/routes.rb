@@ -16,6 +16,8 @@ ConsoleRails::Application.routes.draw do
   end
 
   get 'partials/:partial_id' => 'partials#show'
+  get 'partials/integrations/:widget_id/js' => 'partials#widget_js'
+  get 'partials/integrations/:widget_id' => 'partials#widget'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

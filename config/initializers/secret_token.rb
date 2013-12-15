@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-ConsoleRails::Application.config.secret_key_base = '30852d078f117bab4d842bee51d8d1db6923d61b89f0a3e403b3bee041db7d721a10a295072fd287e42d1e0564c5a54a20e351dd3d1aa025f8aea7216965dcb3'
+ConsoleRails::Application.config.secret_key_base = ENV['COOKIE_SECRET']

@@ -173,9 +173,9 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets
 		$scope.settings = widget.settings || {};
 		$scope.widgetSettings = widget.widgetSettings || { title: "Widget" };
 		if (widget.configurable) {
-			$http.get(partials + "/ajax/integrations/" + widget.id + "/js").success(function (data) {
+			$http.get(partials + "/integrations/" + widget.id + "/js").success(function (data) {
 				eval.apply(window, [data]);
-				$http.get(partials + "/ajax/integrations/" + widget.id).success(function (data) {
+				$http.get(partials + "/integrations/" + widget.id).success(function (data) {
 					$scope.settings = widget.settings || {};
 					angular.element('.settings').html($compile(data)($scope));
 				});
