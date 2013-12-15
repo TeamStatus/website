@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
+# Google Analytics
+gem 'rack-google-analytics'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -28,6 +30,9 @@ gem 'jbuilder', '~> 1.2'
 # Database
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
+
+# Mails
+gem 'intercom'
 
 # Views
 gem 'haml-rails'
