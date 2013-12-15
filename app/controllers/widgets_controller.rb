@@ -51,7 +51,7 @@ class WidgetsController < ApplicationController
 
 	private
 		def set_board
-			@board = ::Board.find(params[:board_id])
+			@board = @user.boards.find(params[:board_id])
 		end
 
 		def set_widget
