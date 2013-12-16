@@ -1,10 +1,15 @@
 {
 	"name": "teamstatus-console",
-    "description": "TeamStatus.TV board display engine",
-    "dependencies": {
-        "bower": "*"
-    },
-    "scripts": {
-        "postinstall": "./node_modules/bower/bin/bower install"
-    }
+	"version": "0.1.0",
+  "description": "TeamStatus.TV board display engine",
+  "dependencies": {
+      "bower": "*"
+  },
+  "scripts": {
+      "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "engines": {
+  		"node": "0.10.21",
+  		"npm": "1.3.11"
+	}
 }
