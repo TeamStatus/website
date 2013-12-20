@@ -35,6 +35,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 # Database
+gem 'moped', github: 'mongoid/moped'
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
