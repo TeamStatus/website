@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: e3a55c2a68895723f876dd1daaa86ec39b085d38
+  revision: fc589421bf8bcc85769400563ac43afa3fa6af29
   specs:
     mongoid (4.0.0.alpha1)
       activemodel (~> 4.0.0)
@@ -66,7 +66,7 @@ GEM
     commonjs (0.2.7)
     connection_pool (1.2.0)
     erubis (2.7.0)
-    excon (0.30.0)
+    excon (0.31.0)
     execjs (2.0.2)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
@@ -74,11 +74,11 @@ GEM
       railties (>= 3.2, < 5.0)
     haml (4.0.4)
       tilt
-    haml-rails (0.5.2)
-      actionpack (~> 4.0.1)
-      activesupport (~> 4.0.1)
+    haml-rails (0.5.3)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
       haml (>= 3.1, < 5.0)
-      railties (~> 4.0.1)
+      railties (>= 4.0.1)
     hike (1.2.3)
     httpauth (0.2.0)
     i18n (0.6.9)
@@ -126,7 +126,9 @@ GEM
     origin (2.0.0)
     polyglot (0.3.3)
     rack (1.5.2)
-    rack-google-analytics (0.12.0)
+    rack-google-analytics (0.14.0)
+      actionpack
+      activesupport
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.2)
@@ -152,7 +154,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
-    sass (3.2.12)
+    sass (3.2.13)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
@@ -180,7 +182,7 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
-    uglifier (2.3.3)
+    uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     unicorn (4.7.0)
