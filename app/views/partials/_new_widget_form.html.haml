@@ -1,6 +1,7 @@
 %img.thumbnail.pull-left{ "data-src"=> "holder.js/140x140", "bs-holder" => ""}
-%h1 {{currentWidget.name}}
-%p {{currentWidget.description}}
+.widget-header.pull-left
+	%h1 {{currentWidget.name}}
+	%p {{currentWidget.description}}
 / %i.fa.fa-spinner.fa-spin
 .clearfix
 %form{role: "form", :name => "addWidgetForm", "ng-submit" => "addWidget()"}

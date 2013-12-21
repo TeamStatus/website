@@ -20,6 +20,7 @@
 //= require angular-strap/dist/angular-strap
 //= require angular-ui-bootstrap
 //= require angular-underscore/angular-underscore.js
+//= require angular-filters/dist/angular-filters.min.js
 //= require_tree .
 
 $(function() {

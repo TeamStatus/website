@@ -17,6 +17,6 @@
     .col-md-3
       .list-group{"ng-cloak" => ""}
         %a.list-group-item{:href => "#/{{widget._id}}", "ng-repeat" => "widget in boardWidgets", "ng-class" => "{active: widget.active}"}
-          {{widget.widgetSettings.title}}
+          {{widget.widgetSettings.title | default: 'Widget'}}
           %span.label.label-default.pull-right {{widgetsMap[widget.widget].name}}
     .col-md-8{"ng-view" => ""}

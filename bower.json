@@ -5,7 +5,8 @@
     "angular-underscore": "*",
     "underscore": "*",
     "angular-strap": "*",
-    "holderjs": "*"
+    "holderjs": "*",
+    "angular-filters": "*"
   },
   "resolutions": {
     "bootstrap": ">=3.0 <4.0"

@@ -1,5 +1,5 @@
 //= require holderjs/holder
-var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore'])
+var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore', 'frapontillo.ex.filters'])
 	.constant('path', '')
 	.constant('partials', '/partials');
 
