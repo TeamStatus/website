@@ -31,6 +31,13 @@ GIT
   specs:
     rack-cors (0.2.9)
 
+GIT
+  remote: git@bitbucket.org:teamstatus/integrations.git
+  revision: 1c208346ddecaad5cf26ccaa14ed1cac82ca0893
+  branch: master
+  specs:
+    integrations (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -206,6 +213,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   font-awesome-rails
   haml-rails
+  integrations!
   intercom
   jbuilder (~> 1.2)
   jquery-rails

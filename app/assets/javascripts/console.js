@@ -1,4 +1,5 @@
 //= require holderjs/holder
+//= require integrations-config
 var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore', 'frapontillo.ex.filters'])
 	.constant('path', '')
 	.constant('partials', '/partials');
@@ -156,12 +157,9 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets
 		$scope.settings = widget.settings || {};
 		$scope.widgetSettings = widget.widgetSettings || { title: "Widget" };
 		if (widget.configurable) {
-			$http.get(partials + "/integrations/" + widget.id + "/js").success(function (data) {
-				eval.apply(window, [data]);
-				$http.get(partials + "/integrations/" + widget.id).success(function (data) {
-					$scope.settings = widget.settings || {};
-					angular.element('.settings').html($compile(data)($scope));
-				});
+			$http.get("/assets/" + widget.id + "/config.html").success(function (data) {
+				$scope.settings = widget.settings || {};
+				angular.element('.settings').html($compile(data)($scope));
 			});
 		}
 	}
