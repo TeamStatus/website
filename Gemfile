@@ -5,7 +5,7 @@ ruby '2.0.0'
 gem 'rails', '4.0.2'
 
 # Integrations
-gem 'integrations', :git => 'git@bitbucket.org:teamstatus/integrations.git', :branch => 'master'
+gem 'integrations', :git => 'https://bitbucket.org/teamstatus/integrations.git', :branch => 'master'
 
 # Google Analytics
 gem 'rack-google-analytics'
