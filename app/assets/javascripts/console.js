@@ -157,7 +157,7 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets
 		$scope.settings = widget.settings || {};
 		$scope.widgetSettings = widget.widgetSettings || { title: "Widget" };
 		if (widget.configurable) {
-			$http.get("/assets/" + widget.id + "/config.html").success(function (data) {
+			$http.get(partials + "/integrations/" + widget.id).success(function (data) {
 				$scope.settings = widget.settings || {};
 				angular.element('.settings').html($compile(data)($scope));
 			});
