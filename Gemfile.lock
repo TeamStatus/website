@@ -32,11 +32,12 @@ GIT
     rack-cors (0.2.9)
 
 GIT
-  remote: git@bitbucket.org:teamstatus/integrations.git
-  revision: 1c208346ddecaad5cf26ccaa14ed1cac82ca0893
+  remote: https://bitbucket.org/teamstatus/integrations.git
+  revision: 5a7c42639994c433d6dd81d87a7c08ef3940a038
   branch: master
   specs:
     integrations (0.1.0)
+      rails (~> 4.0.0)
 
 GEM
   remote: https://rubygems.org/
