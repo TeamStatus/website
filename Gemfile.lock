@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://bitbucket.org/teamstatus/integrations.git
-  revision: 0b8b2dd1b39b9eb6a93b2ad0eba399bebb39d8cc
+  revision: 0964e72b65a4170560a751b7bb5b964422ba504a
   branch: master
   specs:
     integrations (0.1.0)
@@ -73,6 +73,12 @@ GEM
     bson (2.0.0)
     bson_ext (1.5.1)
     builder (3.1.4)
+    capybara (2.2.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -82,11 +88,15 @@ GEM
     coffee-script-source (1.6.3)
     commonjs (0.2.7)
     connection_pool (1.2.0)
+    diff-lcs (1.2.5)
     erubis (2.7.0)
     excon (0.31.0)
     execjs (2.0.2)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     font-awesome-rails (4.0.3.0)
       railties (>= 3.2, < 5.0)
     haml (4.0.4)
@@ -123,11 +133,18 @@ GEM
       excon (>= 0.16.0, < 1.0)
       json (>= 1.7.7, < 2.0)
     mime-types (1.25.1)
+    mini_portile (0.5.2)
     minitest (4.7.5)
+    mongoid-rspec (1.10.0)
+      mongoid (>= 3.0.1)
+      rake
+      rspec (>= 2.14)
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     newrelic_rpm (3.7.0.177)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     oauth2 (0.9.2)
       faraday (~> 0.8)
       httpauth (~> 0.2)
@@ -167,6 +184,21 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    rspec-core (2.14.7)
+    rspec-expectations (2.14.4)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.14.4)
+    rspec-rails (2.14.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
     sass (3.2.13)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -202,6 +234,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -211,7 +245,9 @@ DEPENDENCIES
   angularjs-rails
   anjlab-bootstrap-rails!
   bson_ext
+  capybara
   coffee-rails (~> 4.0.0)
+  figaro
   font-awesome-rails
   haml-rails
   integrations!
@@ -220,7 +256,9 @@ DEPENDENCIES
   jquery-rails
   less-rails
   mandrill-api
+  minitest
   mongoid!
+  mongoid-rspec
   moped!
   newrelic_rpm
   oauth2
@@ -228,6 +266,7 @@ DEPENDENCIES
   rack-google-analytics
   rails (= 4.0.2)
   rails_12factor
+  rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
   therubyracer

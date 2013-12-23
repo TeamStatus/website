@@ -27,3 +27,6 @@
 
 /bin/node
 /bin/nodejs
+
+# Ignore application configuration
+/config/application.yml

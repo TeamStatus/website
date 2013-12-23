@@ -16,6 +16,9 @@ gem 'rack-cors', :require => 'rack/cors', :github => 'pawelniewie/rack-cors'
 # Authentication
 gem 'oauth2'
 
+# Smart ENV management
+gem 'figaro'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -64,6 +67,16 @@ group :production do
 	gem 'newrelic_rpm'
 
 	gem 'rails_12factor'
+end
+
+group :test do
+	gem 'minitest'
+	gem 'capybara'
+end
+
+group :development, :test do
+	gem 'rspec-rails'
+	gem 'mongoid-rspec'
 end
 
 # Use ActiveModel has_secure_password
