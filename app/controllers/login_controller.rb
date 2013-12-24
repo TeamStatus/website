@@ -14,7 +14,7 @@ class LoginController < ActionController::Base
 	  session[:state] = Digest::MD5.hexdigest(rand().to_s)
 
 	  redirect_to @google.auth_code.authorize_url(:redirect_uri => url_for(:action => 'google_callback'),
-	    :scope => 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+	    :scope => 'profile email openid',
 	    :access_type => "online", :state => session[:state]), :status => 303
 	end
 
