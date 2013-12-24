@@ -17,8 +17,10 @@
 //= require angular
 //= require angular-route
 //= require angular-resource
-//= require angular-strap/dist/angular-strap
-//= require angular-ui-bootstrap
+//= require angular-ui-bootstrap-tpls
+//= require holderjs/holder
+//= require integrations-config
+
 //= require angular-underscore/angular-underscore.js
 //= require angular-filters/dist/angular-filters.min.js
 //= require_tree .

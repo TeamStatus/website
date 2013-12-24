@@ -1,6 +1,4 @@
-//= require holderjs/holder
-//= require integrations-config
-var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore', 'frapontillo.ex.filters'])
+var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore', 'frapontillo.ex.filters', 'ui.bootstrap'])
 	.constant('path', '')
 	.constant('partials', '/partials');
 
@@ -33,6 +31,7 @@ angular.module('teamstatus.console.widget', ['teamstatus.console'])
 				name: "STFU",
 				id: "stfu",
 				description: "Tell your team to be quiet",
+				configurable: true,
 				widgetSettings: {
 					title: "Shhh..."
 				}

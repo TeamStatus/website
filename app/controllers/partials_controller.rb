@@ -5,7 +5,7 @@ class PartialsController < ApplicationController
 	end
 
 	def widget
-		render "integrations/#{params[:widget_id]}/config", :layout => false , :content_type => 'text/html'
+		render "#{params[:widget_id]}/config", :layout => false , :content_type => 'text/html'
 	end
 
 end
