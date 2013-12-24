@@ -45,6 +45,9 @@ gem 'moped', github: 'mongoid/moped'
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 
+# Logging to stdout by default
+gem 'rails_stdout_logging'
+
 # Mails
 gem 'intercom'
 gem 'mandrill-api', :require => "mandrill"

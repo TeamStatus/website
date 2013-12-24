@@ -1,5 +1,6 @@
 class BoardsController < ApplicationController
 	include BoardsHelper
+	include ApplicationHelper
 
 	def index
 		@boards = @user.boards

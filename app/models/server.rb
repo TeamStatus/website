@@ -1,5 +1,6 @@
 class Server
   include Mongoid::Document
+  include SendsNotifications
   store_in collection: "servers"
 
   belongs_to :user

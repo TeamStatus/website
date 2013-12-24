@@ -12,7 +12,10 @@
  *= require_tree .
  */
 
-.nav, .pagination, .carousel a { cursor: pointer; }
+body {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
 
 /* Custom container */
 .container-narrow {
@@ -30,21 +33,4 @@
 
 .widget-header {
 	padding-left: 15px;
-}
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
-
-@media (min-width: 768px) {
-
- /* Navbar positioning foo */
- .navbar-wrapper {
-   margin-top: 20px;
- }
-
- /* The navbar becomes detached from the top, so we round the corners */
- .navbar-wrapper .navbar {
-   border-radius: 4px;
- }
-
 }

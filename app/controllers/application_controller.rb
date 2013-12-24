@@ -6,15 +6,6 @@ class ApplicationController < ActionController::Base
 	before_action :load_user
 	after_filter :set_csrf_cookie_for_ng
 
-	protected
-		def standalone
-			ENV['STANDALONE'] == "true"
-		end
-
-		def user_id
-			return session[:user_id]
-		end
-
 	private
 		def load_user
 			if standalone

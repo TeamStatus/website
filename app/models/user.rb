@@ -1,5 +1,7 @@
 class User
   include Mongoid::Document
+  include UserNotifications
+
   store_in collection: "users"
 
   has_many :boards

@@ -1,5 +1,6 @@
 class Board
     include Mongoid::Document
+    include SendsNotifications
     store_in collection: "boards"
 
     belongs_to :user

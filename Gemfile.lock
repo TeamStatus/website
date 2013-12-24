@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://bitbucket.org/teamstatus/integrations.git
-  revision: 61e9bbb6566f9af40728929ad2d9ea96fdf75f7f
+  revision: ff67739f2409a62dba1cc5b8708d7272f9f8c78e
   branch: master
   specs:
     integrations (0.1.0)
@@ -266,6 +266,7 @@ DEPENDENCIES
   rack-google-analytics
   rails (= 4.0.2)
   rails_12factor
+  rails_stdout_logging
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc

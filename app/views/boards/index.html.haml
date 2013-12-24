@@ -3,10 +3,9 @@
   :javascript
     mixpanel.track("Boards");
 
-.container
-  .boards
-    - @boards.each do |board|
-      %a.thumbnail.board{:href => board_public_url(board)}
-        %img{:src => image_path("teamstatus-logo.png")}/
-        .caption
-          %h5=board.name
+.boards
+  - @boards.each do |board|
+    %a.thumbnail.board{:href => board_public_url(board)}
+      %img{:src => image_path("teamstatus-logo.png")}/
+      .caption
+        %h5=board.name
