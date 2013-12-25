@@ -1,6 +1,6 @@
 class Board::Widget
   include Mongoid::Document
-  include SendsNotifications
+  include Board::WidgetNotifications
 
   embedded_in :board
 

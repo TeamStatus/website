@@ -10,11 +10,11 @@ gem 'integrations', :git => 'https://bitbucket.org/teamstatus/integrations.git',
 # Google Analytics
 gem 'rack-google-analytics'
 
-# CORS
-gem 'rack-cors', :require => 'rack/cors', :github => 'pawelniewie/rack-cors'
-
 # Authentication
 gem 'oauth2'
+
+# HTTP
+gem 'httparty'
 
 # Smart ENV management
 gem 'figaro'

@@ -7,6 +7,7 @@ ConsoleRails::Application.routes.draw do
 
   resources :boards, only: [:index] do
     resources :widgets
+    match '/widgets/:id', :controller => :widgets, :action => :index, via: [:options]
   end
 
   get 'login' => 'login#index'
