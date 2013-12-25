@@ -1,4 +1,6 @@
 module BoardsHelper
+	extend ActiveSupport::Concern
+
 	def board_public_url(board)
 	  url = URI(ENV['BOARDS_URL'])
 	  url.path = "/" + board.publicId
@@ -12,7 +14,7 @@ module BoardsHelper
 	end
 
 	def boards_engine
-		@engine ||= new BoardsEngine
+		@engine ||= BoardsHelper::BoardsEngine.new()
 	end
 
 	class BoardsEngine

@@ -51,6 +51,14 @@ shared_examples_for "any CORS request" do
 end
 
 describe "HTTP OPTIONS /boards/52b81c6f736572492b000000/widgets/52b9293a7365725e47010000.json" do
+	before(:all) {
+		ActionController::Base.allow_forgery_protection = true
+	}
+
+	after(:all) {
+		ActionController::Base.allow_forgery_protection = false
+	}
+
   # With Rails 4 (currently in master) we'll be able to `options :index`
   before(:each) {
   	self.extend(OptionsRunner)
