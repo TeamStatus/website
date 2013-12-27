@@ -25,8 +25,8 @@ module BoardsHelper
 			@auth = {:username => 'console', :password => 'console'}
 		end
 
-		def schedule(widgetId)
-			options = { :widgetId => widgetId }
+		def schedule(boardId)
+			options = { :boardId => boardId }
 			self.class.post('/schedule', { :body => options, :basic_auth => @auth })
 		end
 	end

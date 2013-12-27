@@ -4,7 +4,11 @@ module Board::WidgetNotifications
 
 	included do
 		after_save do |widget|
-			boards_engine.schedule(widget._id)
+			boards_engine.schedule(widget.board_id)
+		end
+
+		after_destroy do |widget|
+			boards_engine.schedule(widget.board_id)
 		end
 	end
 end
