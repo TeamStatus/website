@@ -21,13 +21,20 @@ module BoardsHelper
 		include HTTParty
 		base_uri ENV['BOARDS_URL']
 
-		def initilize
+		def initialize
 			@auth = {:username => 'console', :password => 'console'}
 		end
 
-		def schedule(boardId)
-			options = { :boardId => boardId }
-			self.class.post('/schedule', { :body => options, :basic_auth => @auth })
+		def runJob(widgetId)
+			self.class.post("/schedule/widget/#{widgetId}", { :basic_auth => @auth })
+		end
+
+		def deleteJob(widgetId)
+			self.class.delete("/schedule/widget/#{widgetId}", { :basic_auth => @auth })
+		end
+
+		def deleteJobs(boardId)
+			self.class.delete("/schedule/#{boardId}", { :basic_auth => @auth })
 		end
 	end
 end

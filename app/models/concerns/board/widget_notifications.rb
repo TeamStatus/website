@@ -4,11 +4,11 @@ module Board::WidgetNotifications
 
 	included do
 		after_save do |widget|
-			boards_engine.schedule(widget.board_id)
+			boards_engine.runJob(widget._id)
 		end
 
 		after_destroy do |widget|
-			boards_engine.schedule(widget.board_id)
+			boards_engine.deleteJob(widget._id)
 		end
 	end
 end

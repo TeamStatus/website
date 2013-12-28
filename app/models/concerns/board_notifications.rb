@@ -4,7 +4,7 @@ module BoardNotifications
 
 	included do
 		after_destroy do |board|
-			boards_engine.schedule(board._id)
+			boards_engine.deleteJobs(board._id)
 		end
 	end
 end

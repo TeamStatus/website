@@ -1,5 +1,6 @@
 class Board
     include Mongoid::Document
+    include BoardNotifications
 
     store_in collection: "boards"
 
