@@ -22,7 +22,7 @@ module BoardsHelper
 		base_uri ENV['BOARDS_URL']
 
 		def initialize
-			@auth = {:username => 'console', :password => 'console'}
+			@auth = {:username => 'console', :password => ENV['CONSOLE_SECRET']}
 		end
 
 		def runJob(widgetId)

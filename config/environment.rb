@@ -5,7 +5,7 @@ require 'intercom'
 # Initialize the Rails application.
 ConsoleRails::Application.initialize!
 
-%w{COOKIE_SECRET COOKIE_NAME GOOGLE_KEY GOOGLE_SECRET BOARDS_URL MONGOHQ_URL}.each do |var|
+%w{COOKIE_SECRET COOKIE_NAME GOOGLE_KEY GOOGLE_SECRET BOARDS_URL MONGOHQ_URL CONSOLE_SECRET}.each do |var|
   abort("missing env var: please set #{var}") unless ENV[var]
 end
 
