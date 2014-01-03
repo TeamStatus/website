@@ -71,6 +71,15 @@ angular.module('teamstatus.console.widget', ['teamstatus.console'])
 				widgetSettings: {
 					title: "HTML"
 				}
+			},
+			{
+				name: "Countdown",
+				id: "countdown",
+				description: "Display number of days to a given date",
+				configurable: true,
+				widgetSettings: {
+					title: "Days until"
+				}
 			}
 		];
 	}]);
