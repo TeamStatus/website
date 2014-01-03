@@ -26,15 +26,27 @@ module BoardsHelper
 		end
 
 		def runJob(widgetId)
-			self.class.post("/schedule/widget/#{widgetId}", { :basic_auth => @auth })
+			begin
+				self.class.post("/schedule/widget/#{widgetId}", { :basic_auth => @auth })
+			rescue
+				Rails.logger.warn "Unable to run the job #{$!}"
+			end
 		end
 
 		def deleteJob(widgetId)
-			self.class.delete("/schedule/widget/#{widgetId}", { :basic_auth => @auth })
+			begin
+				self.class.delete("/schedule/widget/#{widgetId}", { :basic_auth => @auth })
+			rescue
+				Rails.logger.warn "Unable to delete the job #{$!}"
+			end
 		end
 
 		def deleteJobs(boardId)
-			self.class.delete("/schedule/#{boardId}", { :basic_auth => @auth })
+			begin
+				self.class.delete("/schedule/#{boardId}", { :basic_auth => @auth })
+			rescue
+				Rails.logger.warn "Unable to delete jobs #{$!}"
+			end
 		end
 	end
 end
