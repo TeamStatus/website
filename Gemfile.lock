@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: https://bitbucket.org/teamstatus/integrations.git
-  revision: 23828be40364701f0340144f32c0f107529d149f
+  revision: f3371d7ff11e2957cadcc16a951e4315c7d94261
   branch: master
   specs:
     integrations (0.1.0)
@@ -136,6 +136,11 @@ GEM
       mongoid (>= 3.0.1)
       rake
       rspec (>= 2.14)
+    mongoid_rails_migrations (1.0.1)
+      activesupport (>= 3.2.0)
+      bundler (>= 1.0.0)
+      rails (>= 3.2.0)
+      railties (>= 3.2.0)
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
@@ -257,6 +262,7 @@ DEPENDENCIES
   minitest
   mongoid!
   mongoid-rspec
+  mongoid_rails_migrations
   moped!
   newrelic_rpm
   oauth2
