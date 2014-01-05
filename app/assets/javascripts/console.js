@@ -1,8 +1,9 @@
+//= require integrations-config.js
 var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore', 'frapontillo.ex.filters', 'ui.bootstrap'])
 	.constant('path', '')
 	.constant('partials', '/partials');
 
-angular.module('teamstatus.console.widget', ['teamstatus.console'])
+angular.module('teamstatus.console.widget', ['teamstatus.console', 'teamstatus.integrations'])
 	.directive('bsHolder', function() {
 		return {
 			link: function (scope, element, attrs) {
@@ -16,72 +17,6 @@ angular.module('teamstatus.console.widget', ['teamstatus.console'])
 			publicId: angular.element('meta[name="ts.board.publicId"]').attr('content'),
 			boardId: angular.element('meta[name="ts.board.id"]').attr('content')
 		};
-	}])
-	.factory('widgets', ['$http', function($http) {
-		return [
-			{
-				name: "Clock",
-				id: "clock",
-				description: "Add a clock",
-				widgetSettings: {
-					title: "Clock"
-				}
-			},
-			{
-				name: "STFU",
-				id: "stfu",
-				description: "Tell your team to be quiet",
-				configurable: true,
-				widgetSettings: {
-					title: "Shhh..."
-				}
-			},
-			{
-				name: "Bamboo Builds",
-				id: "bamboo-builds",
-				description: "Get Bamboo Builds status",
-				configurable: true,
-				widgetSettings: {
-					title: "Builds"
-				}
-			},
-			{
-				name: "JIRA Counter",
-				id: "jira-simple-counter",
-				description: "Display number of issues in JIRA",
-				configurable: true,
-				widgetSettings: {
-					title: "Issues"
-				}
-			},
-			{
-				name: "JIRA Issues",
-				id: "jira-issue-list",
-				description: "Display list of issues from JIRA",
-				configurable: true,
-				widgetSettings: {
-					title: "Issues"
-				}
-			},
-			{
-				name: "Static HTML",
-				id: "static-html",
-				description: "Display static HTML",
-				configurable: true,
-				widgetSettings: {
-					title: "HTML"
-				}
-			},
-			{
-				name: "Countdown",
-				id: "countdown",
-				description: "Display number of days to a given date",
-				configurable: true,
-				widgetSettings: {
-					title: "Days until"
-				}
-			}
-		];
 	}]);
 
 angular.module('teamstatus.console.widget.add', ['teamstatus.console.widget'])

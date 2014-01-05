@@ -19,7 +19,6 @@
 //= require angular-resource
 //= require angular-ui-bootstrap-tpls
 //= require holderjs/holder
-//= require integrations-config
 
 //= require angular-underscore/angular-underscore.js
 //= require angular-filters/dist/angular-filters.min.js
