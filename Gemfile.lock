@@ -26,8 +26,17 @@ GIT
       optionable (~> 0.2.0)
 
 GIT
+  remote: git://github.com/pawelniewie/mongoid-shell.git
+  revision: 1c69fb2b29bc88a9d0da77c73d232a7e1c91b732
+  branch: moped-2.0.0
+  specs:
+    mongoid-shell (0.2.0)
+      i18n
+      mongoid (>= 4.0.0.alpha1)
+
+GIT
   remote: https://bitbucket.org/teamstatus/integrations.git
-  revision: a769ed9696fa4f566c98f5202f84a677ce62d0e8
+  revision: 02c898d182d160e140a2e57a30fa9a67ae4abe81
   branch: master
   specs:
     integrations (0.1.0)
@@ -262,6 +271,7 @@ DEPENDENCIES
   minitest
   mongoid!
   mongoid-rspec
+  mongoid-shell!
   mongoid_rails_migrations
   moped!
   newrelic_rpm

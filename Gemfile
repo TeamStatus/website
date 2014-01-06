@@ -70,17 +70,19 @@ group :production do
 	# Monitoring
 	gem 'newrelic_rpm'
 
+	# Better heroku support (serving static files and logging to stdout)
 	gem 'rails_12factor'
 end
 
 group :test do
 	gem 'minitest'
 	gem 'capybara'
-end
-
-group :development, :test do
 	gem 'rspec-rails'
 	gem 'mongoid-rspec'
+end
+
+group :development do
+	gem 'mongoid-shell', :github => 'pawelniewie/mongoid-shell', :branch => 'moped-2.0.0'
 end
 
 # Use ActiveModel has_secure_password
