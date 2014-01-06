@@ -28,6 +28,7 @@ task "assets:precompile" => "assets:bower_install"
 
 namespace :db do
   namespace :production do
+    # more ideas at http://artsy.github.io/blog/2013/01/31/create-mongodb-command-lines-with-mongo/
     task :mongoid do
       ENV = Figaro.env 'production'
       Mongoid.load! File.join(Rails.root, "config/mongoid.yml"), :production
