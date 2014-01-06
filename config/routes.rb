@@ -5,6 +5,8 @@ ConsoleRails::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'console#index'
 
+  mount Integrations::Engine, at: "partials/integrations"
+
   resources :boards, only: [:index] do
     resources :widgets
     match '/widgets/:id', :controller => :widgets, :action => :index, via: [:options]
@@ -15,8 +17,6 @@ ConsoleRails::Application.routes.draw do
   get 'login/google_callback' => 'login#google_callback'
   get 'login/logout' => 'login#logout'
   get 'partials/:partial_id' => 'partials#show'
-  get 'partials/integrations/:widget_id/js' => 'partials#widget_js'
-  get 'partials/integrations/:widget_id' => 'partials#widget'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
