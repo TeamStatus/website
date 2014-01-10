@@ -1,10 +1,10 @@
-class Board::Widget
+class Board::Job
   include Mongoid::Document
-  include Board::WidgetNotifications
+  include Board::JobNotifications
 
   embedded_in :board
 
-  field :widget, type: String
+  field :jobId, type: String
   field :settings
   field :widgetSettings
 end

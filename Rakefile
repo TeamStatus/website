@@ -27,22 +27,24 @@ end
 task "assets:precompile" => "assets:bower_install"
 
 namespace :db do
-  namespace :production do
-    # more ideas at http://artsy.github.io/blog/2013/01/31/create-mongodb-command-lines-with-mongo/
-    task :mongoid do
-      ENV = Figaro.env 'production'
-      Mongoid.load! File.join(Rails.root, "config/mongoid.yml"), :production
-    end
+  [:production, :development, :test, :staging].each do |env|
+    namespace env do
+      # more ideas at http://artsy.github.io/blog/2013/01/31/create-mongodb-command-lines-with-mongo/
+      task :mongoid do
+        ENV = Figaro.env env
+        Mongoid.load! File.join(Rails.root, "config/mongoid.yml"), env
+      end
 
-    desc "Run MongoDB Shell to production database"
-    task :shell => :mongoid do
-      system Mongoid::Shell::Commands::Mongo.new.to_s
-    end
+      desc "Run MongoDB Shell to #{env} database"
+      task :shell => :mongoid do
+        system Mongoid::Shell::Commands::Mongo.new.to_s
+      end
 
-    desc "Run MongoDB dump for production database"
-    task :dump => :mongoid do
-      out = File.join(Dir.tmpdir, 'db_backup')
-      system Mongoid::Shell::Commands::Mongodump.new(out: out).to_s # mongodump --db another_database --out /tmp/db_backup
+      desc "Run MongoDB dump for #{env} database"
+      task :dump => :mongoid do
+        out = File.join(Dir.tmpdir, 'db_backup')
+        system Mongoid::Shell::Commands::Mongodump.new(out: out).to_s # mongodump --db another_database --out /tmp/db_backup
+      end
     end
   end
 end
