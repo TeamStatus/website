@@ -68,7 +68,7 @@ var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'pa
 	$scope.board = board;
 	$scope.$on('$routeChangeSuccess', routeChanged);
 
-	$http.get(path + '/boards/' + board.boardId + '/widgets.json').success(function(data) {
+	$http.get(path + '/boards/' + board.boardId + '/jobs.json').success(function(data) {
 		$scope.boardWidgets = data;
 		routeChanged();
 	});
@@ -79,7 +79,7 @@ var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'pa
 		_.each($scope.boardWidgets, function(widget) {
 			widget['active'] = !!widget['_id'] && widget['_id'] === widgetId;
 			if(widget.active) {
-				$scope.currentWidget = _.extend(_.clone($scope.widgetsMap[widget.widget]), widget);
+				$scope.currentWidget = _.extend(_.clone($scope.widgetsMap[widget.jobId]), widget);
 				$scope.$broadcast('currentWidgetChanged', $scope.currentWidget);
 			}
 		});
@@ -109,7 +109,7 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets
 
 	$scope.addWidget = function() {
 		if ($scope.editing) {
-			$http.put(path + '/boards/' + $scope.board.boardId + '/widgets/' + $scope.currentWidget._id + '.json', {
+			$http.put(path + '/boards/' + $scope.board.boardId + '/jobs/' + $scope.currentWidget._id + '.json', {
 				settings: $scope.settings,
 				widgetSettings: $scope.widgetSettings
 			}).success(function(data) {
@@ -118,8 +118,8 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets
 				}
 			});
 		} else {
-			$http.post(path + '/boards/' + $scope.board.boardId + '/widgets.json', {
-				widget: $scope.currentWidget.id,
+			$http.post(path + '/boards/' + $scope.board.boardId + '/jobs.json', {
+				jobId: $scope.currentWidget.id,
 				settings: $scope.settings,
 				widgetSettings: $scope.widgetSettings
 			}).success(function(data) {
