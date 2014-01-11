@@ -50,7 +50,7 @@ shared_examples_for "any CORS request" do
   end
 end
 
-describe "HTTP OPTIONS /boards/52b81c6f736572492b000000/widgets/52b9293a7365725e47010000.json" do
+describe "HTTP OPTIONS /boards/52b81c6f736572492b000000/jobs/52b9293a7365725e47010000.json" do
 	before(:all) {
 		ActionController::Base.allow_forgery_protection = true
 	}
@@ -63,7 +63,7 @@ describe "HTTP OPTIONS /boards/52b81c6f736572492b000000/widgets/52b9293a7365725e
   before(:each) {
   	self.extend(OptionsRunner)
   	self.reset!
-  	options "/boards/52b81c6f736572492b000000/widgets/52b9293a7365725e47010000.json"
+  	options "/boards/52b81c6f736572492b000000/jobs/52b9293a7365725e47010000.json"
   }
 
   it_should_behave_like "any CORS request"
