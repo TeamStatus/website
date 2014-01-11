@@ -44,6 +44,8 @@ gem 'jbuilder', '~> 1.2'
 gem 'moped', github: 'mongoid/moped'
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'mongoid_rails_migrations'
+gem 'mongoid-encrypted-fields'
+gem 'gibberish'
 gem 'bson_ext'
 
 # Logging to stdout by default

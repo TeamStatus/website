@@ -5,6 +5,6 @@ class Board::Job
   embedded_in :board
 
   field :jobId, type: String
-  field :settings
+  field :settings, type: Mongoid::EncryptedHash
   field :widgetSettings
 end
