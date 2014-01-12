@@ -1,7 +1,7 @@
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
+      uri: <%= ENV['MONGODB_URL'] %>
       max_retries_on_connection_failure: 20
       persist_in_safe_mode: true
       skip_version_check: true
@@ -9,7 +9,7 @@ production:
 development:
   sessions:
     default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
+      uri: <%= ENV['MONGODB_URL'] %>
       max_retries_on_connection_failure: 3
       persist_in_safe_mode: true
       skip_version_check: true
@@ -17,7 +17,7 @@ development:
 test:
   sessions:
     default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
+      uri: <%= ENV['MONGODB_URL'] %>
       max_retries_on_connection_failure: 3
       persist_in_safe_mode: true
       skip_version_check: true
