@@ -43,4 +43,5 @@ class ApplicationController < ActionController::Base
 		def options_request?
 	  	request.request_method == "OPTIONS"
 	 	end
+
 end

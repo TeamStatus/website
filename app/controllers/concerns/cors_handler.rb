@@ -2,7 +2,7 @@ module CorsHandler
 	extend ActiveSupport::Concern
 
 	included do
-		before_filter :allow_cors
+		before_filter :allow_cors unless Rails.env.standalone?
 	end
 
 	protected

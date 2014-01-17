@@ -1,6 +1,7 @@
 module ApplicationHelper
+
 	def standalone
-		ENV['STANDALONE'] == "true"
+		Rails.env.standalone?
 	end
 
 	def user_id
