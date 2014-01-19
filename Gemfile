@@ -58,7 +58,7 @@ gem 'mandrill-api', :require => "mandrill"
 # Views
 gem 'haml-rails'
 gem 'less-rails'
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
+gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'font-awesome-rails'
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'

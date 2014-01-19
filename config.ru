@@ -2,10 +2,10 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 
-if Rails.env.standalone?
-	map '/console' do
-		run Rails.application
-	end
-else
+class Helper
+	include ApplicationHelper
+end
+
+map Helper.new.base_path do
 	run Rails.application
 end

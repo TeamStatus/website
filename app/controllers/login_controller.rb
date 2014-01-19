@@ -19,7 +19,10 @@ class LoginController < ActionController::Base
 	end
 
 	def google_callback
-	  halt 403 unless session[:state] == params[:state]
+	  unless session[:state] == params[:state]
+	  	redirect_to :action => 'index'
+	  	return
+	  end
 
 	  access_token = @google.auth_code.get_token(params[:code], :redirect_uri => url_for(:action => 'google_callback'))
 	  profile = access_token.get('https://www.googleapis.com/oauth2/v1/userinfo?alt=json').parsed.with_indifferent_access

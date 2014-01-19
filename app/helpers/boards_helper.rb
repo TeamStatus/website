@@ -2,13 +2,7 @@ module BoardsHelper
 	extend ActiveSupport::Concern
 
 	def boards_base_url
-		if Rails.env.standalone?
-			uri = URI("#{request.protocol}#{request.host_with_port}")
-			uri.path = '/boards'
-			uri
-		else
-			URI(ENV['BOARDS_URL'])
-		end
+		URI(ENV['BOARDS_URL'])
 	end
 
 	def board_public_url(board)
@@ -24,15 +18,15 @@ module BoardsHelper
 	end
 
 	def boards_engine
-		@engine ||= BoardsHelper::BoardsEngine.new(boards_base_url)
+		@engine ||= BoardsHelper::BoardsEngine.new
 	end
 
 	class BoardsEngine
 		include HTTParty
+		base_uri ENV['BOARDS_URL']
 
-		def initialize(base_url)
+		def initialize
 			@auth = {:username => 'console', :password => ENV['CONSOLE_SECRET']}
-			base_uri base_url
 		end
 
 		def runJob(widgetId)

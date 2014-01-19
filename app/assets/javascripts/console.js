@@ -1,7 +1,7 @@
 //= require integrations-config.js
 var con = angular.module('teamstatus.console', ['ngRoute', 'angular-underscore', 'frapontillo.ex.filters', 'ui.bootstrap'])
-	.constant('path', '')
-	.constant('partials', '/partials');
+	.constant('path', angular.element('meta[name="ts.console.basePath"]').attr('content') + '')
+	.constant('partials', angular.element('meta[name="ts.console.basePath"]').attr('content') + '/partials');
 
 angular.module('teamstatus.console.widget', ['teamstatus.console', 'teamstatus.integrations'])
 	.directive('bsHolder', function() {

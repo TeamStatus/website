@@ -16,7 +16,7 @@ ConsoleRails::Application.routes.draw do
   get 'login' => 'login#index'
   get 'login/google' => 'login#google'
   get 'login/google_callback' => 'login#google_callback'
-  get 'login/logout' => 'login#logout'
+  get 'logout' => 'login#logout'
   get 'partials/:partial_id' => 'partials#show'
 
   # Example of regular route:

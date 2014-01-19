@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require underscore/underscore
-//= require twitter/bootstrap
 //= require angular
 //= require angular-route
 //= require angular-resource
