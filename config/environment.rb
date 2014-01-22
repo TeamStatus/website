@@ -5,13 +5,13 @@ require 'intercom'
 # Initialize the Rails application.
 ConsoleRails::Application.initialize!
 
-%w{COOKIE_SECRET COOKIE_NAME GOOGLE_KEY GOOGLE_SECRET MONGODB_URL CONSOLE_SECRET ENCRYPTED_FIELDS_SALT ENCRYPTED_FIELDS_PASSWORD}.each do |var|
+%w{COOKIE_SECRET COOKIE_NAME MONGODB_URL CONSOLE_SECRET ENCRYPTED_FIELDS_SALT ENCRYPTED_FIELDS_PASSWORD BOARDS_URL CONSOLE_URL}.each do |var|
   abort("missing env var: please set #{var}") unless ENV[var]
 end
 
 unless Rails.env.standalone?
 
-	%w{BOARDS_URL}.each do |var|
+	%w{GOOGLE_KEY GOOGLE_SECRET}.each do |var|
 	  abort("missing env var: please set #{var}") unless ENV[var]
 	end
 
