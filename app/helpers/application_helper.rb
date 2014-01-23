@@ -8,12 +8,8 @@ module ApplicationHelper
 		return session[:user_id]
 	end
 
-	def base_url
-		ENV['CONSOLE_URL']
-	end
-
 	def base_path
-		URI(base_url).path
+		URI(ENV['CONSOLE_URL']).path
 	end
 
 end
