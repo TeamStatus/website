@@ -9,7 +9,12 @@ module ApplicationHelper
 	end
 
 	def base_path
-		URI(ENV['CONSOLE_URL']).path
+		path = URI(ENV['CONSOLE_URL']).path
+		if path.empty?
+			'/'
+		else
+			path
+		end
 	end
 
 end
