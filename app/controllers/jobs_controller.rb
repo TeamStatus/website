@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
 
 	before_action :set_board
-	before_action :set_job, only: [:update, :destroy]
+	before_action :set_job, only: [:update, :destroy, :duplicate]
 
 	def index
 		@jobs = @board.jobs
@@ -31,6 +31,18 @@ class JobsController < ApplicationController
        format.json { render json: @job.errors, status: :unprocessable_entity }
      end
    end
+ 	end
+
+	def duplicate
+		respond_to do |format|
+			if @board.jobs.push(@job.clone)
+				format.html { redirect_to [@board, @job], notice: 'Job was successfully created.' }
+				format.json { render action: 'show', status: :created, location: board_job_path(@board, @job) }
+			else
+				format.html { render action: 'new' }
+				format.json { render json: @comment.errors, status: :unprocessable_entity }
+			end
+		end
  	end
 
 	def create

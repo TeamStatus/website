@@ -11,6 +11,7 @@ ConsoleRails::Application.routes.draw do
   resources :boards, only: [:index] do
     resources :jobs
     match '/jobs/:id', :controller => :jobs, :action => :index, via: [:options]
+    match '/jobs/:id/duplicate', :controller => :jobs, :action => :duplicate, via: [:post, :options]
   end
 
   get 'login' => 'login#index'
