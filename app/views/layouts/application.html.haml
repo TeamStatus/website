@@ -3,7 +3,7 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes", :name => "viewport"}/
-    %meta{:name => 'ts.console.basePath', :content => base_path}/
+    %meta{:name => 'ts.console.basePath', :content => base_path == '/' ? '' : base_path}/
     %title TeamStatus.TV
     / These are Open Graph tags.  They add meta data to your
     / site that facebook uses when your content is shared
