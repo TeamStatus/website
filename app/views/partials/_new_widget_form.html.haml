@@ -4,7 +4,7 @@
 	%p {{currentWidget.description}}
 / %i.fa.fa-spinner.fa-spin
 .clearfix
-%form{role: "form", :name => "addWidgetForm", "ng-submit" => "addWidget()"}
+%form{role: "form", :name => "jobForm", "ng-submit" => "addWidget()"}
 	.form-group
 		%label{for: "title"} Widget title
 		%input#title.form-control{name: "title", "ng-model" => "widgetSettings.title", placeholder: "Optional title", type: "text"}/
