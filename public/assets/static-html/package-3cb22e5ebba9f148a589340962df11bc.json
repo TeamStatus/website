@@ -1,0 +1,8 @@
+{
+	"name": "Static HTML",
+	"id": "static-html",
+	"description": "Display static HTML",
+	"widgetSettings": {
+		"title": "HTML"
+	}
+}

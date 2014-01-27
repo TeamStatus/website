@@ -1,0 +1,29 @@
+<div ng-controller="JiraSimpleCounterCtrl">
+	<div class="form-group">
+	  <label for="serverAddress">JIRA address</label>
+	  <input class="form-control" id="serverAddress" name="serverAddress" ng-model="settings.server.address" placeholder="http://your.jira.com" required="" type="url">
+	  <small class="error" ng-show="jobForm.serverAddress.$error.url">That is not a valid address</small>
+	  <small class="error" ng-show="jobForm.serverAddress.$error.required">JIRA address is required</small>
+	</div>
+	<div class="form-group">
+	  <label for="serverUsername">JIRA username</label>
+	  <input class="form-control" id="serverUsername" name="serverUsername" ng-minlength="2" ng-model="settings.server.username" placeholder="username" required="" type="text">
+	  <small class="error" ng-show="jobForm.serverUsername.$error.minlength">Username is required to be at least 2 characters</small>
+	  <small class="error" ng-show="jobForm.serverUsername.$error.required">Username is required</small>
+	</div>
+	<div class="form-group">
+	  <label for="serverPassword">JIRA password</label>
+	  <input class="form-control" id="serverPassword" name="serverPassword" ng-minlength="2" ng-model="settings.server.password" placeholder="password" required="" type="password">
+	  <small class="error" ng-show="jobForm.serverPassword.$error.minlength">Password is required to be at least 2 characters</small>
+	  <small class="error" ng-show="jobForm.serverPassword.$error.required">Password is required</small>
+	  <p>
+	    <div class="alert alert-info">Settings are stored encrypted in our database. Still for security reasons please consider creating a read-only account on your server.</div>
+	  </p>
+	</div>
+	<div class="form-group">
+	  <label for="jqlOpen">JIRA JQL for issues</label>
+	  <textarea class="form-control" id="jqlOpen" name="jqlOpen" ng-minlength="2" ng-model="settings.jqlOpen" placeholder="JQL" required="" type="text"></textarea>
+	  <small class="error" ng-show="jobForm.jqlOpen.$error.minlength">You need to specify the query</small>
+	  <small class="error" ng-show="jobForm.jqlOpen.$error.required">You need to specify the query</small>
+	</div>
+</div>
