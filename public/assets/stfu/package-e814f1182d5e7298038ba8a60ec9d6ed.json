@@ -1,8 +1,0 @@
-{
-	"name": "STFU",
-	"id": "stfu",
-	"description": "Tell your team to be quiet",
-	"widgetSettings": {
-		"title": "Shhh..."
-	}
-}

@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: https://bitbucket.org/teamstatus/integrations.git
-  revision: 5d950e49e0a07960e7adc9fafec471019ddfe655
+  revision: 2b8f62a41d350e57a2e43b66c7768ed5bb957fcf
   branch: master
   specs:
     integrations (0.1.0)

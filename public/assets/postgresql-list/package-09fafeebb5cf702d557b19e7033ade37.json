@@ -1,9 +1,0 @@
-{
-	"name": "PostgreSQL table",
-	"id": "postgresql-list",
-	"description": "Display results of PostgreSQL query",
-	"widget": "display-table",
-	"widgetSettings": {
-		"title": "PostgreSQL"
-	}
-}

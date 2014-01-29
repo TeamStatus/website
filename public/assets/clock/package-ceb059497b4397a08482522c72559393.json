@@ -1,8 +1,0 @@
-{
-	"name": "Clock",
-	"id": "clock",
-	"description": "Add a clock",
-	"widgetSettings": {
-		"title": "Clock"
-	}
-}
