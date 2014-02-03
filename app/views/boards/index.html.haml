@@ -1,11 +1,17 @@
 - content_for(:scripts) do
-  !=javascript_include_tag('//cdnjs.cloudflare.com/ajax/libs/holder/2.0/holder.js')
-  :javascript
-    mixpanel.track("Boards");
+	!=javascript_include_tag('//cdnjs.cloudflare.com/ajax/libs/holder/2.0/holder.js')
+	:javascript
+		mixpanel.track("Boards");
 
 .boards
-  - @boards.each do |board|
-    %a.thumbnail.board{:href => board_public_url(board)}
-      %img{:src => image_path("teamstatus-logo.png")}/
-      .caption
-        %h5=board.name
+	- @boards.each do |board|
+		%a.thumbnail.board{:href => board_public_url(board)}
+			%img{:src => image_path("teamstatus-logo.png")}/
+			.caption
+				%h5=board.name
+
+	=link_to new_board_path, class: 'thumbnail board add' do
+		%div
+			%i.fa.fa-plus-circle.fa-3
+		.caption
+			%h5 Create board

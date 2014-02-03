@@ -8,7 +8,7 @@ ConsoleRails::Application.routes.draw do
 
   mount Integrations::Engine, at: "partials/integrations"
 
-  resources :boards, only: [:index] do
+  resources :boards do
     resources :jobs
     match '/jobs/:id', :controller => :jobs, :action => :index, via: [:options]
     match '/jobs/:id/duplicate', :controller => :jobs, :action => :duplicate, via: [:post, :options]

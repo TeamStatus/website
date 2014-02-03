@@ -1,6 +1,8 @@
 class BoardsController < ApplicationController
 	include BoardsHelper
 
+	before_action :set_board, only: [:show, :update, :destroy]
+
 	def index
 		@boards = @user.boards
 		unless @boards.exists?
@@ -13,5 +15,21 @@ class BoardsController < ApplicationController
 			board.save
 			redirect_to board_edit_url(board)
 		end
+
+		def show
+		end
+
+		def new
+		end
+
+		def create
+		end
 	end
+
+	private
+
+	def set_board
+		@board = @user.boards.find(params[:id])
+	end
+
 end
