@@ -1,0 +1,1 @@
+json.extract! @board, :_id, :name

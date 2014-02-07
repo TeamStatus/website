@@ -2,23 +2,36 @@
   :javascript
     mixpanel.track("Add board");
 
-%div{"ng-app" => "teamstatus.console.widget.add", "ng-controller" => "WidgetsCtrl"}
+%div{"ng-app" => "teamstatus.console.boards", "ng-controller" => "BoardCtrl"}
 
   .page-header
     %h1
       Add board
       %small
 
-  %form{role: "form", :name => "jobForm", "ng-submit" => "addBoard()", "ng-cloak" => ""}
-    .form-group
-      %label{for: "name"} Board name
-      %input#milestoneName.form-control{name: "name", "ng-model" => "board.name", placeholder: "Board name", type: "text"}/
+  .row
+    .col-md-1
+    .col-md-6
 
-    %button.btn.btn-success{:type => "submit", 'ng-if' => '!editing'}
-      %i.fa.fa-plus
-      Add board
-    %button.btn.btn-success{:type => "submit", 'ng-if' => 'editing'}
-      %i.fa.fa-cog
-      Save board
-    =link_to 'Cancel', boards_path, :class => 'btn btn-link'
+      %form{role: "form", :name => "boardForm", "ng-submit" => "saveBoard()", "ng-cloak" => ""}
+        .form-group
+          %label{for: "name"} Board name
+          %input#milestoneName.form-control{name: "name", "ng-model" => "board.name", placeholder: "Board name", type: "text", 'ng-minlength' => 2, :required => true}/
+          %small.error{ "ng-show" => "boardForm.name.$error.minlength" } Name is required to be at least 2 characters
+          %small.error{ "ng-show" => "boardForm.name.$error.required" } Name is required
+
+        .form-group
+          %label Secret link
+          %p.form-control-static Will be generated when board is created
+
+        .alert.alert-warning
+          This board will be publicly accessible by anyone having the secret link.
+
+        %button.btn.btn-success{:type => "submit", 'ng-if' => '!editing'}
+          %i.fa.fa-plus
+          Add board
+        %button.btn.btn-success{:type => "submit", 'ng-if' => 'editing'}
+          %i.fa.fa-cog
+          Save board
+        =link_to 'Cancel', boards_path, :class => 'btn btn-link'
 

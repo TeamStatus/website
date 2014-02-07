@@ -15,14 +15,47 @@ class BoardsController < ApplicationController
 			board.save
 			redirect_to board_edit_url(board)
 		end
+	end
 
-		def show
+	def show
+	end
+
+	def new
+	end
+
+	def create
+		@board = @user.boards.new(board_params)
+		logger.debug "New board: #{@board.attributes.inspect}"
+		logger.debug "Board should be valid: #{@board.valid?}"
+
+		respond_to do |format|
+			if @board.save
+				format.html { redirect_to [@board], notice: 'Board was successfully created.' }
+				format.json { render action: 'show', status: :created, location: board_path(@board) }
+			else
+				format.html { render action: 'new' }
+				format.json { render json: @comment.errors, status: :unprocessable_entity }
+			end
 		end
+	end
 
-		def new
+	def update
+		respond_to do |format|
+			if @board.update_attributes(board_params)
+				format.html { redirect_to [@board], notice: 'Board was successfully updated.' }
+				format.json { head :no_content }
+			else
+				format.html { render action: 'edit' }
+				format.json { render json: @job.errors, status: :unprocessable_entity }
+			end
 		end
+	end
 
-		def create
+	def destroy
+		@board.destroy
+		respond_to do |format|
+			format.html { redirect_to boards_url(@board) }
+			format.json { head :no_content }
 		end
 	end
 
@@ -32,4 +65,8 @@ class BoardsController < ApplicationController
 		@board = @user.boards.find(params[:id])
 	end
 
+	# Never trust parameters from the scary internet, only allow the white list through.
+	def board_params
+		params.slice(:name).permit!
+	end
 end

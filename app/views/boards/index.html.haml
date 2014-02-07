@@ -9,6 +9,17 @@
 			%img{:src => image_path("teamstatus-logo.png")}/
 			.caption
 				%h5=board.name
+				/ %ul.list-inline.pull-right.operations
+				/ 	%li
+				/ 		%a.copy{href: '#', title: "Copy"}
+				/ 			%i.fa.fa-copy
+				/ 	%li
+				/ 		%a.edit{href: edit_board_url(board), title: "Edit"}
+				/ 			%i.fa.fa-cog
+				/ 	%li
+				/ 		%a.delete{href: '#', title: "Delete"}
+				/ 			%i.fa.fa-trash-o
+				/ .clearfix
 
 	=link_to new_board_path, class: 'thumbnail board add' do
 		%div

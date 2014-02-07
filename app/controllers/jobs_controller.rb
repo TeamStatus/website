@@ -22,16 +22,16 @@ class JobsController < ApplicationController
 	end
 
 	def update
-   respond_to do |format|
-     if @job.update_attributes(job_update_params)
-       format.html { redirect_to [@board, @job], notice: 'Job was successfully updated.' }
-       format.json { head :no_content }
-     else
-       format.html { render action: 'edit' }
-       format.json { render json: @job.errors, status: :unprocessable_entity }
-     end
-   end
- 	end
+		respond_to do |format|
+			if @job.update_attributes(job_update_params)
+				format.html { redirect_to [@board, @job], notice: 'Job was successfully updated.' }
+				format.json { head :no_content }
+			else
+				format.html { render action: 'edit' }
+				format.json { render json: @job.errors, status: :unprocessable_entity }
+			end
+		end
+	end
 
 	def duplicate
 		respond_to do |format|
@@ -43,7 +43,7 @@ class JobsController < ApplicationController
 				format.json { render json: @comment.errors, status: :unprocessable_entity }
 			end
 		end
- 	end
+	end
 
 	def create
 		@job = @board.jobs.new(job_params)
@@ -62,13 +62,13 @@ class JobsController < ApplicationController
 	end
 
 	private
-		def set_board
-			@board = @user.boards.find(params[:board_id])
-		end
+	def set_board
+		@board = @user.boards.find(params[:board_id])
+	end
 
-		def set_job
-			@job = @board.jobs.find(params[:id])
-		end
+	def set_job
+		@job = @board.jobs.find(params[:id])
+	end
 
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def job_params
@@ -78,4 +78,4 @@ class JobsController < ApplicationController
 		def job_update_params
 			params.slice(:settings, :widgetSettings).permit!
 		end
-end
+	end
