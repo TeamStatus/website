@@ -1,4 +1,10 @@
 angular.module('teamstatus.console.boards', ['teamstatus.console.widget'])
+.factory('boards', function() {
+	return angular.element('.boards').data('boards');
+})
+.controller('BoardsCtrl', ['$scope', 'boards', function($scope, boards) {
+	$scope.boards = boards;
+}])
 .controller('BoardCtrl', ['$scope', '$http', '$window', 'path', function($scope, $http, $window, path) {
 	$scope.saveBoard = function() {
 		if ($scope.editing) {

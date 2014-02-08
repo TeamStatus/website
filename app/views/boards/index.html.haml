@@ -7,17 +7,16 @@
 	%a.btn.btn-default{href: new_board_path} Add board
 
 %p
-	.boards
-		- @boards.each do |board|
-			.thumbnail.board
-				%a{:href => board_public_url(board)}
-					%img{:src => image_path("teamstatus-logo.png")}/
-				.caption
-					%h5=board.name
-					%ul.list-inline.pull-right
-						%li
-							%a.edit{href: edit_board_url(board), title: "Edit"}
-								%i.fa.fa-cog
-						%li
-							%a.delete{href: '#', title: "Delete"}
-								%i.fa.fa-trash-o
+	.boards{'ng-app' => 'teamstatus.console.boards', 'ng-controller' => 'BoardsCtrl', 'ng-cloak' => '', 'data-boards' => render(template: 'boards/index', formats: :json)}
+		.thumbnail.board{'ng-repeat' => 'board in boards'}
+			%a{'ng-href' => '{{board.view_url}}'}
+				%img{:src => image_path("teamstatus-logo.png")}/
+			.caption
+				%h5 {{board.name | default: 'No name'}}
+				%ul.list-inline.pull-right
+					%li
+						%a.edit{'ng-href' => '{{board.edit_url}}', title: "Edit"}
+							%i.fa.fa-cog
+					%li
+						%a.delete{href: '#', title: "Delete"}
+							%i.fa.fa-trash-o
