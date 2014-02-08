@@ -8,6 +8,13 @@
 
 %p
 	.boards{'ng-app' => 'teamstatus.console.boards', 'ng-controller' => 'BoardsCtrl', 'ng-cloak' => '', 'data-boards' => render(template: 'boards/index', formats: :json)}
+		%script{id: "confirmDelete.html", type: "text/ng-template"}
+			.modal-body
+				{{message}}
+			.modal-footer
+				%button.btn.btn-primary{"ng-click" => "ok()"} Delete
+				%button.btn.btn-warning{"ng-click" => "cancel()"} Cancel
+
 		.thumbnail.board{'ng-repeat' => 'board in boards'}
 			%a{'ng-href' => '{{board.view_url}}'}
 				%img{:src => image_path("teamstatus-logo.png")}/
@@ -18,5 +25,6 @@
 						%a.edit{'ng-href' => '{{board.edit_url}}', title: "Edit"}
 							%i.fa.fa-cog
 					%li
-						%a.delete{href: '#', title: "Delete"}
+						%a.delete{href: '#', title: "Delete", 'ng-click' => 'confirmDelete()'}
 							%i.fa.fa-trash-o
+

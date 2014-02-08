@@ -22,6 +22,9 @@
 
 //= require angular-underscore/angular-underscore.js
 //= require angular-filters/dist/angular-filters.min.js
+//= require teamstatus.console
+//= require teamstatus.console.widget
+//= require teamstatus.console.boards
 //= require_tree .
 
 $(function() {
