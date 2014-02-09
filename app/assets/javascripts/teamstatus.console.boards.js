@@ -2,7 +2,7 @@ angular.module('teamstatus.console.boards', ['teamstatus.console.widget'])
 .factory('boards', function() {
 	return angular.element('.boards').data('boards');
 })
-.controller('DeleteModalCtrl', ['$scope', '$modalInstance', function($scope, $modalInstance, message) {
+.controller('DeleteModalCtrl', ['$scope', '$modalInstance', 'message', function($scope, $modalInstance, message) {
   $scope.message = message;
 
   $scope.ok = function () {
@@ -16,7 +16,7 @@ angular.module('teamstatus.console.boards', ['teamstatus.console.widget'])
 .controller('BoardsCtrl', ['$scope', '$http', '$modal', 'boards', 'path', function($scope, $http, $modal, boards, path) {
 	$scope.boards = boards;
 
-	$scope.confirmDelete= function() {
+	$scope.confirmDelete= function(boardId) {
 		var confirmDelete = $modal.open({
 			templateUrl: 'confirmDelete.html',
 			controller: 'DeleteModalCtrl',
@@ -28,7 +28,7 @@ angular.module('teamstatus.console.boards', ['teamstatus.console.widget'])
 		});
 
 		confirmDelete.result.then(function() {
-	    $http.delete(path + '/boards/' + boardId + '.json').done(function() {
+	    $http.delete(path + '/boards/' + boardId + '.json').success(function() {
 				window.location.reload();
 			});
 	  }, function() {
