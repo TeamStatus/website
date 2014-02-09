@@ -70,12 +70,12 @@ class JobsController < ApplicationController
 		@job = @board.jobs.find(params[:id])
 	end
 
-		# Never trust parameters from the scary internet, only allow the white list through.
-		def job_params
-			params.slice(:jobId, :settings, :widgetSettings).permit!
-		end
-
-		def job_update_params
-			params.slice(:settings, :widgetSettings).permit!
-		end
+	# Never trust parameters from the scary internet, only allow the white list through.
+	def job_params
+		params.slice(:jobId, :settings, :widgetSettings).permit!
 	end
+
+	def job_update_params
+		params.slice(:settings, :widgetSettings).permit!
+	end
+end

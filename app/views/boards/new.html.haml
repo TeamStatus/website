@@ -14,11 +14,7 @@
     .col-md-6
 
       %form{role: "form", :name => "boardForm", "ng-submit" => "saveBoard()", "ng-cloak" => ""}
-        .form-group
-          %label{for: "name"} Board name
-          %input#milestoneName.form-control{name: "name", "ng-model" => "board.name", placeholder: "Board name", type: "text", 'ng-minlength' => 2, :required => true}/
-          %small.error{ "ng-show" => "boardForm.name.$error.minlength" } Name is required to be at least 2 characters
-          %small.error{ "ng-show" => "boardForm.name.$error.required" } Name is required
+        =render :partial => 'common_fields'
 
         .form-group
           %label Secret link
@@ -27,11 +23,9 @@
         .alert.alert-warning
           This board will be publicly accessible by anyone having the secret link.
 
-        %button.btn.btn-success{:type => "submit", 'ng-if' => '!editing'}
+        %button.btn.btn-success{:type => "submit"}
           %i.fa.fa-plus
           Add board
-        %button.btn.btn-success{:type => "submit", 'ng-if' => 'editing'}
-          %i.fa.fa-cog
-          Save board
+
         =link_to 'Cancel', boards_path, :class => 'btn btn-link'
 

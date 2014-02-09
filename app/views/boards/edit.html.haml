@@ -1,0 +1,37 @@
+- content_for(:scripts) do
+  :javascript
+    mixpanel.track("Edit board");
+
+%div.board{"ng-app" => "teamstatus.console.boards", "ng-controller" => "BoardCtrl", 'data-board' => render(:template => 'boards/show', :formats => :json) }
+
+  .page-header
+    %h1
+      Edit board
+      %small
+
+  .row
+    .col-md-1
+    .col-md-6
+
+      %form{role: "form", :name => "boardForm", "ng-submit" => "saveBoard()", "ng-cloak" => ""}
+        =render :partial => 'common_fields'
+
+        .form-group
+          %label{for: "publicId"} Secret link
+          .input-group
+            %input#publicId.form-control{"ng-model" => "board.public_url", :type => 'text', :disabled => true}
+            %span.input-group-btn
+              %a.btn.btn-default{'ng-href' => "{{board.public_url}}", title: "View board"}
+                %i.fa.fa-link
+              %a.btn.btn-warning{href: "#", 'ng-click' => 'resetPublicId(board._id)', title: "Reset public link"}
+                %i.fa.fa-chain-broken
+
+        .alert.alert-warning
+          This board will be publicly accessible by anyone having the secret link.
+
+        %button.btn.btn-success{:type => "submit"}
+          %i.fa.fa-cog
+          Save board
+
+        =link_to 'Cancel', boards_path, :class => 'btn btn-link'
+

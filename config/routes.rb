@@ -12,6 +12,10 @@ ConsoleRails::Application.routes.draw do
     resources :jobs
     match '/jobs/:id', :controller => :jobs, :action => :index, via: [:options]
     match '/jobs/:id/duplicate', :controller => :jobs, :action => :duplicate, via: [:post, :options]
+
+    member do
+      post 'public_id' => 'boards#reset_public_id'
+    end
   end
 
   get 'login' => 'login#index'

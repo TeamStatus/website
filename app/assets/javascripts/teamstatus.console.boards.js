@@ -2,25 +2,15 @@ angular.module('teamstatus.console.boards', ['teamstatus.console.widget'])
 .factory('boards', function() {
 	return angular.element('.boards').data('boards');
 })
-.controller('DeleteModalCtrl', ['$scope', '$modalInstance', 'message', function($scope, $modalInstance, message) {
-  $scope.message = message;
-
-  $scope.ok = function () {
-    $modalInstance.close();
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-}])
 .controller('BoardsCtrl', ['$scope', '$http', '$modal', 'boards', 'path', function($scope, $http, $modal, boards, path) {
 	$scope.boards = boards;
 
 	$scope.confirmDelete= function(boardId) {
 		var confirmDelete = $modal.open({
-			templateUrl: 'confirmDelete.html',
-			controller: 'DeleteModalCtrl',
+			templateUrl: path + '/partials/confirm_action_modal',
+			controller: 'ConfirmActionModalCtrl',
 			resolve: {
+				action: function() {return "Delete";},
 				message: function () {
 					return "You are going to delete the board. Are you sure?";
 				}
@@ -36,15 +26,20 @@ angular.module('teamstatus.console.boards', ['teamstatus.console.widget'])
 	  });
 	}
 }])
-.controller('BoardCtrl', ['$scope', '$http', '$window', 'path', function($scope, $http, $window, path) {
+.factory('board', function() {
+	return angular.element('.board').data('board');
+})
+.controller('BoardCtrl', ['$scope', '$http', '$window', '$modal', 'path', 'board', function($scope, $http, $window, $modal, path, board) {
+	$scope.editing = board !== undefined && board !== null;
+	$scope.board = board;
+
 	$scope.saveBoard = function() {
 		if ($scope.editing) {
-			$http.put(path + '/boards/' + $scope.board.boardId + '/jobs/' + $scope.currentWidget._id + '.json', {
-				settings: $scope.settings,
-				widgetSettings: $scope.widgetSettings
+			$http.put(path + '/boards/' + $scope.board._id + '.json', {
+				name: $scope.board.name
 			}).success(function(data) {
 				if (!data.error) {
-					$window.location.href=$scope.board.editUrl;
+					$window.location.href= path + '/boards';
 				}
 			});
 		} else {
@@ -57,4 +52,26 @@ angular.module('teamstatus.console.boards', ['teamstatus.console.widget'])
 			});
 		}
 	};
+
+	$scope.resetPublicId = function(boardId) {
+		var confirmModal = $modal.open({
+			templateUrl: path + '/partials/confirm_action_modal',
+			controller: 'ConfirmActionModalCtrl',
+			resolve: {
+				action: function() {return "Reset";},
+				message: function () {
+					return "You are going to reset public url for the board. Clicking Reset will instantly change it and the previous url will stop working. Are you sure?";
+				}
+			}
+		});
+
+		confirmModal.result.then(function() {
+	    $http.post(path + '/boards/' + boardId + '/public_id.json').success(function(data) {
+	    	$scope.board.publicId = data.publicId;
+	    	$scope.board.public_url = data.public_url;
+			});
+	  }, function() {
+	    // ignore cancel
+	  });
+	}
 }]);

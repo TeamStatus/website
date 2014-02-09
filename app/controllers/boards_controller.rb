@@ -1,7 +1,7 @@
 class BoardsController < ApplicationController
 	include BoardsHelper
 
-	before_action :set_board, only: [:show, :update, :destroy]
+	before_action :set_board, only: [:show, :edit, :update, :destroy, :reset_public_id]
 
 	def index
 		@boards = @user.boards
@@ -21,6 +21,15 @@ class BoardsController < ApplicationController
 	end
 
 	def new
+	end
+
+	def edit
+	end
+
+	def reset_public_id
+		@board.reset_public_id
+		@board.save
+		render :show
 	end
 
 	def create
