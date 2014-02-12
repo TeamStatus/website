@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require console-helper
 //= require jquery
 //= require jquery_ujs
 //= require underscore/underscore
@@ -25,7 +26,6 @@
 //= require teamstatus.console
 //= require teamstatus.console.widget
 //= require teamstatus.console.boards
-//= require_tree .
 
 $(function() {
 	$('footer a').click(function () {

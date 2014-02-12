@@ -1,0 +1,90 @@
+!!!
+%html{class: 'no-js', lang: 'en'}
+  %head
+    %title=@board.name
+    %meta{charset: "utf-8"}
+    %meta{'http-equiv' => "X-UA-Compatible", content: "IE=edge,chrome=1"}
+    %meta{name: "viewport", content: "width=device-width"}
+
+    != stylesheet_link_tag "application"
+
+    %meta{name: 'ts.board.basePath', content: base_path == '/' ? '' : base_path}
+    %meta{name: 'ts.board.boardsUrl', content: boards_base_url}
+    %meta{name: 'ts.board.host', content: boards_base_url.host}
+    %meta{name: 'ts.board.port', content: boards_base_url.port}
+    %meta{name: 'ts.board.publicId', content: @board.publicId}
+    %meta{name: 'ts.board.id', content: @board._id}
+    %meta{name: 'ts.board.editUrl', content: board_edit_url(@board)}
+
+  %body.public_board
+    - if !anonymous
+      #menu
+        .btn-group
+          %button.btn.btn-sm.btn-black.dropdown-toggle{'data-toggle' => "dropdown"}
+            %i.fa.fa-cog
+          %ul.dropdown-menu{role: 'menu'}
+            - if @editing
+              %li
+                %a{href: consoleUrl + "/boards/" + board._id + "/jobs/new"}
+                  %i.fa.fa-plus Add widget
+              %li
+                %a{href: consoleUrl + "/boards"} Go to boards
+              %li
+                %a{href: url_for(:publicId => @board.publicId)} Switch to view mode
+            - else
+              %li
+                %a{href: url_for(:controller => 'boards', :action => 'edit', :id => @board._id)} Switch to edit mode
+              %li
+                %a{href: url_for(controller: "boards")} Go to boards
+              %li
+                %a{href: '#', id: "feedback"} Send feedback
+
+    - if !@editing
+      #logo
+        %h1 TeamStatus.TV
+
+    #disconnected Disconnected...waiting for the connection...
+
+    %div{id: "main-container", 'data-widgets' => @board.jobs.to_json}
+      %script{id: "widget-template", type: "text/x-handlebars-template"}
+        %li{'data-widget-id' => "{{widget.widget}}", 'data-event-id' => "{{widget._id}}"}
+          %div.widget-header
+            %h2.title
+              %i.fa.fa-bolt.error
+              {{settings.title}}
+            - if @editing && !anonymous
+              %ul.list-inline.pull-right.operations
+                %li
+                  %a.copy{href: '#', title: "Copy"}
+                    %i.fa.fa-copy
+                %li
+                  %a.edit{href: consoleUrl + "/boards/" + board._id + "/jobs/edit#/{{widget._id}}", title: "Edit"}
+                    %i.fa.fa-cog
+                %li
+                  %a.delete{href: '#', title: "Delete"}
+                    %i.fa.fa-trash-o
+          %div.spinner.icon-message
+            %div.container
+              %i.fa.fa-spinner.fa-spin
+          %div.widget-container
+            %div.content
+
+      %div{id: "widgets-container", class: "gridster"}
+        %ul
+
+    - if (mixpanel_id)
+      %script
+        (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);mixpanel.init("#{mixpanel_id}");
+
+    %script{src: ENV['BOARDS_URL'] + '/socket.io/socket.io.js'}
+    %script{type: "text/javascript", src: "https://teamstatus.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_USonyyzk-1988229788/6204/8/1.4.0-m8/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=7951dd81"}
+    :javascript
+      window.ATL_JQ_PAGE_PROPS =  {
+        "triggerFunction": function(showCollectorDialog) {
+          $("#feedback").click(function(e) {
+            e.preventDefault();
+            showCollectorDialog();
+          });
+        }};
+
+    !=javascript_include_tag "public_boards"

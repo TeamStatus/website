@@ -24,6 +24,8 @@ ConsoleRails::Application.routes.draw do
   get 'logout' => 'login#logout'
   get 'partials/:partial_id' => 'partials#show'
 
+  get 'b/:publicId' => 'public_boards#show'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

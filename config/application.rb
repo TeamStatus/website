@@ -25,6 +25,10 @@ module ConsoleRails
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # Add the fonts path
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.assets.precompile += %w( .svg .eot .woff .ttf )
+
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
     config.assets.precompile << Proc.new do |path|
       if path =~ /\.(css|js)\z/

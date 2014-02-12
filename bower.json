@@ -5,6 +5,12 @@
     "angular-underscore": "*",
     "underscore": "*",
     "holderjs": "*",
-    "angular-filters": "*"
+    "angular-filters": "*",
+		"gridster": "git+https://github.com/pawelniewie/gridster.js.git",
+		"jquery.boxfit": "git+https://github.com/pawelniewie/boxfit.git",
+		"bootbox.js": "git+https://github.com/makeusabrew/bootbox.git",
+		"handlebars": "*",
+		"d3": "*",
+		"rickshaw": "*"
   }
 }

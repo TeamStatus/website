@@ -1,0 +1,257 @@
+//= require gridster/dist/jquery.gridster.min.css
+
+$gutter: 30px;
+$dimmed: #444444;
+$background: #181818;
+$widgetheader: #454545;
+$menuWidth: 30px;
+
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), font-url('roboto-condensed.woff') format('woff');
+}
+
+body.public_board {
+
+  // Apply a natural box layout model to all elements.
+  // http//paulirish.com/2012/box-sizing-border-box-ftw/
+  * {
+    box-sizing: border-box;
+  }
+
+  background: $background;
+  overflow: hidden;
+
+  .modal {
+    top: 150px;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  .btn-black {
+    color: $widgetheader;
+    background-color: $background;
+    border-color: $widgetheader;
+
+    &:hover, &:focus {
+      color: white;
+    }
+  }
+
+  #logo {
+    position: absolute;
+    z-index: 150;
+    width: 100%;
+    h1 {
+      margin-top: 15%;
+      font-size: 400%;
+      text-align: center;
+      color: white;
+      text-transform: uppercase;
+    }
+  }
+
+  #disconnected {
+    display: none;
+    background: #f00;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    font-size: 20px;
+    position: absolute;
+    margin: auto;
+    left: 5%;
+    right: 5%;
+    bottom: 5%;
+    z-index: 1000;
+  }
+
+  #menu {
+    background: #232323;
+
+    // font-size 20px
+
+    z-index: 1500;
+
+    top: 0;
+    width: $menuWidth;
+    margin-left: -($menuWidth / 2);
+    position: fixed;
+    left: 50%;
+
+    .btn {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-top: none;
+
+      &:hover, &:focus {
+        border-color: white;
+      }
+    }
+  }
+
+  #main-container {
+    width: 1920px;
+    height: 1080px;
+    padding: ($gutter/2);
+    transform-origin: 0 0;
+    margin: 0 auto;
+    font-family: 'Roboto Condensed';
+
+    &.disconnected {
+      opacity: .3;
+    }
+
+    #dashboard-list {
+      width: 100%;
+      ul {
+          list-style: none;
+          padding: 0;
+      }
+
+      li {
+          background: rgb(15, 15, 15);
+          color: #fff;
+          padding: ($gutter / 2);
+          margin: ($gutter / 2);
+          border-radius: ($gutter / 8);
+          box-shadow: 0 0 5px #111;
+          overflow: hidden;
+          float: left;
+          width: 23%;
+          font-size: 2em;
+
+          a {
+              text-decoration: none;
+              color: white;
+              text-transform: uppercase;
+          }
+      }
+    }
+
+    #widgets-container {
+
+      clear: both;
+
+      & > ul {
+        list-style: none;
+        padding: 0;
+
+        & > li {
+          background: rgb(15, 15, 15);
+          color: #fff;
+          border-radius: ($gutter / 8);
+          box-shadow: 0 0 5px #111;
+          overflow: hidden;
+          padding: ($gutter/2);
+
+          .error {
+            color: red;
+          }
+
+          h2 {
+            text-transform: uppercase;
+            color: widgetheader;
+            line-height: 90%;
+            font-size: ($gutter*0.70);
+            display: inline-block;
+          }
+
+          .widget-header {
+            margin: 0;
+            padding: 0;
+            z-index: 999;
+            position: relative; // so z-index works
+
+            h2 {
+              padding: 0;
+              margin: 0;
+            }
+          }
+
+          .widget-container {
+            .content {
+              &.offline, &.onerror {
+                opacity: 0.2;
+              }
+            }
+
+            h2 {
+              // Stylus is trying to be damn too clever.
+              margin-top: 0;
+              margin-left: -($gutter/2);
+              margin-right: -($gutter/2);
+              margin-bottom: ($gutter/2);
+              padding: 0 ($gutter/2) ($gutter/2) ($gutter/2);
+            }
+          }
+
+          .icon-message {
+              padding: 0;
+              margin: 0;
+              text-align: center;
+
+              display: table;
+              height: 100%;
+              width: 100%;
+              z-index: 15555;
+
+              .container {
+                  i {
+                    font-size: 7em;
+                  }
+
+                  display: table-cell;
+                  vertical-align: middle;
+
+                  img {
+                      margin: 0 auto;
+                      display: block;
+                      width: 60px;
+                  }
+              }
+            }
+          }
+        }
+
+        &.loading {
+           color: #333;
+        }
+    }
+
+    big {
+      color: #fff;
+      font-size: $gutter * 2;
+      font-weight: bold;
+    }
+
+    .error-display {
+      display: none;
+      padding-left: 20px;
+      padding-bottom: 3px;
+
+      .show {
+        display: inline !important;
+      }
+    }
+
+    .widget-title span.alert {
+      text-transform: lowercase;
+      font-size: 80%;
+      opacity: 0.8;
+    }
+
+    .widget-title span.alert_low {
+      color: yellow;
+    }
+
+    .widget-title span.alert_high {
+      color: red;
+    }
+  }
+}

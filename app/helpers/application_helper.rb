@@ -8,6 +8,10 @@ module ApplicationHelper
 		return session[:user_id]
 	end
 
+	def anonymous
+		user_id.nil?
+	end
+
 	def base_path
 		path = URI(ENV['CONSOLE_URL']).path
 		if path.empty?
