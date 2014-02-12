@@ -6,7 +6,7 @@ ConsoleRails::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'console#index'
 
-  mount Integrations::Engine, at: "partials/integrations"
+  mount Integrations::Engine, at: "integrations"
 
   resources :boards do
     resources :jobs

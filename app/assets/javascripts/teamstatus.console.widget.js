@@ -82,8 +82,8 @@ var EditWidgetsCtrl = ['$scope', '$routeParams', '$log', '$http', '$window', 'pa
 	}
 }];
 
-var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets', 'board', 'path',
-	function($scope, $http, $compile, $window, partials, widgets, board, path) {
+var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'path', 'widgets', 'board', 'path',
+	function($scope, $http, $compile, $window, path, widgets, board, path) {
 	$scope.$on('currentWidgetChanged', function(event, widget) {
 		widgetChanged(widget);
 	});
@@ -96,7 +96,7 @@ var WidgetCtrl = ['$scope', '$http', '$compile', '$window', 'partials', 'widgets
 		$scope.settings = widget.settings || {};
 		$scope.widgetSettings = widget.widgetSettings || { title: "Widget" };
 		if (widget.configurable) {
-			$http.get(partials + "/integrations/" + widget.id).success(function (data) {
+			$http.get(path + "/integrations/" + widget.id + "/config").success(function (data) {
 				$scope.settings = widget.settings || {};
 				angular.element('.settings').html($compile(data)($scope));
 			});

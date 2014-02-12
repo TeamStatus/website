@@ -46,7 +46,7 @@
 
     %div{id: "main-container", 'data-widgets' => render(:template => 'public_boards/widgets', :formats => :json)}
       %script{id: "widget-template", type: "text/x-handlebars-template"}
-        %li{'data-widget-id' => "{{widget.widget}}", 'data-event-id' => "{{widget._id}}"}
+        %li{'data-widget-id' => "{{widget.jobId}}", 'data-event-id' => "{{widget._id}}"}
           %div.widget-header
             %h2.title
               %i.fa.fa-bolt.error

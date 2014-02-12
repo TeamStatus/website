@@ -256,11 +256,11 @@ $(function() {
     var $widgetContainer = $('.widget-container', $li);
 
     // fetch widget html and css
-    $.get(basePath + "/widgets/" + widgetId, function(html) {
+    $.get(basePath + "/integrations/" + widgetId + "/html", function(html) {
       $widgetContainer.html(html);
 
       // fetch widget js
-      $.get(basePath + '/widgets/' + widgetId + '/js', function(js) {
+      $.get(basePath + '/integrations/' + widgetId + '/js', function(js) {
         var widget_js = {};
         try {
           eval('widget_js[eventId] = ' + js);
