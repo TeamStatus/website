@@ -6,6 +6,7 @@ $background: #181818;
 $widgetheader: #454545;
 $menuWidth: 30px;
 
+@import "compass/css3/transform";
 
 @font-face {
   font-family: 'Roboto Condensed';
@@ -24,10 +25,6 @@ body.public_board {
 
   background: $background;
   overflow: hidden;
-
-  .modal {
-    top: 150px;
-  }
 
   .uppercase {
     text-transform: uppercase;
@@ -99,7 +96,7 @@ body.public_board {
     width: 1920px;
     height: 1080px;
     padding: ($gutter/2);
-    transform-origin: 0 0;
+    @include transform-origin(0, 0);
     margin: 0 auto;
     font-family: 'Roboto Condensed';
 

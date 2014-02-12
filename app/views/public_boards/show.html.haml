@@ -39,9 +39,8 @@
               %li
                 %a{href: '#', id: "feedback"} Send feedback
 
-    - if !@editing
-      #logo
-        %h1 TeamStatus.TV
+    #logo
+      %h1 TeamStatus.TV
 
     #disconnected Disconnected...waiting for the connection...
 
@@ -52,13 +51,13 @@
             %h2.title
               %i.fa.fa-bolt.error
               {{settings.title}}
-            - if @editing && !anonymous
+            - if !anonymous
               %ul.list-inline.pull-right.operations
                 %li
                   %a.copy{href: '#', title: "Copy"}
                     %i.fa.fa-copy
                 %li
-                  %a.edit{href: consoleUrl + "/boards/" + board._id + "/jobs/edit#/{{widget._id}}", title: "Edit"}
+                  %a.edit{href: url_for(controller: 'boards', action: 'edit', id: @board._id, fragmet: "#/{{widget._id}}"), title: "Edit"}
                     %i.fa.fa-cog
                 %li
                   %a.delete{href: '#', title: "Delete"}

@@ -11,6 +11,7 @@
 		"bootbox.js": "git+https://github.com/makeusabrew/bootbox.git",
 		"handlebars": "*",
 		"d3": "*",
-		"rickshaw": "*"
+		"rickshaw": "*",
+    "jquery-cookie": "*"
   }
 }

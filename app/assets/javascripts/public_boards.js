@@ -4,6 +4,7 @@
 //= require underscore/underscore
 //= require bootstrap
 
+//= require jquery-cookie/jquery.cookie.js
 //= require gridster/dist/jquery.gridster.min.js
 //= require jquery.transform.js
 //= require bootbox.js/bootbox.js
@@ -198,9 +199,9 @@ $(function() {
 
     var widgetTemplate = Handlebars.compile($("#widget-template").html());
     _.each(configuration, function(widget) {
-      if (widget.widget == "bamboo-builds" || widget.widget == "static-html") {
+      if (widget.jobId == "bamboo-builds" || widget.jobId == "static-html") {
         widget.widgetSettings.width = widget.widgetSettings.height = 2;
-      } else if (widget.widget == "jira-issue-list" || widget.widget == "crucible-reviews" || widget.widget == "display-table") {
+      } else if (widget.jobId == "jira-issue-list" || widget.jobId == "crucible-reviews" || widget.jobId == "display-table") {
         widget.widgetSettings.width = 2;
         widget.widgetSettings.height = 1;
       }
@@ -208,7 +209,7 @@ $(function() {
       var $li = gridster.add_widget(widgetTemplate({
         widget: widget,
         settings: widget.widgetSettings
-      }), widget.widgetSettings.width || 1, widget.widgetSettings.height || 1);
+      }), widget.widgetSettings && widget.widgetSettings.width || 1, widget.widgetSettings && widget.widgetSettings.height || 1);
 
       $li.data('widgetSettings', widget.widgetSettings);
 
