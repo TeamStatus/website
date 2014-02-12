@@ -44,7 +44,7 @@
 
     #disconnected Disconnected...waiting for the connection...
 
-    %div{id: "main-container", 'data-widgets' => @board.jobs.to_json}
+    %div{id: "main-container", 'data-widgets' => render(:template => 'public_boards/widgets', :formats => :json)}
       %script{id: "widget-template", type: "text/x-handlebars-template"}
         %li{'data-widget-id' => "{{widget.widget}}", 'data-event-id' => "{{widget._id}}"}
           %div.widget-header
