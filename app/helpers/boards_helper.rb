@@ -13,9 +13,7 @@ module BoardsHelper
 	end
 
 	def board_edit_url(board)
-	  url = boards_base_url
-	  url.path = url.path + "/" + board._id + "/edit"
-	  url.to_s
+	  url_for(controller: 'public_boards', action: 'show', publicId: board.publicId, anchor: 'edit')
 	end
 
 	def boards_engine
