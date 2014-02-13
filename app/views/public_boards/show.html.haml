@@ -57,7 +57,7 @@
                   %a.copy{href: '#', title: "Copy"}
                     %i.fa.fa-copy
                 %li
-                  %a.edit{href: url_for(controller: 'boards', action: 'edit', id: @board._id, fragmet: "#/{{widget._id}}"), title: "Edit"}
+                  %a.edit{href: base_path + 'boards/' +  @board._id.to_s + "/jobs/edit/\#{{widget._id}}", title: "Edit"}
                     %i.fa.fa-cog
                 %li
                   %a.delete{href: '#', title: "Delete"}

@@ -9,9 +9,11 @@ ConsoleRails::Application.routes.draw do
   mount Integrations::Engine, at: "integrations"
 
   resources :boards do
-    resources :jobs
-    match '/jobs/:id', :controller => :jobs, :action => :index, via: [:options]
-    match '/jobs/:id/duplicate', :controller => :jobs, :action => :duplicate, via: [:post, :options]
+    resources :jobs do
+      member do
+        post 'duplicate' => 'jobs#duplicate'
+      end
+    end
 
     member do
       post 'public_id' => 'boards#reset_public_id'
