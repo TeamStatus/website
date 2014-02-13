@@ -201,7 +201,8 @@ $(function() {
     _.each(configuration, function(widget) {
       if (widget.jobId == "bamboo-builds" || widget.jobId == "static-html") {
         widget.widgetSettings.width = widget.widgetSettings.height = 2;
-      } else if (widget.jobId == "jira-issue-list" || widget.jobId == "crucible-reviews" || widget.jobId == "display-table") {
+      } else if (widget.jobId == "jira-issue-list" || widget.jobId == "crucible-reviews" || widget.jobId == "display-table"
+          || widget.jobId == "postgresql-list") {
         widget.widgetSettings.width = 2;
         widget.widgetSettings.height = 1;
       }
