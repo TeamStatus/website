@@ -23,7 +23,7 @@
     != stylesheet_link_tag "application"
     != yield :head
 
-  %body
+  %body{:class => body_class}
 
     .container
       .navbar.navbar-inverse{:role => "navigation"}

@@ -21,4 +21,8 @@ module ApplicationHelper
 		end
 	end
 
+	def body_class
+    [controller_name, action_name].join('-')
+  end
+
 end
