@@ -74,6 +74,28 @@ $(function() {
 		}
 	});
 
+	// handling view/edit modes switching
+	function isEditing() {
+		return window.location.hash == '#edit';
+	}
+
+	function pushStateHandler() {
+		if (isEditing()) {
+			$('.editing').show();
+			$('.looking').hide();
+		} else {
+			$('.editing').hide();
+			$('.looking').show();
+		}
+	}
+
+	$(document).pusher({
+		// watch on all 'a' in the document excpet external links
+		watch: "a.mode[href^='#']",
+		handler: pushStateHandler,
+		onStateCreation: pushStateHandler
+	});
+
 	var navigatingAway = false;
 	var mainContainer = $("#main-container");
 	var basePath = $('meta[name="ts.board.basePath"]').attr('content');
@@ -226,6 +248,7 @@ $(function() {
 			}), widget.widgetSettings && widget.widgetSettings.width || 1, widget.widgetSettings && widget.widgetSettings.height || 1);
 
 			$li.data('widgetSettings', widget.widgetSettings);
+			$li.find('.editing').toggle(isEditing());
 
 			mainContainer.trigger('widget.added', [$li]);
 		});

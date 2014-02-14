@@ -23,21 +23,18 @@
           %button.btn.btn-sm.btn-black.dropdown-toggle{'data-toggle' => "dropdown"}
             %i.fa.fa-cog
           %ul.dropdown-menu{role: 'menu'}
-            - if @editing
-              %li
-                %a{href: consoleUrl + "/boards/" + board._id + "/jobs/new"}
-                  %i.fa.fa-plus Add widget
-              %li
-                %a{href: consoleUrl + "/boards"} Go to boards
-              %li
-                %a{href: url_for(:publicId => @board.publicId)} Switch to view mode
-            - else
-              %li
-                %a{href: url_for(:controller => 'boards', :action => 'edit', :id => @board._id)} Switch to edit mode
-              %li
-                %a{href: url_for(controller: "boards")} Go to boards
-              %li
-                %a{href: '#', id: "feedback"} Send feedback
+            %li
+              %a{href: new_board_job_url(@board._id.to_s)}
+                %i.fa.fa-plus
+                Add widget
+            %li.editing
+              %a.mode{href: '#'} Switch to view mode
+            %li.looking
+              %a.mode{href: '#edit'} Edit existing widgets
+            %li
+              %a{href: boards_url} Go to boards
+            %li
+              %a{href: '#', id: "feedback"} Send feedback
 
     #logo
       %h1 TeamStatus.TV
@@ -52,7 +49,7 @@
               %i.fa.fa-bolt.error
               {{settings.title}}
             - if !anonymous
-              %ul.list-inline.pull-right.operations
+              %ul.list-inline.pull-right.operations.editing
                 %li
                   %a.copy{href: '#', title: "Copy"}
                     %i.fa.fa-copy
