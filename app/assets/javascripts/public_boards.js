@@ -106,7 +106,7 @@ $(function() {
 	var gridsterContainer = $(".gridster ul");
 
 	// not showing disconnected when unloading the page
-	$(document).on('unload', function() {
+	$(window).on('beforeunload unload', function() {
 		navigatingAway = true;
 	});
 
