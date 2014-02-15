@@ -19,7 +19,8 @@ module UserNotifications
 				      :from_name=> "TeamStatus.TV",
 				      :from_email=> "root@teamstatus.tv",
 				      :to=>[
-				        {:email => "pawelniewiadomski@me.com", :name => "Pawel Niewiadomski"}
+				        {:email => "pawel@teamstatus.tv", :name => "Pawel Niewiadomski"},
+				        {:email => "janek@teamstatus.tv", :name => "Jan Nowak"}
 				      ]
 				    }
 				    mandrill.messages.send message
