@@ -1,0 +1,1 @@
+var JiraSimpleCounterCtrl=["$scope",function(){}];

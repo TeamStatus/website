@@ -1,0 +1,1 @@
+var CountdownCtrl=["$scope",function(t){t.today=new Date,t.open=function(e){e.preventDefault(),e.stopPropagation(),t.opened=!0},void 0===t.settings.targetDate&&(t.settings.targetDate=new Date)}];

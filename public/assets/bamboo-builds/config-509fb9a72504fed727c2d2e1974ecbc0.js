@@ -1,0 +1,1 @@
+var BambooBuildsCtrl=["$scope",function(){}];

@@ -1,0 +1,1 @@
+var StfuCtrl=["$scope",function(t){t.addTimeSpan=function(){var e={start:new Date,end:new Date};e.start.setHours(10),e.start.setMinutes(0),e.end.setHours(11),e.end.setMinutes(0),t.settings.timeSpans.push(e)},t.removeTimeSpan=function(e){t.settings.timeSpans.splice(e,1)},void 0===t.settings.timeSpans&&(t.settings.timeSpans=[],t.addTimeSpan())}];
