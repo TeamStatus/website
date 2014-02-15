@@ -8,7 +8,7 @@ class BoardsController < ApplicationController
 		unless @boards.exists?
 			board = @user.boards.build({ :name => "First board!" })
 			board.jobs.build({:jobId => 'static-html', :widgetSettings => { :title => "Welcome!",
-				:html => '<p>This is your first boad!</p>
+				:html => '<p>This is your first board!</p>
 <p>Use menu on top  to add widgets!</p>
 <p>If you need any help please <a href="mailto:pawel@teamstatus.tv">contact me</a></p>
 <p>Sincerely, Pawel Niewiadomski, CEO</p>' }})
