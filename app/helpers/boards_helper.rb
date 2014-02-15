@@ -6,10 +6,7 @@ module BoardsHelper
 	end
 
 	def board_public_url(board)
-	  # url = boards_base_url
-	  # url.path = url.path + '/' + board.publicId
-	  # url.to_s
-	  ENV['CONSOLE_URL'] + url_for(controller: 'public_boards', action: 'show', publicId: board.publicId)
+		request.base_url + url_for(controller: 'public_boards', action: 'show', publicId: board.publicId)
 	end
 
 	def board_edit_url(board)

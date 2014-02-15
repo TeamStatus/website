@@ -13,6 +13,7 @@ class PublicBoardsController < ApplicationController
 
 	def set_board
 		@board = Board.where(publicId: params[:publicId]).first
+		raise ActionController::RoutingError.new('Not Found') if @board.nil?
 	end
 
 end

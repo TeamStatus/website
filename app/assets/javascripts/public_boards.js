@@ -126,17 +126,12 @@ $(function() {
 
 	buildUI(mainContainer, gridsterContainer, mainContainer.data('widgets'));
 
-	var socketPath = '/socket.io';
-	while(socketPath.indexOf('/') === 0) {
-		socketPath = socketPath.substring(1);
-	}
-
 	var socketOptions = {
 		'reconnect': true,
 		'reconnection delay': 5000,
 		'reopen delay': 3000,
 		'max reconnection attempts': 100,
-		'resource': socketPath,
+		'resource': 'socket.io',
 		'host': boardsHost,
 		'port': boardsPort
 	};
