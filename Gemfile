@@ -53,7 +53,7 @@ gem 'bson_ext'
 gem 'rails_stdout_logging'
 
 # Mails
-gem 'intercom'
+gem 'intercom-rails', '~> 0.2.24'
 gem 'mandrill-api', :require => "mandrill"
 
 # Views

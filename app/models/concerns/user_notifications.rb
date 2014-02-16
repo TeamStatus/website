@@ -8,9 +8,6 @@ module UserNotifications
 
 		after_create do |user|
 			unless standalone
-				Intercom::User.create(:email => user.email, :created_at => user.created_at, :name => user.fullName, :user_id => user._id)
-				Intercom::Tag.create(:name => 'Beta', :emails => [ user.email ], :tag_or_untag => 'tag')
-
 				if mandrill
 				  begin
 				    message = {
