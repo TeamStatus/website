@@ -25,6 +25,14 @@ module BoardsHelper
 			@auth = {:username => 'console', :password => ENV['CONSOLE_SECRET']}
 		end
 
+		def tap(widgetId, data)
+			begin
+				self.class.post("/tap/#{widgetId}", { :basic_auth => @auth, :body => data })
+			rescue
+				Rails.logger.warn "Unable to forward the data to job #{$!}"
+			end
+		end
+
 		def runJob(widgetId)
 			begin
 				self.class.post("/schedule/widget/#{widgetId}", { :basic_auth => @auth })
