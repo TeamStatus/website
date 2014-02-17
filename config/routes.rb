@@ -20,6 +20,8 @@ ConsoleRails::Application.routes.draw do
     end
   end
 
+  post 'sources/:id/tap' => 'sources#tap'
+
   get 'login' => 'login#index'
   get 'login/google' => 'login#google'
   get 'login/google_callback' => 'login#google_callback'
