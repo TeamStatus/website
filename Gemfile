@@ -78,10 +78,13 @@ group :production do
 end
 
 group :test do
+	gem 'factory_girl_rails'
+	gem 'database_cleaner'
 	gem 'minitest'
 	gem 'capybara'
 	gem 'rspec-rails'
 	gem 'mongoid-rspec'
+	gem 'selenium-webdriver'
 end
 
 group :development do
