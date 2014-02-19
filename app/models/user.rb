@@ -5,7 +5,6 @@ class User
   store_in collection: "users"
 
   has_many :boards
-  has_many :servers
 
   field :email, type: Mongoid::EncryptedString
   field :fullName, type: Mongoid::EncryptedString

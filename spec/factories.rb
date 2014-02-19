@@ -1,8 +1,7 @@
 FactoryGirl.define do
 	factory :user do
-		email "aabb@hh.de"
-		password "ruby"
-		password_confrimation "ruby"
+		email "admin@localhost"
+		fullName "Administrator"
 	end
 
 	factory :board do
