@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: https://bitbucket.org/teamstatus/integrations.git
-  revision: 066d5d52d433a015ae1cf07076ad70ac0847c7b2
+  revision: 793d69adb4f69daab2dff1a21c2ab12ca3693ac6
   branch: master
   specs:
     integrations (0.1.0)
@@ -156,10 +156,6 @@ GEM
     minitest (4.7.5)
     mongoid-encrypted-fields (1.3.0)
       mongoid (>= 3)
-    mongoid-rspec (1.10.0)
-      mongoid (>= 3.0.1)
-      rake
-      rspec (>= 2.14)
     mongoid_rails_migrations (1.0.1)
       activesupport (>= 3.2.0)
       bundler (>= 1.0.0)
@@ -210,10 +206,6 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
-    rspec (2.14.1)
-      rspec-core (~> 2.14.0)
-      rspec-expectations (~> 2.14.0)
-      rspec-mocks (~> 2.14.0)
     rspec-core (2.14.7)
     rspec-expectations (2.14.4)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -294,17 +286,15 @@ DEPENDENCIES
   jquery-rails
   less-rails
   mandrill-api
-  minitest
   mongoid!
   mongoid-encrypted-fields
-  mongoid-rspec
   mongoid-shell!
   mongoid_rails_migrations
   moped!
   newrelic_rpm
   oauth2
   rack-google-analytics
-  rails (= 4.0.2)
+  rails (~> 4.0.0)
   rails_12factor
   rails_stdout_logging
   rspec-rails

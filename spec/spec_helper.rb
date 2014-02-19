@@ -7,6 +7,7 @@ require 'rspec/autorun'
 # Add this to load Capybara integration:
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara/server'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -15,14 +16,6 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
-
-Capybara.always_include_port = true
-
-def set_host (host)
-  # host! host
-  default_url_options[:host] = host
-  Capybara.app_host = "http://" + host
-end
 
 RSpec.configure do |config|
   # ## Mock Framework
@@ -35,10 +28,6 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include Capybara::DSL, :type => :request
-
-  config.before :each, :type => :request do
-    set_host "lvh.me"
-  end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"

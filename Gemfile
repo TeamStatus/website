@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '~> 4.0.0'
 
 # Integrations
 gem 'integrations', :git => 'https://bitbucket.org/teamstatus/integrations.git', :branch => 'master'
@@ -15,9 +15,6 @@ gem 'oauth2'
 
 # HTTP
 gem 'httparty'
-
-# Smart ENV management
-gem 'figaro'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -34,9 +31,6 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -77,14 +71,15 @@ group :production do
 	gem 'rails_12factor'
 end
 
-group :test do
+group :development, :test do
 	gem 'factory_girl_rails'
 	gem 'database_cleaner'
-	gem 'minitest'
 	gem 'capybara'
 	gem 'rspec-rails'
-	gem 'mongoid-rspec'
 	gem 'selenium-webdriver'
+
+	# Smart ENV management
+	gem 'figaro'
 end
 
 group :development do
