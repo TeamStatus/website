@@ -13,6 +13,9 @@ gem 'rack-google-analytics'
 # Authentication
 gem 'oauth2'
 
+# Smart ENV management
+gem 'figaro'
+
 # HTTP
 gem 'httparty'
 
@@ -79,9 +82,6 @@ group :development, :test do
 	gem 'capybara-screenshot'
 	gem 'rspec-rails'
 	gem 'selenium-webdriver'
-
-	# Smart ENV management
-	gem 'figaro'
 end
 
 group :development do
