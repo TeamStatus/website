@@ -72,9 +72,11 @@ group :production do
 end
 
 group :development, :test do
+	gem 'spork', '~> 1.0rc'
 	gem 'factory_girl_rails'
 	gem 'database_cleaner'
 	gem 'capybara'
+	gem 'capybara-screenshot'
 	gem 'rspec-rails'
 	gem 'selenium-webdriver'
 
