@@ -10,7 +10,6 @@
 //= require bootbox.js/bootbox.js
 //= require jquery.boxfit/src/jquery.boxfit
 //= require handlebars.js
-//= require jquery-pusher/jquery.pusher.min.js
 
 $(function() {
 	var basePath = $('meta[name="ts.board.basePath"]').attr('content');
@@ -79,7 +78,7 @@ $(function() {
 		return window.location.hash == '#edit';
 	}
 
-	function pushStateHandler() {
+	$(window).on('hashchange', function() {
 		if (isEditing()) {
 			$('.editing').show();
 			$('.looking').hide();
@@ -87,14 +86,8 @@ $(function() {
 			$('.editing').hide();
 			$('.looking').show();
 		}
-	}
-
-	$(document).pusher({
-		// watch on all 'a' in the document excpet external links
-		watch: "a.mode[href^='#']",
-		handler: pushStateHandler,
-		onStateCreation: pushStateHandler
 	});
+	$(window).trigger('hashchange');
 
 	var navigatingAway = false;
 	var mainContainer = $("#main-container");

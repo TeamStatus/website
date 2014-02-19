@@ -12,7 +12,6 @@
 		"handlebars": "*",
 		"d3": "*",
 		"rickshaw": "*",
-    "jquery-cookie": "*",
-    "jquery-pusher": "git+https://github.com/salvan13/jquery-pusher.git"
+    "jquery-cookie": "*"
   }
 }
