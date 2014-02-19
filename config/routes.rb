@@ -1,5 +1,4 @@
 ConsoleRails::Application.routes.draw do
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -28,7 +27,11 @@ ConsoleRails::Application.routes.draw do
   get 'logout' => 'login#logout'
   get 'partials/:partial_id' => 'partials#show'
 
-  get 'b/:publicId' => 'public_boards#show'
+  if Rails.env.standalone?
+    get 'b/:publicId' => 'public_boards#show'
+  else
+    get '/:publicId' => 'public_boards#show', constraints: {subdomain: 'boards'}
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

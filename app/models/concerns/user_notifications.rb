@@ -7,7 +7,7 @@ module UserNotifications
 	included do
 
 		after_create do |user|
-			unless standalone
+			if Rails.env.production?
 				if mandrill
 				  begin
 				    message = {

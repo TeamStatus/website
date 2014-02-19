@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 	private
 
 	def load_user
-		if standalone
+		if Rails.env.standalone?
 			@user = ::User.where({ :email => "admin@localhost" }).first
 			if @user.nil?
 				@user = ::User.create!({:email => "admin@localhost", :fullName => "Administrator", :callingName => "admin" })

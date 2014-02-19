@@ -8,11 +8,7 @@ ConsoleRails::Application.initialize!
   abort("missing env var: please set #{var}") unless ENV[var]
 end
 
-class Helper
-	include ApplicationHelper
-end
-
-unless Helper.new.standalone
+unless Rails.env.standalone?
 	%w{GOOGLE_KEY GOOGLE_SECRET}.each do |var|
 	  abort("missing env var: please set #{var}") unless ENV[var]
 	end

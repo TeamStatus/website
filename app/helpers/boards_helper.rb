@@ -6,11 +6,15 @@ module BoardsHelper
 	end
 
 	def board_public_url(board)
-		request.base_url + url_for(controller: 'public_boards', action: 'show', publicId: board.publicId)
+		url_params = {controller: 'public_boards', action: 'show', publicId: board.publicId, host: request.host, port: request.port, protocol: request.protocol}
+		unless Rails.env.standalone?
+			url_params[:subdomain] = 'boards'
+		end
+		url_for(url_params)
 	end
 
 	def board_edit_url(board)
-	  url_for(controller: 'public_boards', action: 'show', publicId: board.publicId, anchor: 'edit')
+		board_public_url + "#edit"
 	end
 
 	def boards_engine
