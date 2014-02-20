@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe 'Integrations' do
+  before :each do
+    ApplicationController.any_instance.stub(:load_user).and_return(nil)
+  end
+
   %w{static-html jira-issue-list jira-simple-counter static-html bamboo-builds crucible-reviews postgresql-list postgresql-number}.each do |widget|
     describe "GET #{widget}\'s HTML" do
       it 'works!' do

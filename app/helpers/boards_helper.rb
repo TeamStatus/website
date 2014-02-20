@@ -14,7 +14,7 @@ module BoardsHelper
 	end
 
 	def board_edit_url(board)
-		board_public_url + "#edit"
+		board_public_url(board) + "#edit"
 	end
 
 	def boards_engine

@@ -82,6 +82,7 @@ group :development, :test do
 	gem 'capybara-screenshot'
 	gem 'rspec-rails'
 	gem 'selenium-webdriver'
+	gem "rack_session_access"
 end
 
 group :development do

@@ -1,8 +1,12 @@
 require 'spec_helper'
 
-describe 'Configuration' do
+describe 'Configuration', :type => :feature  do
 	let (:user) { create(:user) }
 	let (:board) { create(:board, :user_id => user._id) }
+
+  before :each do
+    page.set_rack_session(:user_id => user._id)
+  end
 
   it 'shows Clock configutaion', :js => true do
     visit new_board_job_path(board._id, :anchor => 'clock')
