@@ -12,7 +12,6 @@
 //= require handlebars.js
 
 $(function() {
-	var basePath = $('meta[name="ts.board.basePath"]').attr('content');
 	var boardsUrl = $('meta[name="ts.board.boardsUrl"]').attr('content');
 	var publicId = $('meta[name="ts.board.publicId"]').attr('content');
 	var boardId = $('meta[name="ts.board.id"]').attr('content');
@@ -25,7 +24,7 @@ $(function() {
 					$.ajax({
 						type: 'DELETE',
 						async: true,
-						url: basePath + '/boards/' + boardId + '/jobs/' + $li.data('event-id') + '.json'
+						url: '/boards/' + boardId + '/jobs/' + $li.data('event-id') + '.json'
 					}).done(function() {
 						window.location.reload();
 					});
@@ -38,7 +37,7 @@ $(function() {
 			$.ajax({
 				type: 'POST',
 				async: true,
-				url: basePath + '/boards/' + boardId + '/jobs/' + $li.data('event-id') + '/duplicate.json'
+				url: '/boards/' + boardId + '/jobs/' + $li.data('event-id') + '/duplicate.json'
 			}).done(function() {
 				window.location.reload();
 			});
@@ -91,7 +90,6 @@ $(function() {
 
 	var navigatingAway = false;
 	var mainContainer = $("#main-container");
-	var basePath = $('meta[name="ts.board.basePath"]').attr('content');
 	var publicId = $('meta[name="ts.board.publicId"]').attr('content');
 	var boardsHost = $('meta[name="ts.board.host"]').attr('content');
 	var boardsPort = $('meta[name="ts.board.port"]').attr('content');
@@ -281,11 +279,11 @@ $(function() {
 		var $widgetContainer = $('.widget-container', $li);
 
 		// fetch widget html and css
-		$.get(basePath + "/integrations/" + widgetId + "/html", function(html) {
+		$.get("/integrations/" + widgetId + "/html", function(html) {
 			$widgetContainer.html(html);
 
 			// fetch widget js
-			$.get(basePath + '/integrations/' + widgetId + '/js', function(js) {
+			$.get('/integrations/' + widgetId + '/js', function(js) {
 				var widget_js = {};
 				try {
 					eval('widget_js[eventId] = ' + js);

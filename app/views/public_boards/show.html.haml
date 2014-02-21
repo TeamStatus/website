@@ -8,7 +8,6 @@
 
     != stylesheet_link_tag "application"
 
-    %meta{name: 'ts.board.basePath', content: base_path == '/' ? '' : base_path}
     %meta{name: 'ts.board.boardsUrl', content: boards_base_url}
     %meta{name: 'ts.board.host', content: boards_base_url.host}
     %meta{name: 'ts.board.port', content: boards_base_url.port}
@@ -53,7 +52,7 @@
                   %a.copy{href: '#', title: "Copy"}
                     %i.fa.fa-copy
                 %li
-                  %a.edit{href: base_path + 'boards/' +  @board._id.to_s + "/jobs/edit/\#{{widget._id}}", title: "Edit"}
+                  %a.edit{href: '/boards/' +  @board._id.to_s + "/jobs/edit/\#{{widget._id}}", title: "Edit"}
                     %i.fa.fa-cog
                 %li
                   %a.delete{href: '#', title: "Delete"}
