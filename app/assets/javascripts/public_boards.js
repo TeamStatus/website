@@ -220,18 +220,22 @@ $(function() {
 
 		var widgetTemplate = Handlebars.compile($("#widget-template").html());
 		_.each(configuration, function(widget) {
-			if (widget.jobId == "bamboo-builds" || widget.jobId == "static-html") {
-				widget.widgetSettings.width = widget.widgetSettings.height = 2;
+			var width = 1, height = 1;
+			if (widget.widgetSettings && widget.widgetSettings.size && widget.widgetSettings.size.length == 2) {
+				width = widget.widgetSettings.size[0];
+				height = widget.widgetSettings.size[1];
+			} else if (widget.jobId == "bamboo-builds" || widget.jobId == "static-html") {
+				width = height = 2;
 			} else if (widget.jobId == "jira-issue-list" || widget.jobId == "crucible-reviews" || widget.jobId == "display-table"
 				|| widget.jobId == "postgresql-list") {
-				widget.widgetSettings.width = 2;
-				widget.widgetSettings.height = 1;
+				width = 2;
+				height = 1;
 			}
 
 			var $li = gridster.add_widget(widgetTemplate({
 				widget: widget,
 				settings: widget.widgetSettings
-			}), widget.widgetSettings && widget.widgetSettings.width || 1, widget.widgetSettings && widget.widgetSettings.height || 1);
+			}), width || 1, height || 1);
 
 			$li.data('widgetSettings', widget.widgetSettings);
 			$li.find('.editing').toggle(isEditing());
