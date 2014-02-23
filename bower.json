@@ -12,6 +12,7 @@
 		"handlebars": "*",
 		"d3": "*",
 		"rickshaw": "*",
-    "jquery-cookie": "*"
+    "jquery-cookie": "*",
+    "uuid-js": "*"
   }
 }

@@ -30,11 +30,7 @@ module BoardsHelper
 		end
 
 		def tap(widgetId, data)
-			begin
-				self.class.post("/tap/#{widgetId}", { :basic_auth => @auth, :body => data })
-			rescue
-				Rails.logger.warn "Unable to forward the data to job #{$!}"
-			end
+			self.class.post("/tap/#{widgetId}", { :basic_auth => @auth, :headers => { "Content-Type" => "application/json" }, :body => data.to_json })
 		end
 
 		def runJob(widgetId)

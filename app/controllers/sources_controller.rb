@@ -1,11 +1,17 @@
 class SourcesController < ApplicationController
 	include BoardsHelper
 
-	skip_before_filter :load_user
+	skip_before_filter :load_user, only: [:tap]
 	before_action :set_source, only: [:show, :edit, :update, :destroy]
 
 	def tap
-		boards_engine.tap(params[:id], ActiveSupport::JSON.decode(request.body))
+		data = ActiveSupport::JSON.decode(request.body)
+		boards_engine.tap(params[:id], data)
+		render json: data
+	end
+
+	def verified_request?
+		super || action_name == 'tap'
 	end
 
 end
