@@ -5,8 +5,6 @@ ConsoleRails::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'console#index'
 
-  mount Integrations::Engine, at: "integrations"
-
   resources :boards do
     resources :jobs do
       member do
@@ -26,6 +24,12 @@ ConsoleRails::Application.routes.draw do
   get 'login/google_callback' => 'login#google_callback'
   get 'logout' => 'login#logout'
   get 'partials/:partial_id' => 'partials#show'
+
+  namespace :integrations do
+    get ':widget_id/config' => 'partials#configuration'
+    get ':widget_id/html' => 'partials#html'
+    get ':widget_id/js' => 'partials#js'
+  end
 
   if Rails.env.standalone?
     get 'b/:publicId' => 'public_boards#show'

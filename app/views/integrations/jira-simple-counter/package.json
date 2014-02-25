@@ -1,0 +1,9 @@
+{
+	"name": "JIRA Counter",
+	"id": "jira-simple-counter",
+	"description": "Display number of issues in JIRA",
+	"widget": "display-number",
+	"widgetSettings": {
+		"title": "Issues"
+	}
+}

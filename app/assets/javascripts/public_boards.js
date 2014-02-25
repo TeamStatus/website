@@ -10,6 +10,7 @@
 //= require bootbox.js/bootbox.js
 //= require jquery.boxfit/src/jquery.boxfit
 //= require handlebars.js
+//= require ./integrations/widgets.js
 
 $(function() {
 	var boardsUrl = $('meta[name="ts.board.boardsUrl"]').attr('content');
@@ -287,42 +288,38 @@ $(function() {
 			$widgetContainer.html(html);
 
 			// fetch widget js
-			$.get('/integrations/' + widgetId + '/js', function(js) {
-				var widget_js = {};
+			var widget_js = {};
+			try {
+				widget_js[eventId] = _.clone(widgets[widgetId]);
+				widget_js[eventId].eventId = eventId;
+				widget_js[eventId] = $.extend({}, defaultHandlers, widget_js[eventId]);
+				widget_js[eventId] = $.extend({}, widgetMethods, widget_js[eventId]);
+				widget_js[eventId].onInit($widgetContainer[0], $li.data('widgetSettings'));
+			} catch (e) {
+				globalHandlers.onPreError($li, eventId, {error: e});
+			}
+
+			io.on(eventId, function (data) { //bind socket.io event listener
+				console.log("Received data for " + eventId, data);
+				if (data.error) {
+					globalHandlers.onPreError($li, eventId, data);
+				} else {
+					globalHandlers.onPreData($li, eventId, data);
+				}
+
+				var handler = data.error ? widget_js[eventId].onError : widget_js[eventId].onData;
 				try {
-					eval('widget_js[eventId] = ' + js);
-					widget_js[eventId].eventId = eventId;
-					widget_js[eventId] = $.extend({}, defaultHandlers, widget_js[eventId]);
-					widget_js[eventId] = $.extend({}, widgetMethods, widget_js[eventId]);
-					widget_js[eventId].onInit($widgetContainer[0], $li.data('widgetSettings'));
+					handler.apply(widget_js[eventId], [$widgetContainer[0], data]);
 				} catch (e) {
 					globalHandlers.onPreError($li, eventId, {error: e});
 				}
 
-				io.on(eventId, function (data) { //bind socket.io event listener
-					console.log("Received data for " + eventId, data);
-					if (data.error) {
-						globalHandlers.onPreError($li, eventId, data);
-					} else {
-						globalHandlers.onPreData($li, eventId, data);
-					}
-
-					var handler = data.error ? widget_js[eventId].onError : widget_js[eventId].onData;
-					try {
-						handler.apply(widget_js[eventId], [$widgetContainer[0], data]);
-					} catch (e) {
-						globalHandlers.onPreError($li, eventId, {error: e});
-					}
-
-					// save timestamp
-					$li.attr("last-update", +new Date());
-				});
-
-				io.emit("resend", {boardId: boardId, widgetId: eventId});
-				console.log("Sending resend for " + eventId);
-			}).fail(function() {
-				globalHandlers.onPreError($li, eventId, {error: "Failed to load widget"});
+				// save timestamp
+				$li.attr("last-update", +new Date());
 			});
+
+			io.emit("resend", {boardId: boardId, widgetId: eventId});
+			console.log("Sending resend for " + eventId);
 		}).fail(function() {
 			globalHandlers.onPreError($li, eventId, {error: "Failed to load widget"});
 		});

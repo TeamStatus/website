@@ -1,0 +1,9 @@
+{
+	"name": "Countdown",
+	"id": "countdown",
+	"description": "Display number of days to a given date",
+	"widget": "display-number",
+	"widgetSettings": {
+		"title": "Days until"
+	}
+}

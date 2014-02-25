@@ -13,6 +13,8 @@
 		"d3": "*",
 		"rickshaw": "*",
     "jquery-cookie": "*",
-    "uuid-js": "*"
+    "uuid-js": "*",
+    "moment": "*",
+    "moment-timezone": "*"
   }
 }

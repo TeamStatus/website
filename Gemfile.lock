@@ -26,15 +26,6 @@ GIT
       i18n
       mongoid (>= 4.0.0.alpha1)
 
-GIT
-  remote: https://bitbucket.org/teamstatus/integrations.git
-  revision: dedb50c1cc5277deef9bc9515605061ec7337ed7
-  branch: master
-  specs:
-    integrations (0.1.0)
-      rails (~> 4.0.0)
-      sass-rails (~> 4.0.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -291,7 +282,6 @@ DEPENDENCIES
   gibberish
   haml-rails
   httparty
-  integrations!
   intercom-rails (~> 0.2.24)
   jbuilder (~> 1.2)
   jquery-rails

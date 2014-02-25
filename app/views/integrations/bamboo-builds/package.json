@@ -1,0 +1,8 @@
+{
+	"name": "Bamboo Builds",
+	"id": "bamboo-builds",
+	"description": "Get Bamboo Builds status",
+	"widgetSettings": {
+		"title": "Builds"
+	}
+}

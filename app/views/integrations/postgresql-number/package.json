@@ -1,0 +1,9 @@
+{
+	"name": "PostgreSQL number",
+	"id": "postgresql-list",
+	"description": "Display number from PostgreSQL query",
+	"widget": "display-number",
+	"widgetSettings": {
+		"title": "PostgreSQL"
+	}
+}
