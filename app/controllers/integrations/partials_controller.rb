@@ -16,7 +16,7 @@ module Integrations
 		private
 
 		def load_package_json
-			packageFile = Rails.root.join('app', 'assets', 'javascripts', params[:widget_id], 'package.json')
+			packageFile = Rails.root.join('app', 'views', 'integrations', params[:widget_id], 'package.json')
 			if File.exists? packageFile
 				@packageJson = JSON.parse File.read packageFile
 			else
