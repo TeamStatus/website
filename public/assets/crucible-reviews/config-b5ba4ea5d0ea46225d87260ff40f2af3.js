@@ -1,0 +1,1 @@
+var CrucibleReviewsCtrl=["$scope",function(){}];

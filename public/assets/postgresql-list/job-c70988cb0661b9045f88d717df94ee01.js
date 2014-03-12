@@ -1,0 +1,1 @@
+var pg=require("pg");module.exports=function(r,e,n){if(!r.server||!r.server.address)return n("No PostgreSQL server configured");if(!r.sqlQuery)return n("No SQL query");var o=e.logger,s=new pg.Client(r.server.address);s.on("drain",s.end.bind(s)),s.connect();s.query(r.sqlQuery,function(r,e){r?(o.error(r),n(r)):n(null,{rows:e.rows})})};

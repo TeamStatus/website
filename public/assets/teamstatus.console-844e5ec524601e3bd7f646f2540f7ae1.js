@@ -1,0 +1,1 @@
+var con=angular.module("teamstatus.console",["ngRoute","angular-underscore","frapontillo.ex.filters","ui.bootstrap"]).constant("path","").constant("partials","/partials").controller("ConfirmActionModalCtrl",["$scope","$modalInstance","message","action",function(n,o,a,t){n.message=a,n.action=t,n.ok=function(){o.close()},n.cancel=function(){o.dismiss("cancel")}}]);

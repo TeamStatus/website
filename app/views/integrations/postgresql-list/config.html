@@ -1,0 +1,22 @@
+<div ng-controller="PostgreSqlListCtrl">
+	<teamstatus-widget-interval></teamstatus-widget-interval>
+
+	<teamstatus-widget-size supported-size="[[2, 1], [2, 2]]" settings="widgetSettings"></teamstatus-widget-size>
+
+	<div class="form-group">
+	  <label for="serverAddress">PostgreSQL address</label>
+	  <input class="form-control" id="serverAddress" name="serverAddress" ng-model="settings.server.address" placeholder="postgres://username:password@host:port/database" required="" type="text">
+	  <small class="error" ng-show="jobForm.serverAddress.$error.url">That is not a valid address</small>
+	  <small class="error" ng-show="jobForm.serverAddress.$error.required">PostgreSQL address is required</small>
+	  <p>
+	    <div class="alert alert-info">Settings are stored encrypted in our database. Still for security reasons please consider creating a read-only account on your server.</div>
+	  </p>
+	</div>
+
+	<div class="form-group">
+	  <label for="sqlQuery">SQL query</label>
+	  <textarea class="form-control" id="sqlQuery" name="sqlQuery" ng-minlength="2" ng-model="settings.sqlQuery" placeholder="select count(*) from users" type="text"></textarea>
+	  <small class="error" ng-show="jobForm.sqlQuery.$error.minlength">You need to specify the query</small>
+	  <small class="error" ng-show="jobForm.sqlQuery.$error.required">You need to specify the query</small>
+	</div>
+</div>

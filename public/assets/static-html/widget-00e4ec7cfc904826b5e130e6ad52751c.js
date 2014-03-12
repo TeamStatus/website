@@ -1,0 +1,1 @@
+widget={onInit:function(n,e){var e=e||{html:""};$(n).parent().children(".error").hide(),$(n).parent().children(".spinner").hide(),$(".content",n).html(e.html)}};

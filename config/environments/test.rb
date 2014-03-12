@@ -12,16 +12,21 @@ ConsoleRails::Application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
 
+  # Do not fallback to assets pipeline if a precompiled asset is missed.
+  config.assets.compile = false
+
   # Configure static asset server for tests with Cache-Control for performance.
-  config.serve_static_assets  = true
   config.static_cache_control = "public, max-age=3600"
+
+  # Generate digests for assets URLs.
+  config.assets.digest = true
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.show_exceptions = true
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
@@ -33,4 +38,7 @@ ConsoleRails::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Access to rack session
+  config.middleware.use RackSessionAccess::Middleware
 end

@@ -10,10 +10,9 @@
 //= require bootbox.js/bootbox.js
 //= require jquery.boxfit/src/jquery.boxfit
 //= require handlebars.js
-//= require jquery-pusher/jquery.pusher.min.js
+//= require ./integrations/widgets.js
 
 $(function() {
-	var basePath = $('meta[name="ts.board.basePath"]').attr('content');
 	var boardsUrl = $('meta[name="ts.board.boardsUrl"]').attr('content');
 	var publicId = $('meta[name="ts.board.publicId"]').attr('content');
 	var boardId = $('meta[name="ts.board.id"]').attr('content');
@@ -26,7 +25,7 @@ $(function() {
 					$.ajax({
 						type: 'DELETE',
 						async: true,
-						url: basePath + '/boards/' + boardId + '/jobs/' + $li.data('event-id') + '.json'
+						url: '/boards/' + boardId + '/jobs/' + $li.data('event-id') + '.json'
 					}).done(function() {
 						window.location.reload();
 					});
@@ -39,7 +38,7 @@ $(function() {
 			$.ajax({
 				type: 'POST',
 				async: true,
-				url: basePath + '/boards/' + boardId + '/jobs/' + $li.data('event-id') + '/duplicate.json'
+				url: '/boards/' + boardId + '/jobs/' + $li.data('event-id') + '/duplicate.json'
 			}).done(function() {
 				window.location.reload();
 			});
@@ -79,7 +78,7 @@ $(function() {
 		return window.location.hash == '#edit';
 	}
 
-	function pushStateHandler() {
+	$(window).on('hashchange', function() {
 		if (isEditing()) {
 			$('.editing').show();
 			$('.looking').hide();
@@ -87,18 +86,11 @@ $(function() {
 			$('.editing').hide();
 			$('.looking').show();
 		}
-	}
-
-	$(document).pusher({
-		// watch on all 'a' in the document excpet external links
-		watch: "a.mode[href^='#']",
-		handler: pushStateHandler,
-		onStateCreation: pushStateHandler
 	});
+	$(window).trigger('hashchange');
 
 	var navigatingAway = false;
 	var mainContainer = $("#main-container");
-	var basePath = $('meta[name="ts.board.basePath"]').attr('content');
 	var publicId = $('meta[name="ts.board.publicId"]').attr('content');
 	var boardsHost = $('meta[name="ts.board.host"]').attr('content');
 	var boardsPort = $('meta[name="ts.board.port"]').attr('content');
@@ -126,17 +118,12 @@ $(function() {
 
 	buildUI(mainContainer, gridsterContainer, mainContainer.data('widgets'));
 
-	var socketPath = '/socket.io';
-	while(socketPath.indexOf('/') === 0) {
-		socketPath = socketPath.substring(1);
-	}
-
 	var socketOptions = {
 		'reconnect': true,
 		'reconnection delay': 5000,
 		'reopen delay': 3000,
 		'max reconnection attempts': 100,
-		'resource': socketPath,
+		'resource': 'socket.io',
 		'host': boardsHost,
 		'port': boardsPort
 	};
@@ -234,18 +221,22 @@ $(function() {
 
 		var widgetTemplate = Handlebars.compile($("#widget-template").html());
 		_.each(configuration, function(widget) {
-			if (widget.jobId == "bamboo-builds" || widget.jobId == "static-html") {
-				widget.widgetSettings.width = widget.widgetSettings.height = 2;
+			var width = 1, height = 1;
+			if (widget.widgetSettings && widget.widgetSettings.size && widget.widgetSettings.size.length == 2) {
+				width = widget.widgetSettings.size[0];
+				height = widget.widgetSettings.size[1];
+			} else if (widget.jobId == "bamboo-builds" || widget.jobId == "static-html") {
+				width = height = 2;
 			} else if (widget.jobId == "jira-issue-list" || widget.jobId == "crucible-reviews" || widget.jobId == "display-table"
 				|| widget.jobId == "postgresql-list") {
-				widget.widgetSettings.width = 2;
-				widget.widgetSettings.height = 1;
+				width = 2;
+				height = 1;
 			}
 
 			var $li = gridster.add_widget(widgetTemplate({
 				widget: widget,
 				settings: widget.widgetSettings
-			}), widget.widgetSettings && widget.widgetSettings.width || 1, widget.widgetSettings && widget.widgetSettings.height || 1);
+			}), width || 1, height || 1);
 
 			$li.data('widgetSettings', widget.widgetSettings);
 			$li.find('.editing').toggle(isEditing());
@@ -293,46 +284,42 @@ $(function() {
 		var $widgetContainer = $('.widget-container', $li);
 
 		// fetch widget html and css
-		$.get(basePath + "/integrations/" + widgetId + "/html", function(html) {
+		$.get("/integrations/" + widgetId + "/html", function(html) {
 			$widgetContainer.html(html);
 
 			// fetch widget js
-			$.get(basePath + '/integrations/' + widgetId + '/js', function(js) {
-				var widget_js = {};
+			var widget_js = {};
+			try {
+				widget_js[eventId] = _.clone(widgets[widgetId]);
+				widget_js[eventId].eventId = eventId;
+				widget_js[eventId] = $.extend({}, defaultHandlers, widget_js[eventId]);
+				widget_js[eventId] = $.extend({}, widgetMethods, widget_js[eventId]);
+				widget_js[eventId].onInit($widgetContainer[0], $li.data('widgetSettings'));
+			} catch (e) {
+				globalHandlers.onPreError($li, eventId, {error: e});
+			}
+
+			io.on(eventId, function (data) { //bind socket.io event listener
+				console.log("Received data for " + eventId, data);
+				if (data.error) {
+					globalHandlers.onPreError($li, eventId, data);
+				} else {
+					globalHandlers.onPreData($li, eventId, data);
+				}
+
+				var handler = data.error ? widget_js[eventId].onError : widget_js[eventId].onData;
 				try {
-					eval('widget_js[eventId] = ' + js);
-					widget_js[eventId].eventId = eventId;
-					widget_js[eventId] = $.extend({}, defaultHandlers, widget_js[eventId]);
-					widget_js[eventId] = $.extend({}, widgetMethods, widget_js[eventId]);
-					widget_js[eventId].onInit($widgetContainer[0], $li.data('widgetSettings'));
+					handler.apply(widget_js[eventId], [$widgetContainer[0], data]);
 				} catch (e) {
 					globalHandlers.onPreError($li, eventId, {error: e});
 				}
 
-				io.on(eventId, function (data) { //bind socket.io event listener
-					console.log("Received data for " + eventId, data);
-					if (data.error) {
-						globalHandlers.onPreError($li, eventId, data);
-					} else {
-						globalHandlers.onPreData($li, eventId, data);
-					}
-
-					var handler = data.error ? widget_js[eventId].onError : widget_js[eventId].onData;
-					try {
-						handler.apply(widget_js[eventId], [$widgetContainer[0], data]);
-					} catch (e) {
-						globalHandlers.onPreError($li, eventId, {error: e});
-					}
-
-					// save timestamp
-					$li.attr("last-update", +new Date());
-				});
-
-				io.emit("resend", {boardId: boardId, widgetId: eventId});
-				console.log("Sending resend for " + eventId);
-			}).fail(function() {
-				globalHandlers.onPreError($li, eventId, {error: "Failed to load widget"});
+				// save timestamp
+				$li.attr("last-update", +new Date());
 			});
+
+			io.emit("resend", {boardId: boardId, widgetId: eventId});
+			console.log("Sending resend for " + eventId);
 		}).fail(function() {
 			globalHandlers.onPreError($li, eventId, {error: "Failed to load widget"});
 		});

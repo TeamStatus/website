@@ -6,14 +6,15 @@ module BoardsHelper
 	end
 
 	def board_public_url(board)
-	  # url = boards_base_url
-	  # url.path = url.path + '/' + board.publicId
-	  # url.to_s
-	  ENV['CONSOLE_URL'] + url_for(controller: 'public_boards', action: 'show', publicId: board.publicId)
+		url_params = {controller: 'public_boards', action: 'show', publicId: board.publicId, host: request.host, port: request.port, protocol: request.protocol}
+		unless Rails.env.standalone?
+			url_params[:subdomain] = 'boards'
+		end
+		url_for(url_params)
 	end
 
 	def board_edit_url(board)
-	  url_for(controller: 'public_boards', action: 'show', publicId: board.publicId, anchor: 'edit')
+		board_public_url(board) + "#edit"
 	end
 
 	def boards_engine
@@ -26,6 +27,10 @@ module BoardsHelper
 
 		def initialize
 			@auth = {:username => 'console', :password => ENV['CONSOLE_SECRET']}
+		end
+
+		def tap(widgetId, data)
+			self.class.post("/tap/#{widgetId}", { :basic_auth => @auth, :headers => { "Content-Type" => "application/json" }, :body => data.to_json })
 		end
 
 		def runJob(widgetId)

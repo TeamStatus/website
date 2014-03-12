@@ -7,10 +7,7 @@ module UserNotifications
 	included do
 
 		after_create do |user|
-			unless standalone
-				Intercom::User.create(:email => user.email, :created_at => user.created_at, :name => user.fullName, :user_id => user._id)
-				Intercom::Tag.create(:name => 'Beta', :emails => [ user.email ], :tag_or_untag => 'tag')
-
+			if Rails.env.production?
 				if mandrill
 				  begin
 				    message = {
@@ -19,7 +16,8 @@ module UserNotifications
 				      :from_name=> "TeamStatus.TV",
 				      :from_email=> "root@teamstatus.tv",
 				      :to=>[
-				        {:email => "pawelniewiadomski@me.com", :name => "Pawel Niewiadomski"}
+				        {:email => "pawel@teamstatus.tv", :name => "Pawel Niewiadomski"},
+				        {:email => "janek@teamstatus.tv", :name => "Jan Nowak"}
 				      ]
 				    }
 				    mandrill.messages.send message

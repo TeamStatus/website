@@ -1,0 +1,7 @@
+<div ng-controller="ClockCtrl">
+	<div class="form-group">
+	  <label for="timezone">Timezone</label>
+    <select id="timezone" name="timezone" class="form-control" ng-model="settings.timezone" ng-options="z for z in timezones" required></select>
+    <small class="error" ng-show="jobForm.timezone.$error.required">Timezone is required</small>
+	</div>
+</div>

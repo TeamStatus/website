@@ -1,33 +1,26 @@
 # Load the Rails application.
 require File.expand_path('../application', __FILE__)
-require 'intercom'
 
 # Initialize the Rails application.
 ConsoleRails::Application.initialize!
 
-%w{COOKIE_SECRET COOKIE_NAME MONGODB_URL CONSOLE_SECRET ENCRYPTED_FIELDS_SALT ENCRYPTED_FIELDS_PASSWORD BOARDS_URL CONSOLE_URL}.each do |var|
+%w{COOKIE_SECRET COOKIE_NAME MONGODB_URL CONSOLE_SECRET ENCRYPTED_FIELDS_PASSWORD}.each do |var|
   abort("missing env var: please set #{var}") unless ENV[var]
 end
 
-class Helper
-	include ApplicationHelper
-end
-
-unless Helper.new.standalone
-	%w{GOOGLE_KEY GOOGLE_SECRET}.each do |var|
+unless Rails.env.standalone?
+	%w{GOOGLE_KEY GOOGLE_SECRET BOARDS_URL}.each do |var|
 	  abort("missing env var: please set #{var}") unless ENV[var]
 	end
 
 	ENV['BOARDS_URL'] = ENV['BOARDS_URL'].chomp('/')
+else
+	ENV['BOARDS_URL'] = 'http://127.0.0.1:57518'
 end
 
 ENV['COOKIE_DOMAIN'] ||= ''
+ENV['ENCRYPTED_FIELDS_SALT'] ||= '9Rw2OlpA'
 
-%w{MAILCHIMP_KEY MAILCHIMP_LIST GOOGLE_ANALYTICS REDISCLOUD_URL SPLIT_PASSWORD SPLIT_USER INTERCOM_APP_ID INTERCOM_KEY MIXPANEL_APP_ID}.each do |var|
+%w{GOOGLE_ANALYTICS INTERCOM_APP_ID INTERCOM_KEY MIXPANEL_APP_ID}.each do |var|
 	puts "missing env var (some features will be disabled): #{var}" unless ENV[var]
-end
-
-if ENV['INTERCOM_APP_ID'] and ENV['INTERCOM_KEY']
-	Intercom.app_id = ENV['INTERCOM_APP_ID']
-	Intercom.api_key = ENV['INTERCOM_KEY']
 end

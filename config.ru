@@ -2,10 +2,4 @@
 
 require ::File.expand_path('../config/environment',  __FILE__)
 
-class Helper
-	include ApplicationHelper
-end
-
-map Helper.new.base_path do
-	run Rails.application
-end
+run Rails.application

@@ -8,13 +8,11 @@
 
     != stylesheet_link_tag "application"
 
-    %meta{name: 'ts.board.basePath', content: base_path == '/' ? '' : base_path}
     %meta{name: 'ts.board.boardsUrl', content: boards_base_url}
     %meta{name: 'ts.board.host', content: boards_base_url.host}
     %meta{name: 'ts.board.port', content: boards_base_url.port}
     %meta{name: 'ts.board.publicId', content: @board.publicId}
     %meta{name: 'ts.board.id', content: @board._id}
-    %meta{name: 'ts.board.editUrl', content: board_edit_url(@board)}
 
   %body.page{:class => body_class}
     - if !anonymous
@@ -54,7 +52,7 @@
                   %a.copy{href: '#', title: "Copy"}
                     %i.fa.fa-copy
                 %li
-                  %a.edit{href: base_path + 'boards/' +  @board._id.to_s + "/jobs/edit/\#{{widget._id}}", title: "Edit"}
+                  %a.edit{href: '/boards/' +  @board._id.to_s + "/jobs/edit/\#{{widget._id}}", title: "Edit"}
                     %i.fa.fa-cog
                 %li
                   %a.delete{href: '#', title: "Delete"}
@@ -72,7 +70,7 @@
       %script
         (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);mixpanel.init("#{mixpanel_id}");
 
-    %script{src: ENV['BOARDS_URL'] + '/socket.io/socket.io.js'}
+    %script{src: boards_base_url + '/socket.io/socket.io.js'}
     %script{type: "text/javascript", src: "https://teamstatus.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_USonyyzk-1988229788/6204/8/1.4.0-m8/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=7951dd81"}
     :javascript
       window.ATL_JQ_PAGE_PROPS =  {

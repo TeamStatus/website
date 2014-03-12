@@ -1,0 +1,24 @@
+.content.crucible-reviews {
+  font-size: 35px;
+  line-height: 1em;
+  color: #454545;
+  font-weight: bold;
+  height: 190px;
+  width: 100%;
+
+	.user {
+		margin-right: 35px;
+
+		.count {
+			display: inline-block;
+		}
+
+		img {
+			margin-right: 10px;
+			width: 60px;
+			height: 60px;
+			border-radius: 30px;
+			vertical-align: middle;
+		}
+	}
+}
