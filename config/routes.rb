@@ -31,6 +31,8 @@ ConsoleRails::Application.routes.draw do
     get ':widget_id/js' => 'partials#js'
   end
 
+  get 'dump' => 'dump#show'
+
   if Rails.env.standalone?
     get 'b/:publicId' => 'public_boards#show'
   else
