@@ -1,0 +1,1 @@
+widgets["display-table"]={onData:function(t,e){var a=$(".table tbody",t).empty(),l=Handlebars.compile($(".row-template",t).html());_.each(e.rows,function(t){a.append(l({row:t}))})}},widgets["postgresql-list"]=widgets["display-table"];
