@@ -18,3 +18,5 @@ widgets['display-number'] = {
 		$('.content > .counter', el).boxfit();
 	}
 };
+
+widgets['postgresql-number'] = widgets['jira-simple-counter'] = widgets['display-number'];

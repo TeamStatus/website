@@ -7,3 +7,5 @@ widgets['display-table'] = {
 		});
 	}
 };
+
+widgets['postgresql-list'] = widgets['display-table'];
