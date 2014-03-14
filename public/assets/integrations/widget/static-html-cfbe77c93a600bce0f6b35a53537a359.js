@@ -1,0 +1,1 @@
+widgets["static-html"]={onInit:function(t,n){var n=n||{html:""};$(t).parent().children(".error").hide(),$(t).parent().children(".spinner").hide(),$(".content",t).html(n.html)}};

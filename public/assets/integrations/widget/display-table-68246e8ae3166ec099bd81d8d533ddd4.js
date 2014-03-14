@@ -1,0 +1,1 @@
+widgets["display-table"]={onData:function(a,t){var e=$(".table tbody",a).empty(),o=Handlebars.compile($(".row-template",a).html());_.each(t.rows,function(a){e.append(o({row:a}))})}};

@@ -1,0 +1,1 @@
+widgets.clock={onData:function(t,e){function n(){if(void 0!==e&&void 0!==e.hour){var n=new Date,o="time-colon time-colon-"+n.getSeconds()%2,a='<span class="'+o+'">:</span>';$(".content > .clock-time",t).html(e.hour+a+e.minutes),$(".content > .clock-date").html(e.dateStr)}}n(),void 0!==this.prevInterval&&clearInterval(this.prevInterval),this.prevInterval=setInterval(n,1e3)}};

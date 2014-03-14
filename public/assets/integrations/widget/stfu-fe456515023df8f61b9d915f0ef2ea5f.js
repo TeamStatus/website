@@ -1,0 +1,1 @@
+widgets.stfu={onData:function(f,n){function t(){$(".stfu-off",f).fadeOut(o),$(".stfu-on",f).fadeIn(o)}function u(){$(".stfu-on",f).fadeOut(o),$(".stfu-off",f).fadeIn(o)}function a(){n.isStfu?t():u()}var o={duration:3e3,easing:"linear"};a()}};

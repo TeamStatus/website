@@ -1,0 +1,1 @@
+var StaticHtmlCtrl=["$scope",function(){}];
