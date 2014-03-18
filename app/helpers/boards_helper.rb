@@ -6,10 +6,8 @@ module BoardsHelper
 	end
 
 	def board_public_url(board)
-		url_params = {controller: 'public_boards', action: 'show', publicId: board.publicId, host: request.host, port: request.port, protocol: request.protocol}
-		unless Rails.env.standalone?
-			url_params[:subdomain] = 'boards'
-		end
+		url_params = {controller: 'public_boards', action: 'show', publicId: board.publicId,
+			host: request.host, port: request.port, protocol: request.protocol, subdomain: 'boards'}
 		url_for(url_params)
 	end
 

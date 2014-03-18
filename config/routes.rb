@@ -33,11 +33,7 @@ ConsoleRails::Application.routes.draw do
 
   get 'dump' => 'dump#show'
 
-  if Rails.env.standalone?
-    get 'b/:publicId' => 'public_boards#show'
-  else
-    get '/:publicId' => 'public_boards#show', constraints: {subdomain: 'boards'}
-  end
+  get '/:publicId' => 'public_boards#show', constraints: {subdomain: 'boards'}
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

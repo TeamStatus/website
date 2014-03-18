@@ -11,12 +11,7 @@ class ApplicationController < ActionController::Base
 	private
 
 	def load_user
-		if Rails.env.standalone?
-			@user = ::User.where({ :email => "admin@localhost" }).first
-			if @user.nil?
-				@user = ::User.create!({:email => "admin@localhost", :fullName => "Administrator", :callingName => "admin" })
-			end
-		elsif not user_id.nil?
+		if not user_id.nil?
 			@user = ::User.where({ :id => user_id }).first
 			if @user.nil?
 				redirect_to(:controller => 'login') and return false
