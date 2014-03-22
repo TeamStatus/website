@@ -6,8 +6,7 @@ class FindJobsToRunWorker
 
   def perform(last_occurrence, current_occurrence)
   	DueJobsQuery.new.find_each do |job|
-  		logger.info "Queuing reminder for #{user.id} #{user.email}"
-  		user.send_todays_reminder
+  		RunJobWorker.perform_async(job.id)
   	end
   end
 end
