@@ -4,5 +4,6 @@ class Job < ActiveRecord::Base
 
     serialize :widgetSettings
     serialize :settings
+    serialize :last_data
 
 end

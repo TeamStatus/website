@@ -1,25 +1,19 @@
 class DataController < WebsocketRails::BaseController
   def client_connected
-    system_msg :new_message, "client #{client_id} connected"
+    logger.info "client #{client_id} connected"
   end
-  def new_message
-    user_msg :new_message, message[:msg_body].dup
+
+  def client_disconnected
+    logger.info "client #{client_id} disconnected"
   end
-  def new_user
-    connection_store[:user] = { user_name: sanitize(message[:user_name]) }
-    broadcast_user_list
-  end
-  def change_username
-    connection_store[:user] = sanitize(message)
-    broadcast_user_list
-  end
-  def delete_user
-    connection_store[:user] = nil
-    system_msg "client #{client_id} disconnected"
-    broadcast_user_list
-  end
-  def broadcast_user_list
-    users = connection_store.collect_all(:user)
-    broadcast_message :user_list, users
+
+  def resend
+    logger.info "Resend received for #{message}"
+    job = Job.find(message)
+    if job.last_data
+      send_message job.id, job.last_data
+    else
+      RunJobWorker.perform_async(job.id)
+    end
   end
 end

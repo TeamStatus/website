@@ -12,14 +12,14 @@
     %meta{name: 'ts.board.id', content: @board.id}
 
   %body.page{:class => body_class}
-    - if !anonymous
+    - if user_signed_in?
       #menu
         .btn-group
           %button.btn.btn-sm.btn-black.dropdown-toggle{'data-toggle' => "dropdown"}
             %i.fa.fa-cog
           %ul.dropdown-menu{role: 'menu'}
             %li
-              %a{href: new_board_job_url(@board.id.to_s)}
+              %a{href: new_board_job_url(@board.id.to_s, subdomain: false)}
                 %i.fa.fa-plus
                 Add widget
             %li.editing
@@ -27,7 +27,7 @@
             %li.looking
               %a.mode{href: '#edit'} Edit existing widgets
             %li
-              %a{href: boards_url} Go to boards
+              %a{href: boards_url(subdomain: false)} Go to boards
             %li
               %a{href: '#', id: "feedback"} Send feedback
 
@@ -38,18 +38,18 @@
 
     %div{id: "main-container", 'data-widgets' => render(:template => 'public_boards/widgets', :formats => :json)}
       %script{id: "widget-template", type: "text/x-handlebars-template"}
-        %li{'data-widget-id' => "{{widget.jobId}}", 'data-event-id' => "{{widget.id}}"}
+        %li{'data-widget-id' => "{{widget.jobId}}", 'data-event-id' => "{{widget._id}}"}
           %div.widget-header
             %h2.title
               %i.fa.fa-bolt.error
               {{settings.title}}
-            - if !anonymous
+            - if user_signed_in?
               %ul.list-inline.pull-right.operations.editing
                 %li
                   %a.copy{href: '#', title: "Copy"}
                     %i.fa.fa-copy
                 %li
-                  %a.edit{href: '/boards/' +  @board.id.to_s + "/jobs/edit/\#{{widget.id}}", title: "Edit"}
+                  %a.edit{href: board_jobs_url(@board.id.to_s, subdomain: false) + "/edit/\#{{widget._id}}", title: "Edit"}
                     %i.fa.fa-cog
                 %li
                   %a.delete{href: '#', title: "Delete"}

@@ -12,6 +12,8 @@ class RunJobWorker
 
   		if $?.to_i == 0
   			job.last_data = JSON.parse output
+
+        WebsocketRails[job.board.id].trigger job.id, job.last_data
   		end
   	end
 

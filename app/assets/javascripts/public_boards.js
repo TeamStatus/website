@@ -128,9 +128,7 @@ $(function() {
 		console.log('connected');
 		disconnected(false);
 
-		socket_w.trigger("subscribe", {boardId: boardId});
-
-		bindSocket(socket_w, gridsterContainer);
+		bindSocket(socket_w.subscribe(boardId), gridsterContainer);
 
 		socket_w.bind("disconnect", function() {
 			if (!navigatingAway) {
@@ -158,9 +156,9 @@ $(function() {
 		});
 	};
 
-	function bindSocket (io, gridsterContainer) {
+	function bindSocket (channel, gridsterContainer) {
 		gridsterContainer.children("li").each(function(index, li) {
-			bindWidget(io, li);
+			bindWidget(channel, li);
 		});
 	}
 
@@ -258,7 +256,7 @@ $(function() {
 		}
 	};
 
-	function bindWidget(io, li) {
+	function bindWidget(channel, li) {
 		var $li = $(li);
 		var widgetId = encodeURIComponent($li.data("widget-id"));
 		var eventId = $li.data("event-id");
@@ -282,29 +280,27 @@ $(function() {
 				globalHandlers.onPreError($li, eventId, {error: e});
 			}
 
-			if (eventId != "") {
-				io.bind(eventId, function (data) { //bind socket.io event listener
-					console.log("Received data for " + eventId, data);
-					if (data.error) {
-						globalHandlers.onPreError($li, eventId, data);
-					} else {
-						globalHandlers.onPreData($li, eventId, data);
-					}
+			channel.bind(eventId, function (data) { //bind socket.io event listener
+				console.log("Received data for " + eventId, data);
+				if (data.error) {
+					globalHandlers.onPreError($li, eventId, data);
+				} else {
+					globalHandlers.onPreData($li, eventId, data);
+				}
 
-					var handler = data.error ? widget_js[eventId].onError : widget_js[eventId].onData;
-					try {
-						handler.apply(widget_js[eventId], [$widgetContainer[0], data]);
-					} catch (e) {
-						globalHandlers.onPreError($li, eventId, {error: e});
-					}
+				var handler = data.error ? widget_js[eventId].onError : widget_js[eventId].onData;
+				try {
+					handler.apply(widget_js[eventId], [$widgetContainer[0], data]);
+				} catch (e) {
+					globalHandlers.onPreError($li, eventId, {error: e});
+				}
 
-					// save timestamp
-					$li.attr("last-update", +new Date());
-				});
+				// save timestamp
+				$li.attr("last-update", +new Date());
+			});
 
-				io.trigger("resend", {boardId: boardId, widgetId: eventId});
-				console.log("Sending resend for " + eventId);
-			}
+			socket_w.trigger("resend", eventId);
+			console.log("Sending resend for " + eventId);
 		}).fail(function() {
 			globalHandlers.onPreError($li, eventId, {error: "Failed to load widget"});
 		});
