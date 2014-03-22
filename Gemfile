@@ -23,6 +23,11 @@ gem 'gravtastic'
 # Database
 gem 'pg'
 
+# Scheduling
+gem 'sidekiq'
+gem 'sidetiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
+
 # Smart ENV management
 gem 'figaro'
 

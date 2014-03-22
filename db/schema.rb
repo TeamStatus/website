@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322152133) do
+ActiveRecord::Schema.define(version: 20140322174356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,12 @@ ActiveRecord::Schema.define(version: 20140322152133) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.uuid     "board_id",                    null: false
+    t.datetime "last_run_at"
+    t.datetime "next_run_at"
+    t.text     "last_data"
   end
+
+  add_index "jobs", ["next_run_at"], name: "index_jobs_on_next_run_at", using: :btree
 
   create_table "teams", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.text     "name",       default: "Team", null: false
