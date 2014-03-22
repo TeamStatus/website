@@ -1,7 +1,7 @@
 class SourcesController < ApplicationController
 	include BoardsHelper
 
-	skip_before_filter :load_user, only: [:tap]
+	skip_before_filter :authenticate_user!, only: [:tap]
 	before_action :set_source, only: [:show, :edit, :update, :destroy]
 
 	def tap
