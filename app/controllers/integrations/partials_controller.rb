@@ -1,7 +1,7 @@
 module Integrations
 	class PartialsController < ApplicationController
 
-		skip_before_filter :load_user
+		skip_before_filter :authenticate_user!
 		before_filter :load_package_json
 		before_filter :set_widget
 
