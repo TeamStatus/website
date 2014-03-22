@@ -11,8 +11,8 @@
     %meta{name: 'ts.board.boardsUrl', content: boards_base_url}
     %meta{name: 'ts.board.host', content: boards_base_url.host}
     %meta{name: 'ts.board.port', content: boards_base_url.port}
-    %meta{name: 'ts.board.publicId', content: @board.publicId}
-    %meta{name: 'ts.board.id', content: @board._id}
+    %meta{name: 'ts.board.publicId', content: @board.public_id}
+    %meta{name: 'ts.board.id', content: @board.id}
 
   %body.page{:class => body_class}
     - if !anonymous
@@ -22,7 +22,7 @@
             %i.fa.fa-cog
           %ul.dropdown-menu{role: 'menu'}
             %li
-              %a{href: new_board_job_url(@board._id.to_s)}
+              %a{href: new_board_job_url(@board.id.to_s)}
                 %i.fa.fa-plus
                 Add widget
             %li.editing
@@ -41,7 +41,7 @@
 
     %div{id: "main-container", 'data-widgets' => render(:template => 'public_boards/widgets', :formats => :json)}
       %script{id: "widget-template", type: "text/x-handlebars-template"}
-        %li{'data-widget-id' => "{{widget.jobId}}", 'data-event-id' => "{{widget._id}}"}
+        %li{'data-widget-id' => "{{widget.jobId}}", 'data-event-id' => "{{widget.id}}"}
           %div.widget-header
             %h2.title
               %i.fa.fa-bolt.error
@@ -52,7 +52,7 @@
                   %a.copy{href: '#', title: "Copy"}
                     %i.fa.fa-copy
                 %li
-                  %a.edit{href: '/boards/' +  @board._id.to_s + "/jobs/edit/\#{{widget._id}}", title: "Edit"}
+                  %a.edit{href: '/boards/' +  @board.id.to_s + "/jobs/edit/\#{{widget.id}}", title: "Edit"}
                     %i.fa.fa-cog
                 %li
                   %a.delete{href: '#', title: "Delete"}
