@@ -1,0 +1,17 @@
+%p
+	Hello #{@resource.email}!
+%p
+	%a{href: "mailto:#{@resource.invited_by.email}"}= @resource.invited_by.calling_name.nil? or @resource.invited_by.calling_name.empty? ? @resource.invited_by.email : @resource.invited_by.calling_name
+	has invited you to
+	= succeed ',' do
+		%a{href: root_url} RemoteStandup
+	you can accept it through the link below.
+
+%p RemoteStandup is an easy to use service that helps teams track their achievements.
+
+%p= link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @token)
+
+%p
+	If you don't want to accept the invitation, please ignore this email.
+	%br/
+	Your account won't be created until you access the link above and set your password.

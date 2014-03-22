@@ -6,7 +6,7 @@ module BoardsHelper
 	end
 
 	def board_public_url(board)
-		url_params = {controller: 'public_boards', action: 'show', publicId: board.publicId,
+		url_params = {controller: 'public_boards', action: 'show', publicId: board.public_id,
 			host: request.host, port: request.port, protocol: request.protocol, subdomain: 'boards'}
 		url_for(url_params)
 	end

@@ -31,11 +31,11 @@ class LoginController < ActionController::Base
 	  user = User.where(email: profile[:email]).first
 	  if not user
 	    logger.info("User was not found " + profile[:email])
-	    user = User.create!(email: profile[:email], fullName: profile[:name], callingName: profile[:given_name],
-	      picture: profile[:picture], male: profile[:gender] == "male")
+	    user = User.create!(email: profile[:email], full_name: profile[:name], calling_name: profile[:given_name],
+	      picture: profile[:picture], male: profile[:gender] == "male", oid: rand(36**10).to_s(36))
 	  end
 
-	  session[:user_id] = user._id.to_s
+	  session[:user_id] = user.oid.to_s
 	  redirect_to :controller => 'boards'
 	end
 

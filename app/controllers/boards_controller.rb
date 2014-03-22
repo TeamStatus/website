@@ -4,9 +4,9 @@ class BoardsController < ApplicationController
 	before_action :set_board, only: [:show, :edit, :update, :destroy, :reset_public_id]
 
 	def index
-		@boards = @user.boards
+		@boards = current_user.boards
 		unless @boards.exists?
-			board = @user.boards.build({ :name => "First board!" })
+			board = current_user.boards.build({ :name => "First board!" })
 			board.jobs.build({:jobId => 'static-html', :widgetSettings => { :title => "Welcome!",
 				:html => '<p>This is your first board!</p>
 <p>Use menu on top  to add widgets!</p>
@@ -33,7 +33,7 @@ class BoardsController < ApplicationController
 	end
 
 	def create
-		@board = @user.boards.new(board_params)
+		@board = current_user.boards.new(board_params)
 		logger.debug "New board: #{@board.attributes.inspect}"
 		logger.debug "Board should be valid: #{@board.valid?}"
 
@@ -71,7 +71,7 @@ class BoardsController < ApplicationController
 	private
 
 	def set_board
-		@board = @user.boards.find(params[:id])
+		@board = current_user.boards.find(params[:id])
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.

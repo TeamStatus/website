@@ -1,14 +1,27 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.0.0'
+gem 'rails', '~> 4.0.2'
 
 # Google Analytics
 gem 'rack-google-analytics'
 
 # Authentication
-gem 'oauth2'
+gem 'devise'
+gem 'devise-encryptable'
+gem 'devise_invitable'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-bitbucket'
+gem 'omniauth-github'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'omniauth-twitter'
+gem 'koala'
+gem 'gravtastic'
+
+# Database
+gem 'pg'
 
 # Smart ENV management
 gem 'figaro'
@@ -18,13 +31,12 @@ gem 'httparty'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails'
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'asset_sync'
+gem 'unf'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
@@ -34,14 +46,6 @@ gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
-
-# Database
-gem 'moped', github: 'mongoid/moped'
-gem 'mongoid', github: 'mongoid/mongoid'
-gem 'mongoid_rails_migrations'
-gem 'mongoid-encrypted-fields'
-gem 'gibberish'
-gem 'bson_ext'
 
 # Logging to stdout by default
 gem 'rails_stdout_logging'
@@ -80,10 +84,6 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'selenium-webdriver'
 	gem "rack_session_access"
-end
-
-group :development do
-	gem 'mongoid-shell', :github => 'pawelniewie/mongoid-shell', :branch => 'moped-2.0.0'
 end
 
 # Use ActiveModel has_secure_password
