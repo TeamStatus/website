@@ -35,7 +35,7 @@ class JobsController < ApplicationController
 
 	def duplicate
 		respond_to do |format|
-			if @board.jobs.push(@job.clone)
+			if @board.jobs.push(@job.dup)
 				format.html { redirect_to [@board, @job], notice: 'Job was successfully created.' }
 				format.json { render action: 'show', status: :created, location: board_job_path(@board, @job) }
 			else

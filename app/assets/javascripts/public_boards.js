@@ -14,7 +14,6 @@
 //= require ./integrations/widgets.js
 
 $(function() {
-	var boardsUrl = $('meta[name="ts.board.boardsUrl"]').attr('content');
 	var publicId = $('meta[name="ts.board.publicId"]').attr('content');
 	var boardId = $('meta[name="ts.board.id"]').attr('content');
 
