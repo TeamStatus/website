@@ -31,8 +31,7 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 # Smart ENV management
 gem 'figaro'
 
-# HTTP
-gem 'httparty'
+gem 'websocket-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
