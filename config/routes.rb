@@ -25,10 +25,6 @@ ConsoleRails::Application.routes.draw do
 
   post 'sources/:id/tap' => 'sources#tap'
 
-  get 'login' => 'login#index'
-  get 'login/google' => 'login#google'
-  get 'login/google_callback' => 'login#google_callback'
-  get 'logout' => 'login#logout'
   get 'partials/:partial_id' => 'partials#show'
 
   namespace :integrations do
