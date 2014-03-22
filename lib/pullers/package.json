@@ -1,0 +1,36 @@
+{
+	"name": "teamstatus-boards",
+    "description": "TeamStatus.TV board display engine",
+	"scripts": {
+	    "start": "node core/app.js"
+	},
+    "repository": {
+      "type": "git",
+      "url": "git://bitbucket.org/teamstatus/teamstatus-boards.git"
+    },
+	"dependencies": {
+		"underscore": "*",
+		"express": "3.3.6",
+        "mongoskin": "*",
+        "supervisor": "*",
+        "socket.io": "*",
+        "async": "*",
+        "domain": "*",
+        "request": "*",
+        "async": "*",
+        "pg": "*",
+        "moment": "*",
+        "moment-timezone": "*",
+        "memory-cache": "*",
+        "cheerio": "*",
+        "tracer": "*",
+        "colors": "*",
+        "newrelic": "*",
+        "agenda": "*",
+        "js-yaml": "*"
+	},
+	"engines": {
+		"node": "0.10.24",
+		"npm": "1.3.21"
+	}
+}

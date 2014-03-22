@@ -32,3 +32,5 @@
 /config/application.yml
 
 /.ruby-version
+
+/lib/pullers/node_modules/
