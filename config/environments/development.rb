@@ -24,5 +24,5 @@ ConsoleRails::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.middleware.delete Rack::Lock
+  config.action_mailer.default_url_options = { :host => 'lvh.me:5000' }
 end

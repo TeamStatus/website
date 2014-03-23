@@ -5,7 +5,7 @@ ConsoleRails::Application.configure do
   # test suite. You never need to work with it otherwise. Remember that
   # your test database is "scratch space" for the test suite and is wiped
   # and recreated between test runs. Don't rely on the data there!
-  config.cache_classes = true
+  config.cache_classes = false
 
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that
@@ -26,7 +26,7 @@ ConsoleRails::Application.configure do
   config.action_controller.perform_caching = false
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = true
+  config.action_dispatch.show_exceptions = false
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
@@ -41,4 +41,5 @@ ConsoleRails::Application.configure do
 
   # Access to rack session
   config.middleware.use RackSessionAccess::Middleware
+  config.action_mailer.default_url_options = { :host => 'lvh.me:5000' }
 end
