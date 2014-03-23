@@ -4,7 +4,7 @@ require File.expand_path('../application', __FILE__)
 # Initialize the Rails application.
 ConsoleRails::Application.initialize!
 
-%w{COOKIE_SECRET COOKIE_NAME MONGODB_URL ENCRYPTED_FIELDS_PASSWORD MAILCHIMP_KEY MAILCHIMP_LIST}.each do |var|
+%w{COOKIE_SECRET COOKIE_NAME ENCRYPTED_FIELDS_PASSWORD MAILCHIMP_KEY MAILCHIMP_LIST}.each do |var|
   abort("missing env var: please set #{var}") unless ENV[var]
 end
 
