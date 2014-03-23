@@ -6,7 +6,7 @@ INSERT INTO users (email, full_name, calling_name, created_at, confirmed_at, tea
 	<% user.boards.each do |board| %>
 		INSERT INTO boards (name, user_id, public_id) VALUES('<%= board.name %>', (SELECT id FROM users WHERE email='<%= user.email %>'), '<%= board.publicId %>');
 		<% board.jobs.each do |job| %>
-			INSERT INTO jobs (board_id, jobId, settings, widgetSettings) VALUES((SELECT id FROM boards WHERE public_id='<%= board.publicId %>'), '<%= job.jobId %>', '<%= job.settings.to_yaml %>', '<%= job.widgetSettings.to_yaml %>');
+			INSERT INTO jobs (board_id, jobId, settings, widgetSettings) VALUES((SELECT id FROM boards WHERE public_id='<%= board.publicId %>'), '<%= job.jobId %>', '<%= job.settings.to_yaml.to_s['\''] = '\\\'' %>', '<%= job.widgetSettings.to_yaml.to_s['\'']= '\\\'' %>');
 		<% end %>
 	<% end %>
 <% end %>
