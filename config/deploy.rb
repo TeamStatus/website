@@ -17,6 +17,10 @@ set :bundle_binstubs, -> { shared_path.join('stubs') }
 set :bundle_env_variables, { nokogiri_use_system_libraries: 1 }
 set :figaro_path, -> { fetch(:deploy_to) + '/configuration' }
 
+set :npm_target_path, -> { release_path.join('lib/pullers') }
+set :npm_flags, '--production --silent'           # default
+set :npm_roles, :all
+
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
 

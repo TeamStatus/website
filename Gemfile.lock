@@ -46,6 +46,8 @@ GEM
     capistrano-bundler (1.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-npm (1.0.0)
+      capistrano (>= 3.0.0.pre)
     capistrano-rails (1.1.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -370,6 +372,7 @@ DEPENDENCIES
   capistrano
   capistrano-bower
   capistrano-bundler
+  capistrano-npm
   capistrano-rails
   capybara
   capybara-screenshot
