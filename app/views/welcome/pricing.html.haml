@@ -1,0 +1,81 @@
+.block
+  / Default Pricing Table
+  %h2.title-divider
+    %span
+      Pricing
+      %span.de-em Plans
+    %small Sign up in 20 seconds, upgrade, downgrade or cancel any time.
+  / Stack 1
+  .row.pricing-stack
+    .col-md-3
+      .well
+        %h3.title Mini
+        %p.price
+          %span.currency $
+          %span.digits
+            16
+          %span.term /MONTH
+        %ul.unstyled.points
+          %li 1 dashboard
+          %li Unlimited widgets
+          %li Unlimited watchers
+          %li TV Mode
+          %li Email support
+    .col-md-3
+      .well.active
+        %h3.title
+          %span.em Team
+        %p.price
+          %span.currency $
+          %span.digits
+            39
+          %span.term /MONTH
+        %ul.unstyled.points
+          %li 5 dashboards
+          %li Unlimited widgets
+          %li Unlimited watchers
+          %li TV Mode
+          %li Email support
+    .col-md-3
+      .well.active
+        %h3.title
+          %span.em Company
+          %span.fancy
+        %p.price
+          %span.currency $
+          %span.digits
+            129
+          %span.term /MONTH
+        %ul.unstyled.points
+          %li 10 dashboards
+          %li Unlimited widgets
+          %li Unlimited watchers
+          %li TV Mode
+          %li Email support
+    .col-md-3
+      .well.active
+        %h3.title
+          %span.em Enterprise
+        %p.price
+          %span.currency $
+          %span.digits
+            389
+          %span.term /MONTH
+        %ul.unstyled.points
+          %li 50 dashboards
+          %li Unlimited widgets
+          %li Unlimited watchers
+          %li TV Mode
+          %li Email support
+
+  .row
+    / Plan features
+    .well.well-mini.pull-center
+      %h4.inline-el.pad-right
+        %span
+          Try it for FREE
+          = succeed ":" do
+            %span.de-em for 30 days
+      %p.inline-el.pad-left.muted
+        %a.btn.btn-primary{"data-toggle" => "modal", href: "#signup-modal"} Start Today! No credit card required
+        %p EU customers will be charged VAT at 23%

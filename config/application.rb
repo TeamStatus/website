@@ -27,21 +27,15 @@ module ConsoleRails
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     config.assets.precompile += %w( .svg .eot .woff .ttf )
 
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
-    config.assets.precompile << Proc.new do |path|
-      if path =~ /\.(css|js)\z/
-        full_path = Rails.application.assets.resolve(path).to_path
-        app_assets_path = Rails.root.join('app', 'assets').to_path
-        if full_path.starts_with? app_assets_path
-          puts "including asset: " + full_path
-          true
-        else
-          # puts "excluding asset: " + full_path
-          false
-        end
-      else
-        false
+    config.assets.precompile << 'plugins/html5shiv/dist/html5shiv.js'
+    config.assets.precompile << 'plugins/respond/respond.min.js'
+    config.assets.precompile << 'plugins/retina/js/retina-1.1.0.min.js'
+
+    initializer :after_append_asset_paths,
+          :group => :all,
+          :after => :append_assets_path do
+        # serving fonts right from flexslider/fonts
+        config.assets.paths.unshift Rails.root.join("vendor", "assets", "javascripts", "plugins", "flexslider").to_s
       end
-    end
   end
 end

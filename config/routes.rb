@@ -8,15 +8,29 @@ ConsoleRails::Application.routes.draw do
     :invitations => 'users/invitations'
   }
 
+  unauthenticated do
+    root 'welcome#index'
+  end
+
+  authenticated :user do
+    root 'boards#index', as: 'authenticated_root'
+  end
+
+  get "about" => 'welcome#about'
+  get "team" => 'welcome#team'
+  get "contact" => 'welcome#contact'
+  post "contact" => 'welcome#message'
+  get "blog" => 'welcome#blog'
+  get "demo" => 'welcome#demo'
+  get "features" => 'welcome#features'
+  get "pricing" => 'welcome#pricing'
+  get "terms" => 'welcome#terms'
+  get "privacy" => 'welcome#privacy'
+  post "newsletter" => 'welcome#newsletter'
+
   authenticate :user, lambda { |u| u.email == '11110000b@gmail.com' } do
     mount Sidekiq::Web => '/sidekiq'
   end
-
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  root 'console#index'
 
   resources :boards do
     resources :jobs do

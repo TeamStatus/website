@@ -1,0 +1,11 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+a[ng-click] {
+	cursor: pointer;
+}
+
+input.ng-invalid {
+  border: 1px solid red;
+}

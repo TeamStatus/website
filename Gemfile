@@ -37,16 +37,22 @@ gem 'websocket-rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'compass-rails'
 
 gem 'asset_sync'
 gem 'unf'
 
+# Views
+gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails'
+gem 'less-rails'
+gem 'bootstrap-sass', '~> 3.1.0.0'
+gem 'font-awesome-rails'
+gem 'jquery-rails'
+
+gem 'haml-rails'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -57,14 +63,6 @@ gem 'rails_stdout_logging'
 # Mails
 gem 'intercom-rails', '~> 0.2.24'
 gem 'mandrill-api', :require => "mandrill"
-
-# Views
-gem 'haml-rails'
-gem 'less-rails'
-gem 'bootstrap-sass', '~> 3.0.3.0'
-gem 'font-awesome-rails'
-gem 'angularjs-rails'
-gem 'angular-ui-bootstrap-rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -80,6 +78,9 @@ group :production do
 end
 
 group :development, :test do
+	gem 'minitest'
+	gem 'erb2haml'
+
 	gem 'spork', '~> 1.0rc'
 	gem 'factory_girl_rails'
 	gem 'database_cleaner'

@@ -9,47 +9,18 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ * Plugins
+ *= require plugins/animate/animate.css
+ *= require plugins/flexslider/flexslider.css
+ *= require plugins/clingify/clingify.css
+ * Theme style
+ *= require theme-style.css
+ * Your custom colour override
+ *= require colour-red.css
+ * Your custom override
+ *= require custom-style.css
  *= require_tree .
  */
 
 @import "bootstrap";
 @import "font-awesome";
-
-body {
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-.modal {
-  top: 150px;
-}
-
-/* Custom container */
-.container-narrow {
- margin: 0 auto;
- max-width: 700px;
-}
-
-.container-narrow > hr {
- margin: 30px 0;
-}
-
-.footer-divider {
- margin: 80px 0; /* Space out the Bootstrap <hr> more */
-}
-
-.widget-header {
-	padding-left: 15px;
-}
-
-.fa-6 {
-	font-size: 20em;
-}
-
-.fa-4 {
-	font-size: 7em;
-}
-
-.fa-3 {
-	font-size: 4em;
-}

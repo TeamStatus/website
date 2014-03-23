@@ -1,0 +1,82 @@
+- unless action_name == "pricing"
+  #content-below.wrapper
+    .container
+      .row
+        .upsell
+          %small.muted
+            99% Uptime
+            %span.spacer //
+            Email Support
+            %span.spacer //
+            Plans from $16/month
+            %span.spacer //
+            In the cloud or on your server
+            %span.spacer //
+          %a.btn.btn-primary{href: pricing_path}
+            Start your Free Trial Today!
+            %i.fa.fa-arrow-right
+/ FOOTER
+%footer#footer
+  .container
+    .row
+      .col-md-3.col
+        .block.contact-block
+          %h3 Contact Us
+          %address
+            %p
+              %abbr{title: "Phone"}
+                %i.fa.fa-phone
+              %a{href: contact_phone_url}=contact_phone
+            %p
+              %abbr{title: "Email"}
+                %i.fa.fa-envelope
+              %a{href: 'mailto:info@teamstatus.tv'} info@teamstatus.tv
+            %p
+              %abbr{title: "Address"}
+                %i.fa.fa-home
+              %span.nowrap Tischnera 14. Gdansk.
+              %span.nowrap Poland. 80-283.
+      .col-md-5.col
+        .block
+          %h3 About Us
+          %p Making your data work for you! One widget at a time!
+      .col-md-4.col
+        .block.newsletter{:'ng-controller' => 'NewsletterCtrl', 'ng-cloak' => ''}
+          %h3 Newsletter
+          %p Stay up to date with our latest news and product releases by signing up to our newsletter.
+          %form{role: "form", name: 'newsletter', :'ng-hide' => 'subscribed', 'ng-submit' => 'addSubscriber()'}
+            .input-group.input-group-sm
+              %label.sr-only{for: "email-field"} Email
+              %input#email-field.form-control{placeholder: "Email", name: 'email', type: "email", required: true, :'ng-model' => 'email', 'ng-minlength' => "5", :'ng-disabled' => 'loading'}/
+              %span.input-group-btn
+                %button.btn.btn-primary{type: "submit", :'ng-disabled' => 'loading'}
+                  %span{:'ng-hide' => 'loading'} Go!
+                  %i.fa.fa-spinner.fa-spin{:'ng-show' => 'loading'}
+
+            %small.error{"ng-show" => "newsletter.email.$error.email"} That's not a valid email
+            %small.error{"ng-show" => "newsletter.email.$error.minlength"} Email is required to be at least 5 characters
+            %small.error{"ng-show" => "newsletter.email.$error.required"} Email is required
+            %small.error{"ng-show" => "failure"} Unable to process request, please try again later
+
+          .alert.alert-success{:'ng-show' => 'subscribed'}
+            You have been subscribed to our newsletter!
+    .row
+      #toplink
+        %a.top-link{href: "#top", title: "Back to top"}
+          Back To Top
+          %i.fa.fa-chevron-up
+      .subfooter
+        .col-md-6
+          %p
+            Copyright 2013-2014 &#169; TeamStatus.TV
+        .col-md-6
+          %ul.list-inline.footer-menu
+            %li
+              %a{href: terms_path} Terms
+            %li
+              %a{href: privacy_path} Privacy
+            %li
+              %a{href: contact_path} Contact Us
+/ Hidden elements - excluded from jPanel Menu on mobile
+/ .hidden-elements.jpanel-menu-exclude
+/  = render :partial => 'modals'
