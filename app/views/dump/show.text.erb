@@ -1,4 +1,4 @@
-# encoding: UTF-8
+<% # -*- coding: UTF-8 -*- %>
 <% @users.each do |user| %>
 INSERT INTO teams (name) VALUES('<%= user.email %>');
 INSERT INTO users (email, full_name, calling_name, created_at, confirmed_at, team_id, type) VALUES('<%= user.email %>', '<%= user.fullName %>', '<%= user.callingName %>', '<%= user.created_at %>', '<%= user.created_at %>', (SELECT id FROM teams WHERE name='<%= user.email %>'), 'User');
