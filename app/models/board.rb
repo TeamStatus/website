@@ -1,6 +1,4 @@
 class Board < ActiveRecord::Base
-    include BoardNotifications
-
     belongs_to :user
     has_many :jobs
 
