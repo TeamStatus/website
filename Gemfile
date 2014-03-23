@@ -89,6 +89,11 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'selenium-webdriver'
 	gem "rack_session_access"
+
+	gem 'capistrano'
+	gem 'capistrano-rails'
+	gem 'capistrano-bundler'
+	gem 'capistrano-bower'
 end
 
 # Use ActiveModel has_secure_password
