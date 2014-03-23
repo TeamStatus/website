@@ -31,6 +31,8 @@
 # Ignore application configuration
 /config/application.yml
 
+/public/production
+
 /.ruby-version
 
 /lib/pullers/node_modules/
