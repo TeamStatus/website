@@ -1,5 +1,4 @@
 class BoardsController < ApplicationController
-	include BoardsHelper
 
 	before_action :set_board, only: [:show, :edit, :update, :destroy, :reset_public_id]
 
@@ -13,7 +12,7 @@ class BoardsController < ApplicationController
 <p>If you need any help please <a href="mailto:pawel@teamstatus.tv">contact me</a></p>
 <p>Sincerely, Pawel Niewiadomski, CEO</p>' }})
 			board.save
-			redirect_to board_edit_url(board)
+			redirect_to public_board_url(board) + '#edit'
 		end
 	end
 

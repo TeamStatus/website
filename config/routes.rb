@@ -56,6 +56,7 @@ ConsoleRails::Application.routes.draw do
 
   get 'dump' => 'dump#show'
 
+  get '/b/:publicId' => 'public_boards#show', as: 'public_board'
   get '/:publicId' => 'public_boards#show', constraints: {subdomain: 'boards'}
 
   # Example of regular route:

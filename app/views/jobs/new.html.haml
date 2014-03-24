@@ -1,7 +1,7 @@
 - content_for(:head) do
   %meta{:name => "ts.board.publicId", :content => @board.public_id}
   %meta{:name => "ts.board.id", :content => @board.id}
-  %meta{:name => "ts.board.editUrl", :content => board_edit_url(@board)}
+  %meta{:name => "ts.board.editUrl", :content => "#{public_board_url(@board)}#edit"}
 - content_for(:scripts) do
   :javascript
     mixpanel.track("Add widget viewed");
