@@ -38,7 +38,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
-      # execute :sv, 2, "/home/deployer/service/teamstatus"
+      execute :sv, 2, "/home/deployer/service/teamstatus"
       execute :sv, 'restart', "/home/deployer/service/sidekiq"
       execute :sv, 'restart', "/home/deployer/service/websocket"
     end
