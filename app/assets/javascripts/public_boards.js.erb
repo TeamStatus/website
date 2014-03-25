@@ -155,9 +155,11 @@ $(function() {
 		});
 	};
 
-	socket_w.on_error = function() {
-		disconnected(true);
-	}
+	socket_w.bind('connection_error', function() {
+		if (!navigatingAway) {
+			disconnected(true);
+		}
+	});
 
 	function bindSocket (channel, gridsterContainer) {
 		gridsterContainer.children("li").each(function(index, li) {
