@@ -129,15 +129,6 @@ $(function() {
 
 		bindSocket(socket_w.subscribe(boardId), gridsterContainer);
 
-		// reconnect
-		socket_w.bind('reconnecting', function () {
-			console.log('reconnecting...');
-		});
-
-		socket_w.bind('reconnect_failed', function () {
-			console.log('reconnected FAILED');
-		});
-
 		socket_w.bind("serverinfo", function(newServerInfo) {
 			console.log("Received server info", newServerInfo);
 			if (!serverInfo) {
@@ -149,6 +140,12 @@ $(function() {
 	};
 
 	socket_w.bind('connection_error', function() {
+		if (!navigatingAway) {
+			disconnected(true);
+		}
+	});
+
+	socket_w.bind('connection_closed', function() {
 		if (!navigatingAway) {
 			disconnected(true);
 		}
