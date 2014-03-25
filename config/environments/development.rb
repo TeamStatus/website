@@ -25,4 +25,6 @@ ConsoleRails::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'lvh.me:5000' }
+
+  config.middleware.delete Rack::Lock
 end
