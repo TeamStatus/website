@@ -121,7 +121,7 @@ $(function() {
 	//----------------------
 	// widget socket
 	//----------------------
-	var socket_w = new WebSocketRails('lvh.me:3001/websocket');
+	var socket_w = new WebSocketRails(<%= Rails.test? or Rails.development? ? 'lvh.me:3001/websocket' : window.location.hostname + '/websocket' %>);
 	var serverInfo;
 	socket_w.on_open = function(data) {
 		console.log('connected');
