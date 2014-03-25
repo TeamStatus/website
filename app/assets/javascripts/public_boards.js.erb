@@ -155,6 +155,10 @@ $(function() {
 		});
 	};
 
+	socket_w.on_error = function() {
+		disconnected(true);
+	}
+
 	function bindSocket (channel, gridsterContainer) {
 		gridsterContainer.children("li").each(function(index, li) {
 			bindWidget(channel, li);
