@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322174356) do
+ActiveRecord::Schema.define(version: 20140325203012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 20140322174356) do
 
   create_table "jobs", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.text     "jobId",                       null: false
-    t.text     "settings",       default: "", null: false
-    t.text     "widgetSettings", default: "", null: false
+    t.text     "settings",       default: ""
+    t.text     "widgetSettings", default: ""
     t.datetime "created_at"
     t.datetime "updated_at"
     t.uuid     "board_id",                    null: false
