@@ -31,6 +31,8 @@
         - if user_signed_in?
           %li{:class => ('active' if current_page? boards_path or current_page? root_path)}
             %a.menu-item{href: boards_path} Boards
+          %li{:class => ('active' if current_page? edit_user_registration_path)}
+            %a.menu-item{href: edit_user_registration_path} Account
         - unless user_signed_in?
           %li{:class => ('active' if current_page? features_path)}
             %a.menu-item{href: features_path} Features
