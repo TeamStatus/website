@@ -1,9 +1,36 @@
-ConsoleRails::Application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+require 'sidekiq/web'
+require 'sidetiq/web'
 
-  # You can have the root of your site routed with "root"
-  root 'console#index'
+ConsoleRails::Application.routes.draw do
+
+  devise_for :users, :controllers => {
+    :omniauth_callbacks => "users/omniauth_callbacks",
+    :invitations => 'users/invitations'
+  }
+
+  unauthenticated do
+    root 'welcome#index'
+  end
+
+  authenticated :user do
+    root 'boards#index', as: 'authenticated_root'
+  end
+
+  get "about" => 'welcome#about'
+  get "team" => 'welcome#team'
+  get "contact" => 'welcome#contact'
+  post "contact" => 'welcome#message'
+  get "blog" => 'welcome#blog'
+  get "demo" => 'welcome#demo'
+  get "features" => 'welcome#features'
+  get "pricing" => 'welcome#pricing'
+  get "terms" => 'welcome#terms'
+  get "privacy" => 'welcome#privacy'
+  post "newsletter" => 'welcome#newsletter'
+
+  authenticate :user, lambda { |u| u.email == '11110000b@gmail.com' } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   resources :boards do
     resources :jobs do
@@ -19,10 +46,6 @@ ConsoleRails::Application.routes.draw do
 
   post 'sources/:id/tap' => 'sources#tap'
 
-  get 'login' => 'login#index'
-  get 'login/google' => 'login#google'
-  get 'login/google_callback' => 'login#google_callback'
-  get 'logout' => 'login#logout'
   get 'partials/:partial_id' => 'partials#show'
 
   namespace :integrations do
@@ -33,11 +56,8 @@ ConsoleRails::Application.routes.draw do
 
   get 'dump' => 'dump#show'
 
-  if Rails.env.standalone?
-    get 'b/:publicId' => 'public_boards#show'
-  else
-    get '/:publicId' => 'public_boards#show', constraints: {subdomain: 'boards'}
-  end
+  get '/b/:publicId' => 'public_boards#show', as: 'public_board'
+  get '/:publicId' => 'public_boards#show', constraints: {subdomain: 'boards'}
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

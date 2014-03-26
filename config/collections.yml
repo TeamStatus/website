@@ -1,0 +1,30 @@
+app18339315:
+  users:
+    :columns:
+    - oid:
+      :source: _id
+      :type: TEXT
+    - calling_name:
+      :source: callingName
+      :type: TEXT
+    - full_name:
+      :source: fullName
+      :type: TEXT
+    - created_at: TIMESTAMP
+    - email: TEXT
+    - male: BOOLEAN
+    - picture: TEXT
+    - plan_started_at: TIMESTAMP
+    - plan_ending_at: TIMESTAMP
+    - plan_type: TEXT
+    :meta:
+      :table: users
+      :extra_props: true
+  boards:
+    :columns:
+    - name: TEXT
+    - public_id: TEXT
+    - user_oid: TEXT
+    :meta:
+      :table: boards
+      :extra_props: true

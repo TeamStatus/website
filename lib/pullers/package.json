@@ -1,0 +1,23 @@
+{
+	"name": "teamstatus",
+    "description": "TeamStatus.TV board display engine",
+    "repository": {
+      "type": "git",
+      "url": "git://bitbucket.org/teamstatus/teamstatus.git"
+    },
+	"dependencies": {
+		"underscore": "*",
+        "async": "*",
+        "request": "*",
+        "async": "*",
+        "pg": "*",
+        "moment": "*",
+        "moment-timezone": "*",
+        "memory-cache": "*",
+        "js-yaml": "*"
+	},
+	"engines": {
+		"node": "0.10.24",
+		"npm": "1.3.21"
+	}
+}

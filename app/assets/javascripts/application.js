@@ -20,15 +20,21 @@
 //= require angular-resource
 //= require angular-ui-bootstrap-tpls
 //= require holderjs/holder
+//= require websocket_rails/main
 
 //= require angular-underscore/angular-underscore.js
 //= require angular-filters/dist/angular-filters.min.js
 //= require teamstatus.console
 //= require teamstatus.console.widget
 //= require teamstatus.console.boards
+//= require welcome
 
-$(function() {
-	$('footer a').click(function () {
-		mixpanel && mixpanel.track('Footer clicked', {'Destination' : $(this).attr('href')});
-	});
-});
+//= require jquery-migrate-1.2.1.min.js
+// Legacy jQuery support for quicksand plugin
+//= require plugins/flexslider/jquery.flexslider-min.js
+//= require plugins/clingify/jquery.clingify.min.js
+//= require plugins/jPanelMenu/jquery.jpanelmenu.min.js
+//= require plugins/jRespond/js/jRespond.js
+//= require plugins/quicksand/jquery.quicksand.js
+// Custom scripts mainly used to trigger libraries
+//= require script.min.js

@@ -1,0 +1,54 @@
+/
+  Change order for full width navbar
+  <div class="navbar">
+  <div class="container" data-toggle="clingify">
+.container{"data-toggle" => "clingify"}
+  .navbar
+    /
+      mobile collapse menu button
+      \- data-toggle="toggle" = default BS menu
+      \- data-toggle="jpanel-menu" = jPanel Menu
+    %a.navbar-btn{"data-target" => ".navbar-collapse", "data-toggle" => "jpanel-menu"}
+      %span.bar
+      %span.bar
+      %span.bar
+      %span.bar
+    / user menu
+    .btn-group.user-menu.pull-right
+      - unless user_signed_in?
+        %a.btn.btn-primary.signup{href: url_for(new_user_registration_path)} Sign Up
+        %a.btn.btn-primary.login{href: url_for(new_user_session_path)} Log in
+      - if user_signed_in?
+        %a.btn.btn-primary.logout{href: url_for(destroy_user_session_path)} Log out
+    / everything within this div is collapsed on mobile
+    .navbar-collapse.collapse
+      / main navigation
+      %ul.nav.navbar-nav
+        %li.home-link
+          =link_to user_signed_in? ? boards_path : root_path do
+            %i.fa.fa-home
+            %span.hidden Home
+        - if user_signed_in?
+          %li{:class => ('active' if current_page? boards_path or current_page? root_path)}
+            %a.menu-item{href: boards_path} Boards
+          %li{:class => ('active' if current_page? edit_user_registration_path)}
+            %a.menu-item{href: edit_user_registration_path} Account
+        - unless user_signed_in?
+          %li{:class => ('active' if current_page? features_path)}
+            %a.menu-item{href: features_path} Features
+          %li{:class => ('active' if current_page? demo_path)}
+            %a.menu-item{href: demo_path} Demo
+          %li{:class => ('active' if current_page? pricing_path)}
+            %a.menu-item{href: pricing_path} Pricing
+          %li.dropdown{:class => ('active' if current_page? about_path or current_page? team_path or current_page? contact_path)}
+            %a#about-drop.dropdown-toggle{"data-toggle" => "dropdown", href: about_path} About +
+            / Dropdown Menu
+            %ul.dropdown-menu{"aria-labelledby" => "about-drop", role: "menu"}
+              %li{role: "presentation"}
+                %a.menu-item{href: about_path, role: "menuitem", tabindex: "-1"} About Us
+              %li{role: "presentation"}
+                %a.menu-item{href: team_path, role: "menuitem", tabindex: "-1"} Our Team
+              %li{role: "presentation"}
+                %a.menu-item{href: contact_path, role: "menuitem", tabindex: "-1"} Contact
+        %li{:class => ('active' if current_page? blog_path)}
+          %a.menu-item{href: blog_path} Blog

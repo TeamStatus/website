@@ -5,26 +5,11 @@ class ApplicationController < ActionController::Base
 	# For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
 
-	before_filter :load_user
+	before_filter :authenticate_user!
+
 	after_filter :set_csrf_cookie_for_ng
 
 	private
-
-	def load_user
-		if Rails.env.standalone?
-			@user = ::User.where({ :email => "admin@localhost" }).first
-			if @user.nil?
-				@user = ::User.create!({:email => "admin@localhost", :fullName => "Administrator", :callingName => "admin" })
-			end
-		elsif not user_id.nil?
-			@user = ::User.where({ :id => user_id }).first
-			if @user.nil?
-				redirect_to(:controller => 'login') and return false
-			end
-		else
-			redirect_to(:controller => 'login') and return false
-		end
-	end
 
 	def set_csrf_cookie_for_ng
 		if protect_against_forgery?
@@ -38,5 +23,9 @@ class ApplicationController < ActionController::Base
 	def verified_request?
 		super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
 	end
+
+  def after_sign_in_path_for(resource)
+  	boards_path
+  end
 
 end

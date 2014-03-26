@@ -1,11 +1,11 @@
 module ApplicationHelper
 
-	def user_id
-		return session[:user_id]
+	def contact_phone
+		'+48 601 789 982'
 	end
 
-	def anonymous
-		user_id.nil?
+	def contact_phone_url
+		'tel:+48-601-789-982'
 	end
 
 	def body_class
