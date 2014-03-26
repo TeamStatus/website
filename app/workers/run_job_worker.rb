@@ -14,6 +14,8 @@ class RunJobWorker
     			job.last_data = JSON.parse output
 
           WebsocketRails[job.board.id].trigger job.id, job.last_data
+        else
+          logger.warn "There was an error running job #{job.id} #{output}"
     		end
     	end
 

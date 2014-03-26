@@ -16,4 +16,5 @@ WebsocketRails::EventMap.describe do
   subscribe :client_disconnected, to: DataController, with_method: :client_disconnected
 
   subscribe :resend, to: DataController, with_method: :resend
+  subscribe :log, to: DataController, with_method: :log
 end

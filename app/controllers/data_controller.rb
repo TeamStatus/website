@@ -16,4 +16,8 @@ class DataController < WebsocketRails::BaseController
       RunJobWorker.perform_async(job.id)
     end
   end
+
+  def log
+    logger.warn "Received log entry from the client #{message}"
+  end
 end
