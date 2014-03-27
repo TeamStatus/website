@@ -7,6 +7,9 @@ if (process.argv.length <= 2) {
 	process.exit(1);
 }
 
+// accept any certificate
+require('https').globalAgent.options.rejectUnauthorized = false;
+
 var fs = require('fs');
 var integrationId = process.argv[2];
 var modulePath = cwd + '/' + integrationId + '/job.js';
