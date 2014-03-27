@@ -92,8 +92,8 @@ class WelcomeController < ApplicationController
   end
 
   def mandrill
-    if (ENV['MANDRILL_KEY'])
-      @mandrill ||= ::Mandrill::API.new ENV['MANDRILL_KEY']
+    if (ENV['MANDRILL_APIKEY'])
+      @mandrill ||= ::Mandrill::API.new ENV['MANDRILL_APIKEY']
     end
   end
 
