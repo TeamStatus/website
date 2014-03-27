@@ -11,7 +11,7 @@ var fs = require('fs');
 var integrationId = process.argv[2];
 var modulePath = cwd + '/' + integrationId + '/job.js';
 
-console.log("Using module from " + modulePath);
+// console.log("Using module from " + modulePath);
 
 if (fs.existsSync(modulePath)) {
 	var job = require(modulePath);
