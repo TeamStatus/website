@@ -12,7 +12,7 @@ module UserNotifications
 				  begin
 				    message = {
 				      :subject=> "New User for TeamStatus.TV",
-				      :text=>"You have a new user #{user.email}",
+				      :text=>"You have a new user #{user.email.nil? ? user.unconfirmed_email : user.email}",
 				      :from_name=> "TeamStatus.TV",
 				      :from_email=> "root@teamstatus.tv",
 				      :to=>[
