@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+var path = require('path');
+var cwd = path.dirname(module.filename);
+
 if (process.argv.length <= 2) {
 	process.stdout.write("usage: " + process.argv[0] + " " + process.argv[1] + " integrationId")
 	process.exit(1);
@@ -5,12 +9,13 @@ if (process.argv.length <= 2) {
 
 var fs = require('fs');
 var integrationId = process.argv[2];
-var path = require('path');
-var modulePath = './' + integrationId + '/job.js';
+var modulePath = cwd + '/' + integrationId + '/job.js';
+
+console.log("Using module from " + modulePath);
 
 if (fs.existsSync(modulePath)) {
 	var job = require(modulePath);
-	var loader = require('./integration-api/loader.js');
+	var loader = require(cwd + '/integration-api/loader.js');
 
 	var dependencies = {};
 
