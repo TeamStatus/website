@@ -34,13 +34,19 @@ set :default_env, {
 namespace :deploy do
 
   desc 'Restart application'
-  task :restart, :on_error => :continue do
+  task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
       execute :sv, 2, "/home/deployer/service/teamstatus"
-      execute :sv, 'force-restart', "/home/deployer/service/sidekiq"
-      execute :sv, 'force-restart', "/home/deployer/service/websocket"
+      begin
+        execute :sv, 'restart', "/home/deployer/service/sidekiq"
+      rescue
+        execute :sv, 'kill', "/home/deployer/service/sidekiq"
+      end
+      begin
+        execute :sv, 'restart', "/home/deployer/service/websocket"
+      rescue
+        execute :sv, 'kill', "/home/deployer/service/websocket"
+      end
     end
   end
 
