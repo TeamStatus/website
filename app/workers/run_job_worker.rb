@@ -4,8 +4,8 @@ class RunJobWorker
   def perform(job_id)
   	job = Job.find_by_id(job_id)
     unless job.nil?
-      Dir.chdir "#{Rails.root}/lib/pullers" do
-      	IO.popen("node ./standalone.js #{job.jobId}", "w+") do |sub|
+      Dir.chdir "#{Rails.root}/tmp" do
+      	IO.popen("#{Rails.root}/lib/pullers/standalone #{job.jobId}", "w+") do |sub|
       		sub.write job.settings.to_json
       		sub.close_write
       		output = sub.read
