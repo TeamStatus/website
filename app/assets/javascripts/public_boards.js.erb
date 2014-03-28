@@ -148,12 +148,20 @@ $(function() {
 	socket_w.bind('connection_error', function() {
 		if (!navigatingAway) {
 			disconnected(true);
+			setTimeout(function() {
+				console.log("Trying to reconnect...");
+				socket_w.connect();
+			}, 750);
 		}
 	});
 
 	socket_w.bind('connection_closed', function() {
 		if (!navigatingAway) {
 			disconnected(true);
+			setTimeout(function() {
+				console.log("Trying to reconnect...");
+				socket_w.connect();
+			}, 750);
 		}
 	});
 
