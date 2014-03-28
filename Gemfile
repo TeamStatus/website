@@ -22,6 +22,7 @@ gem 'gravtastic'
 
 # Database
 gem 'pg'
+gem 'sequel'
 
 # Scheduling
 gem 'sidekiq'
@@ -49,6 +50,7 @@ gem 'less-rails'
 gem 'bootstrap-sass', '~> 3.1.0.0'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'rickshaw_rails'
 
 gem 'haml-rails'
 
