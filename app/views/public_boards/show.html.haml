@@ -19,17 +19,13 @@
             %i.fa.fa-cog
           %ul.dropdown-menu{role: 'menu'}
             %li
-              %a{href: new_board_job_url(@board.id.to_s, subdomain: false)}
-                %i.fa.fa-plus
-                Add widget
+              %a{href: new_board_job_url(@board.id.to_s, subdomain: false)} Add widget
             %li.editing
               %a.mode{href: '#'} Switch to view mode
             %li.looking
               %a.mode{href: '#edit'} Edit existing widgets
             %li
               %a{href: boards_url(subdomain: false)} Go to boards
-            %li
-              %a{href: '#', id: "feedback"} Send feedback
 
     #logo
       %h1 TeamStatus.TV
