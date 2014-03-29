@@ -130,38 +130,33 @@ $(function() {
 	<% end %>
 	var serverInfo;
 	socket_w.on_open = function(data) {
-		console.log('connected');
 		disconnected(false);
-
 		bindSocket(socket_w.subscribe(boardId), gridsterContainer);
-
-		socket_w.bind("serverinfo", function(newServerInfo) {
-			console.log("Received server info", newServerInfo);
-			if (!serverInfo) {
-				serverInfo = newServerInfo;
-			} else if (newServerInfo.startTime > serverInfo.startTime) {
-				window.location.reload();
-			}
-		});
 	};
 
-	socket_w.bind('connection_error', function() {
-		if (!navigatingAway) {
-			disconnected(true);
-			setTimeout(function() {
+	// socket_w.bind("restart", function(newServerInfo) {
+	// 	console.log("Received restart", newServerInfo);
+	// 	if (!serverInfo) {
+	// 		serverInfo = newServerInfo;
+	// 	} else if (newServerInfo.startTime > serverInfo.startTime) {
+	// 		window.location.reload();
+	// 	}
+	// });
+
+	function reconnect() {
+		setTimeout(function() {
+			if (socket_w.state != 'connecting' && socket_w.state != 'connected') {
 				console.log("Trying to reconnect...");
-				socket_w.connect();
-			}, 750);
-		}
-	});
+				socket_w.reconnect();
+			}
+		}, 1000);
+	}
 
 	socket_w.bind('connection_closed', function() {
+		console.log("Connection closed");
 		if (!navigatingAway) {
 			disconnected(true);
-			setTimeout(function() {
-				console.log("Trying to reconnect...");
-				socket_w.connect();
-			}, 750);
+			reconnect();
 		}
 	});
 
