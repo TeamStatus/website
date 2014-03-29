@@ -3,11 +3,9 @@
   = devise_error_messages!
   .form-group
     = f.label :email
-    %br/
     = f.email_field :email, class: 'form-control'
   .form-group
     = f.label :password
-    %br/
     = f.password_field :password, class: 'form-control'
-  %div= f.submit "Sign up", class: 'btn btn-primary'
+  .form-group= f.submit "Sign up", class: 'btn btn-primary'
 = render "devise/shared/links"

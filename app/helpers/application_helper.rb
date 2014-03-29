@@ -8,6 +8,10 @@ module ApplicationHelper
 		'tel:+48-601-789-982'
 	end
 
+	def contact_email
+		'janek@teamstatus.tv'
+	end
+
 	def body_class
     [controller_name, action_name].join('-')
   end
