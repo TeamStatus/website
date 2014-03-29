@@ -34,7 +34,7 @@
     #logo
       %h1 TeamStatus.TV
 
-    #disconnected Disconnected. Please refresh the page.
+    #disconnected Connection was lost, trying to reconnect...
 
     %div{id: "main-container", 'data-widgets' => render(:template => 'public_boards/widgets', :formats => :json)}
       %script{id: "widget-template", type: "text/x-handlebars-template"}
