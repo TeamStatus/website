@@ -4,10 +4,10 @@
   %meta{:name => "ts.board.editUrl", :content => "#{public_board_url(@board)}#edit"}
 - content_for(:scripts) do
   :javascript
-    mixpanel.track("Add widget viewed", { "widget": "#{params[:widget_id]}" });
+    mixpanel.track("Add widget viewed", { "widget": "#{@widget[:id]}" });
 
 %h2.title-divider
-  %span 
+  %span
     Add #{@widget[:name]} to
     %a{href: "#{public_board_url(@board)}#edit"}=@board.name
 
@@ -19,7 +19,7 @@
       %input#title.form-control{name: "title", "ng-model" => "widgetSettings.title", placeholder: "Optional title", type: "text"}/
 
     .settings
-      = render :layout => false, :template => "integrations/#{params[:widget_id]}/config"
+      = render :layout => false, :template => "integrations/#{@widget[:id]}/config"
 
     %button.btn.btn-success{:type => "submit", 'ng-if' => '!editing'}
       %i.fa.fa-plus

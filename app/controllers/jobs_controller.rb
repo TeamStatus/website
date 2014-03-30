@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
 
 	before_action :set_board
-	before_action :set_job, only: [:update, :destroy, :duplicate]
+	before_action :set_job, only: [:edit, :update, :destroy, :duplicate]
 
 	def index
 		@jobs = @board.jobs
@@ -16,6 +16,8 @@ class JobsController < ApplicationController
 	end
 
 	def edit
+		@widget = JSON.parse File.read Rails.root.join('app', 'views', 'integrations', @job.jobId, 'package.json')
+		@widget = @widget.with_indifferent_access
 	end
 
 	def destroy

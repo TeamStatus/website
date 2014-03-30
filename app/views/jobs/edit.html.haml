@@ -4,11 +4,11 @@
   %meta{:name => "ts.board.editUrl", :content => "#{public_board_url(@board)}#edit"}
 - content_for(:scripts) do
   :javascript
-    mixpanel.track("Edit widget viewed", { "widget": "#{params[:widget_id]}" });
+    mixpanel.track("Edit widget viewed", { "widget": "#{@widget[:id]}" });
 
 %h2.title-divider
-  %span 
-    Edit #{@widget[:name]} to
+  %span
+    Edit #{@widget[:name]} for
     %a{href: "#{public_board_url(@board)}#edit"}=@board.name
 
 %div{"ng-app" => "teamstatus.console.widget.add", "ng-controller" => "WidgetsCtrl"}
@@ -19,7 +19,7 @@
       %input#title.form-control{name: "title", "ng-model" => "widgetSettings.title", placeholder: "Optional title", type: "text"}/
 
     .settings
-      = render :layout => false, :template => "integrations/#{params[:widget_id]}/config"
+      = render :layout => false, :template => "integrations/#{@widget[:id]}/config"
 
     %button.btn.btn-success{:type => "submit", 'ng-if' => '!editing'}
       %i.fa.fa-plus
@@ -27,5 +27,5 @@
     %button.btn.btn-success{:type => "submit", 'ng-if' => 'editing'}
       %i.fa.fa-cog
       Save widget
-    %a.btn.btn-link{href: url_for()}
+    %a.btn.btn-link{href: public_board_url(@board) + '#edit'}
       Cancel
