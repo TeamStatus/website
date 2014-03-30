@@ -1,5 +1,5 @@
 .form-group
-          %label{for: "name"} Board name
-          %input#name.form-control{"ng-model" => "board.name", placeholder: "Board name", type: "text", 'ng-minlength' => 2, :required => true}/
-          %small.error{ "ng-show" => "boardForm.name.$error.minlength" } Name is required to be at least 2 characters
-          %small.error{ "ng-show" => "boardForm.name.$error.required" } Name is required
+  %label{for: "name"} Board name
+  %input#name.form-control{"ng-model" => "board.name", placeholder: "Board name", type: "text", 'ng-minlength' => 2, :required => true}/
+  %small.error{ "ng-show" => "boardForm.name.$error.minlength" } Name is required to be at least 2 characters
+  %small.error{ "ng-show" => "boardForm.name.$error.required" } Name is required

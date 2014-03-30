@@ -6,15 +6,45 @@
   :javascript
     mixpanel.track("Add widget viewed");
 
-%div{"ng-app" => "teamstatus.console.widget.add", "ng-controller" => "WidgetsCtrl"}
-
-  .page-header
-    %h1
-      Add widget
-      %small
-
-  .row
-    .col-md-2
-      .list-group{"ng-cloak" => ""}
-        %a.list-group-item{:href => "#/{{widget.id}}", "ng-repeat" => "widget in widgets", "ng-class" => "{active: widget.active}"} {{widget.name}}
-    .col-md-8{"ng-view" => ""}
+%h2.title-divider
+  %span 
+    Add widget to
+    %a{href: "#{public_board_url(@board)}#edit"}=@board.name
+  %small What would you like to display?
+.row
+  .col-md-3
+    %img.thumbnail.img-responsive{alt: "JIRA", src: image_path('feature-jira.png')}/
+    .caption
+      %h5 Number of
+      %ul
+        %li
+          %a{href: url_for(:widget_id => 'jira-simple-counter')} issues from JIRA
+        %li
+          %a{href: url_for(:widget_id => 'postgresql-number')} objects from PostgreSQL
+  .col-md-3
+    %img.thumbnail.img-responsive{alt: "JIRA", src: image_path('feature-list.png')}/
+    .caption
+      %h5 List of
+      %ul
+        %li
+          %a{href: url_for(:widget_id => 'jira-issue-list')} issues from JIRA
+        %li
+          %a{href: url_for(:widget_id => 'postgresql-list')} objects from PostgreSQL
+  .col-md-3
+    %img.thumbnail.img-responsive{alt: "Bamboo", src: image_path('feature-bamboo.png')}/
+    .caption
+      %h5 Updates from
+      %ul
+        %li
+          %a{href: url_for(:widget_id => 'bamboo-builds')} Bamboo
+        %li
+          %a{href: url_for(:widget_id => 'crucible-reviews')} Crucible
+  .col-md-3
+    %img.thumbnail.img-responsive{alt: "Clock", src: image_path('feature-clock.png')}/
+    .caption
+      %h5 Other
+      %ul
+        %li
+          %a{href: url_for(:widget_id => 'clock')} World clock
+        %li
+          %a{href: url_for(:widget_id => 'stfu')} Pomodoro time indicator

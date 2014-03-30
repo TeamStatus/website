@@ -1,0 +1,31 @@
+- content_for(:head) do
+  %meta{:name => "ts.board.publicId", :content => @board.public_id}
+  %meta{:name => "ts.board.id", :content => @board.id}
+  %meta{:name => "ts.board.editUrl", :content => "#{public_board_url(@board)}#edit"}
+- content_for(:scripts) do
+  :javascript
+    mixpanel.track("Add widget viewed", { "widget": "#{params[:widget_id]}" });
+
+%h2.title-divider
+  %span 
+    Add #{@widget[:name]} to
+    %a{href: "#{public_board_url(@board)}#edit"}=@board.name
+
+%div{"ng-app" => "teamstatus.console.widget.add", "ng-controller" => "WidgetsCtrl"}
+
+  %form{role: "form", :name => "jobForm", "ng-submit" => "addWidget()"}
+    .form-group
+      %label{for: "title"} Widget title
+      %input#title.form-control{name: "title", "ng-model" => "widgetSettings.title", placeholder: "Optional title", type: "text"}/
+
+    .settings
+      = render :layout => false, :template => "integrations/#{params[:widget_id]}/config"
+
+    %button.btn.btn-success{:type => "submit", 'ng-if' => '!editing'}
+      %i.fa.fa-plus
+      Add widget
+    %button.btn.btn-success{:type => "submit", 'ng-if' => 'editing'}
+      %i.fa.fa-cog
+      Save widget
+    %a.btn.btn-link{href: url_for()}
+      Cancel

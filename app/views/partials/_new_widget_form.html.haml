@@ -1,9 +1,3 @@
-%img.thumbnail.pull-left{ "data-src"=> "holder.js/140x140", "bs-holder" => ""}
-.widget-header.pull-left
-	%h1 {{currentWidget.name}}
-	%p {{currentWidget.description}}
-/ %i.fa.fa-spinner.fa-spin
-.clearfix
 %form{role: "form", :name => "jobForm", "ng-submit" => "addWidget()"}
 	.form-group
 		%label{for: "title"} Widget title

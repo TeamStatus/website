@@ -15,17 +15,7 @@ angular.module('teamstatus.console.widget', ['teamstatus.console', 'teamstatus.i
 		};
 	}]);
 
-angular.module('teamstatus.console.widget.add', ['teamstatus.console.widget'])
-	.config(['$routeProvider', 'partials', function($routeProvider, partials) {
-		$routeProvider.when('/welcome', {
-			templateUrl: partials + '/new_widget_welcome'
-		}).when('/:id', {
-			templateUrl: partials + '/new_widget_form',
-			controller: 'WidgetCtrl'
-		}).otherwise({
-			redirectTo: '/welcome'
-		});
-	}]);
+angular.module('teamstatus.console.widget.add', ['teamstatus.console.widget']);
 
 angular.module('teamstatus.console.widget.edit', ['teamstatus.console.widget'])
 	.config(['$routeProvider', 'partials', function($routeProvider, partials) {

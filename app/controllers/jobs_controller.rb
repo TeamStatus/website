@@ -8,6 +8,11 @@ class JobsController < ApplicationController
 	end
 
 	def new
+		unless params[:widget_id].nil?
+			@widget = JSON.parse File.read Rails.root.join('app', 'views', 'integrations', params[:widget_id], 'package.json')
+			@widget = @widget.with_indifferent_access
+			render 'new-widget'
+		end
 	end
 
 	def edit

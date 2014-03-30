@@ -2,15 +2,13 @@
   :javascript
     mixpanel.track("Edit board");
 
+%h2.title-divider
+  %span 
+    Edit board
+
 %div.board{"ng-app" => "teamstatus.console.boards", "ng-controller" => "BoardCtrl", 'data-board' => render(:template => 'boards/show', :formats => :json) }
 
-  .page-header
-    %h1
-      Edit board
-      %small
-
   .row
-    .col-md-1
     .col-md-6
 
       %form{role: "form", :name => "boardForm", "ng-submit" => "saveBoard()", "ng-cloak" => ""}

@@ -45,7 +45,7 @@
                   %a.copy{href: '#', title: "Copy"}
                     %i.fa.fa-copy
                 %li
-                  %a.edit{href: board_jobs_url(@board.id.to_s, subdomain: false) + "/edit/\#{{widget._id}}", title: "Edit"}
+                  %a.edit{href: edit_board_job_url(@board, '{{widget._id}}', subdomain: false) + "/edit/\#{{widget._id}}", title: "Edit"}
                     %i.fa.fa-cog
                 %li
                   %a.delete{href: '#', title: "Delete"}
