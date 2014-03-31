@@ -3,6 +3,9 @@ angular.module('teamstatus.jobs', ['teamstatus.console', 'teamstatus.integration
 .factory('widget', function() {
 	return angular.element('.widget').data('widget');
 })
+.factory('jobId', function() {
+	return angular.element('.widget').data('job-id');
+})
 .directive('bsHolder', function() {
 	return {
 		link: function (scope, element, attrs) {
@@ -10,18 +13,15 @@ angular.module('teamstatus.jobs', ['teamstatus.console', 'teamstatus.integration
 		}
 	};
 })
-.config(['$locationProvider', function($locationProvider) {
-   $locationProvider.html5Mode(true);
-}])
 .run(['$http', function($http) {
 	$http.defaults.headers.common.Accept = 'application/json';
 }])
-.controller('WidgetCtrl', ['$scope', '$http', '$window', '$location', 'path', 'widget',	function($scope, $http, $window, $location, path, widget) {
+.controller('WidgetCtrl', ['$scope', '$http', '$window', '$location', 'path', 'widget', 'jobId', function($scope, $http, $window, $location, path, widget, jobId) {
 	$scope.editing = widget !== undefined;
 	if ($scope.editing) {
 		$scope.widgetSettings = widget.widgetSettings;
 		$scope.settings = widget.settings;
-	};
+	}
 
 	$scope.saveWidget = function() {
 		if ($scope.editing) {
@@ -35,7 +35,7 @@ angular.module('teamstatus.jobs', ['teamstatus.console', 'teamstatus.integration
 			});
 		} else {
 			$http.post('.', {
-				jobId: $location.search().widget_id,
+				jobId: jobId,
 				settings: $scope.settings,
 				widgetSettings: $scope.widgetSettings
 			}).success(function(data) {

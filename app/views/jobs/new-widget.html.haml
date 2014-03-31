@@ -7,7 +7,7 @@
     Add #{@widget[:name]} to
     %a{href: "#{public_board_url(@board)}#edit"}=@board.name
 
-%div{"ng-app" => "teamstatus.jobs", "ng-controller" => "WidgetCtrl"}
+%div.widget{"ng-app" => "teamstatus.jobs", "ng-controller" => "WidgetCtrl", "data-job-id" => @widget[:id]}
 
   %form{role: "form", :name => "jobForm", "ng-submit" => "saveWidget()"}
     .form-group
@@ -20,5 +20,5 @@
     %button.btn.btn-success{:type => "submit"}
       %i.fa.fa-plus
       Add widget
-    %a.btn.btn-link.cancel{href: url_for()}
+    %a.btn.btn-link.cancel{href: public_board_url(@board) + '#edit'}
       Cancel
