@@ -1,4 +1,4 @@
-angular.module('teamstatus.console.boards', ['teamstatus.console.widget'])
+angular.module('teamstatus.console.boards', ['teamstatus.console', 'teamstatus.integrations'])
 .factory('boards', function() {
 	return angular.element('.boards').data('boards');
 })
