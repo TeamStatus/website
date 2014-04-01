@@ -18,10 +18,10 @@ class RunJobWorker
           logger.warn "There was an error running job #{job.id} #{output}"
     		end
     	end
-    end
 
-  	job.last_run_at = Time.now()
-  	job.next_run_at = Time.now() + 1.minute
-  	job.save
+      job.last_run_at = Time.now()
+      job.next_run_at = Time.now() + 1.minute
+      job.save
+    end
   end
 end
