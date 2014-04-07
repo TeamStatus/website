@@ -12,7 +12,7 @@ class BoardsController < ApplicationController
 <p>If you need any help please <a href="mailto:pawel@teamstatus.tv">contact me</a></p>
 <p>Sincerely, Pawel Niewiadomski, CEO</p>' }})
 			board.save
-			redirect_to public_board_url(board) + '#edit'
+			redirect_to public_board_url(board.public_id) + '#edit'
 		end
 	end
 
