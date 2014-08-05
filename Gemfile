@@ -106,6 +106,9 @@ end
 # Use unicorn as the app server
 gem 'unicorn'
 
+# Error reporting
+gem "bugsnag"
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
