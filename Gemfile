@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.0.2'
+gem 'rails'
 
 # Google Analytics
 gem 'rack-google-analytics'
@@ -35,16 +35,16 @@ gem 'figaro'
 gem 'websocket-rails'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'compass-rails'
 
 # Views
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
 gem 'less-rails'
-gem 'bootstrap-sass', '~> 3.1.0.0'
+gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'rickshaw_rails'
@@ -55,13 +55,13 @@ gem 'haml-rails'
 gem 'therubyracer', platforms: :ruby
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 
 # Logging to stdout by default
 gem 'rails_stdout_logging'
 
 # Mails
-gem 'intercom-rails', '~> 0.2.24'
+gem 'intercom-rails'
 gem 'mandrill-api', :require => "mandrill"
 
 group :doc do
@@ -81,7 +81,7 @@ group :development, :test do
 	gem 'minitest'
 	gem 'erb2haml'
 
-	gem 'spork', '~> 1.0rc'
+	gem 'spork', '~>1.0.0rc'
 	gem 'factory_girl_rails'
 	gem 'database_cleaner'
 	gem 'capybara'
@@ -105,9 +105,6 @@ gem 'unicorn'
 
 # Error reporting
 gem "bugsnag"
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
