@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe 'Integrations' do
+describe 'Integrations', :type => :request do
   %w{static-html jira-issue-list jira-simple-counter static-html bamboo-builds crucible-reviews postgresql-list postgresql-number}.each do |widget|
     describe "GET #{widget}\'s HTML" do
       it 'works!' do
         get "/integrations/#{widget}/html"
-        response.status.should be(200)
-        response.body.should include('class="content')
+        expect(response.status).to be(200)
+        expect(response.body).to include('class="content')
       end
     end
   end
@@ -15,8 +15,8 @@ describe 'Integrations' do
     describe "GET #{widget}\'s HTML" do
       it 'works!' do
         get "/integrations/#{widget}/html"
-        response.status.should be(200)
-        response.body.should include('class=\'content')
+        expect(response.status).to be(200)
+        expect(response.body).to include('class=\'content')
       end
     end
   end
@@ -25,8 +25,8 @@ describe 'Integrations' do
     describe "GET #{widget}\'s HTML" do
       it 'works!' do
         get "/integrations/#{widget}/html"
-        response.status.should be(200)
-        response.body.should include("class=\"#{widget}")
+        expect(response.status).to be(200)
+        expect(response.body).to include("class=\"#{widget}")
       end
     end
   end
