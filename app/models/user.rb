@@ -19,9 +19,6 @@ class User < ActiveRecord::Base
 
 	has_many :authorizations
 
-	scope :first, -> { order("created_at").first }
-	scope :last, -> { order("created_at DESC").first }
-
 	has_many :boards, dependent: :destroy
 	has_many :invitations, :class_name => self.to_s, :as => :invited_by
 
