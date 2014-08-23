@@ -1,5 +1,5 @@
-# config valid only for Capistrano 3.1
-lock '3.1.0'
+# config valid only for Capistrano 3.2.x
+lock '3.2.1'
 
 set :application, 'teamstatus'
 set :repo_url, 'git@bitbucket.org:teamstatus/teamstatus.git'
