@@ -57,9 +57,6 @@ gem 'therubyracer', platforms: :ruby
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 
-# Logging to stdout by default
-gem 'rails_stdout_logging'
-
 # Mails
 gem 'intercom-rails'
 gem 'mandrill-api', :require => "mandrill"

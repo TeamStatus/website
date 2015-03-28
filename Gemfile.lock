@@ -450,7 +450,6 @@ DEPENDENCIES
   rack_session_access
   rails
   rails_12factor
-  rails_stdout_logging
   rickshaw_rails
   rspec-rails
   sass-rails

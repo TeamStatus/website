@@ -21,11 +21,10 @@ class ApplicationController < ActionController::Base
 	end
 
 	def verified_request?
-		super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
+		super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
 	end
 
-  def after_sign_in_path_for(resource)
-  	boards_path
-  end
-
+	def after_sign_in_path_for(resource)
+		boards_path
+	end
 end
