@@ -239,6 +239,8 @@ GEM
       multi_json (~> 1.3)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
+    omniauth-slack (1.0.1)
+      omniauth-oauth2 (~> 1.2.0)
     omniauth-twitter (1.1.0)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
@@ -446,6 +448,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-google-oauth2
   omniauth-linkedin
+  omniauth-slack
   omniauth-twitter
   pg
   powder

@@ -17,6 +17,7 @@ gem 'omniauth-github'
 gem 'omniauth-facebook'
 gem 'omniauth-linkedin'
 gem 'omniauth-twitter'
+gem 'omniauth-slack'
 gem 'koala'
 gem 'gravtastic'
 
