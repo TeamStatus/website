@@ -21,7 +21,7 @@ module ConsoleRails
 	# config.i18n.default_locale = :de
 
 	# Enabled Rails's static asset server
-	config.serve_static_assets = true
+	config.serve_static_files = true
 
 	# Add the fonts path
 	config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
