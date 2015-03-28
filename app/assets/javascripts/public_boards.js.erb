@@ -126,7 +126,7 @@ $(function() {
 	<% elsif Rails.env.staging? %>
 	var socket_w = new WebSocketRails('staging.teamstatus.tv/websocket');
 	<% else %>
-	var socket_w = new WebSocketRails('lvh.me:3001/websocket');
+	var socket_w = new WebSocketRails('teamstatus.dev:3001/websocket');
 	<% end %>
 	var serverInfo;
 	socket_w.on_open = function(data) {

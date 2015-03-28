@@ -41,5 +41,5 @@ ConsoleRails::Application.configure do
 
   # Access to rack session
   config.middleware.use RackSessionAccess::Middleware
-  config.action_mailer.default_url_options = { :host => 'lvh.me:5000' }
+  config.action_mailer.default_url_options = { :host => 'teamstatus.dev' }
 end

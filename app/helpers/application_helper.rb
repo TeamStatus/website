@@ -1,15 +1,15 @@
 module ApplicationHelper
 
 	def contact_phone
-		'+48 601 789 982'
+		'+48 609 657 575'
 	end
 
 	def contact_phone_url
-		'tel:+48-601-789-982'
+		'tel:+48-609-657-575'
 	end
 
 	def contact_email
-		'janek@teamstatus.tv'
+		'pawel@teamstatus.tv'
 	end
 
 	def body_class
