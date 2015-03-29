@@ -269,6 +269,7 @@ Devise.setup do |config|
   config.omniauth :github, ENV['GITHUB_APP_ID'], ENV['GITHUB_APP_SECRET'], :scope => 'user,repo:status,admin:repo_hook,read:org'
   config.omniauth :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], :scope => 'userinfo.email, userinfo.profile, plus.me',
     :prompt => 'select_account', :image_aspect_ratio => "square", :image_size => 50
+  config.omniauth :slack, ENV['SLACK_APP_ID'], ENV['SLACK_APP_SECRET'], :scope => 'identify,post'
   # config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET'], :secure_image_url => true
 
   # ==> Warden configuration

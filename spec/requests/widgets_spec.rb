@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Integrations', :type => :request do
   %w{static-html jira-issue-list jira-simple-counter static-html bamboo-builds crucible-reviews postgresql-list postgresql-number}.each do |widget|

@@ -20,6 +20,7 @@ gem 'omniauth-twitter'
 gem 'omniauth-slack'
 gem 'koala'
 gem 'gravtastic'
+gem 'slack-ruby', :require => 'slack'
 
 # Database
 gem 'pg'
@@ -60,7 +61,7 @@ gem 'jbuilder'
 
 # Mails
 gem 'intercom-rails'
-gem 'mandrill-api', :require => "mandrill"
+gem 'mandrill-api', :require => 'mandrill'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

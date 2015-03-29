@@ -1,6 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def all
-		p env["omniauth.auth"]
 		@user = User.from_omniauth(env["omniauth.auth"], current_user)
 		if @user.persisted?
 			flash[:notice] = 'Successfully authenticated.'
@@ -20,5 +19,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	alias_method :linkedin, :all
 	alias_method :github, :all
 	alias_method :passthru, :all
+	alias_method :slack, :all
 	alias_method :google_oauth2, :all
 end

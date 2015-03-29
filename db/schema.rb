@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20140325203012) do
   enable_extension "uuid-ossp"
   enable_extension "hstore"
 
-  create_table "authorizations", force: true do |t|
+  create_table "authorizations", force: :cascade do |t|
     t.text     "username"
     t.text     "provider"
     t.text     "uid"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140325203012) do
     t.datetime "updated_at"
   end
 
-  create_table "boards", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+  create_table "boards", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.text     "name",       default: "Team Board", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20140325203012) do
   add_index "boards", ["public_id"], name: "index_boards_on_public_id", unique: true, using: :btree
   add_index "boards", ["user_id"], name: "index_boards_on_user_id", using: :btree
 
-  create_table "jobs", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+  create_table "jobs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.text     "jobId",                       null: false
     t.text     "settings",       default: ""
     t.text     "widgetSettings", default: ""
@@ -54,13 +54,13 @@ ActiveRecord::Schema.define(version: 20140325203012) do
 
   add_index "jobs", ["next_run_at"], name: "index_jobs_on_next_run_at", using: :btree
 
-  create_table "teams", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+  create_table "teams", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.text     "name",       default: "Team", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+  create_table "users", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.text     "email",                                   null: false
     t.text     "full_name",              default: "",     null: false
     t.text     "calling_name",           default: "",     null: false

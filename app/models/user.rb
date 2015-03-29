@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 	belongs_to :team, :inverse_of => :users
-  after_create :update_team
+  	after_create :update_team
 
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
@@ -26,9 +26,9 @@ class User < ActiveRecord::Base
 		@members ||= User.where("team_id = ? AND id != ?", self.team_id, self.id).order('email')
 	end
 
-	def self.new_with_session(params,session)
+	def self.new_with_session(params, session)
 		if session["devise.user_attributes"]
-			new(session["devise.user_attributes"],without_protection: true) do |user|
+			new(session["devise.user_attributes"], without_protection: true) do |user|
 				user.attributes = params
 				user.valid?
 			end
@@ -37,25 +37,15 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def self.from_omniauth(auth, current_user)
-		authorization = Authorization.where(:provider => auth.provider, :uid => auth.uid.to_s,
-			:token => auth.credentials.token, :secret => auth.credentials.secret).first_or_initialize
+	def self.from_omniauth(hash, current_user)
+		authorization = Authorization.where(:provider => hash.provider, :uid => hash.uid.to_s,
+			:token => hash.credentials.token, :secret => hash.credentials.secret).first_or_initialize
+
 		if authorization.user.blank?
-			user = current_user.nil? ? User.where('email = ?', auth["info"]["email"]).first : current_user
-			if user.blank?
-				user = User.new
-				user.password = Devise.friendly_token[0,10]
-				user.email = auth.info.email
-				user.full_name = auth.info.name if auth.info.respond_to? 'name'
-				user.full_name = auth.info.full_name if auth.info.respond_to? 'full_name' and user.full_name.nil?
-				user.calling_name = auth.info.given_name if auth.info.respond_to? 'given_name'
-				user.male = auth.info.gender == "male" if auth.info.respond_to? 'male'
-				auth.provider == "twitter" ? user.save(:validate => false) :  user.save
-			end
-			authorization.username = auth.info.nickname
-			authorization.user_id = user.id
-			authorization.save
+			logger.debug("Going to fetch details for #{hash}")
+			authorization = authorization.fetch_details_and_create_user(hash, current_user)
 		end
+
 		authorization.user
 	end
 
@@ -70,11 +60,11 @@ class User < ActiveRecord::Base
 	end
 
 	def update_team
-	  # get or create a subdomain on creating a new user
-	  unless team
-	  	self.team ||= Team.create!
-	  	self.save
-	  end
+	  	# get or create a subdomain on creating a new user
+	  	unless team
+	  		self.team ||= Team.create!
+	  		self.save
+	  	end
 	end
 
 end
