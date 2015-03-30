@@ -95,7 +95,6 @@ group :development, :test do
 	gem 'capistrano'
 	gem 'capistrano-rails'
 	gem 'capistrano-bundler'
-	gem 'capistrano-bower'
 	gem 'capistrano-npm'
 end
 
