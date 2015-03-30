@@ -110,3 +110,13 @@ gem "bugsnag"
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+source "https://rails-assets.org" do
+  gem "rails-assets-angular-devise"
+  gem 'rails-assets-angular-underscore'
+  gem 'rails-assets-angular-filters'
+  gem 'rails-assets-underscore'
+  gem 'rails-assets-d3'
+  gem 'rails-assets-moment'
+  gem 'rails-assets-moment-timezone'
+end
