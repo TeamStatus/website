@@ -24,9 +24,6 @@
 
 //= require angular-underscore
 //= require angular-filters
-//= require teamstatus.console
-//= require jobs
-//= require teamstatus.console.boards
 //= require welcome
 
 //= require jquery-migrate-1.2.1.min.js
