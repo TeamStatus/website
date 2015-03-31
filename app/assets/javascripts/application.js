@@ -13,17 +13,16 @@
 //= require console-helper
 //= require jquery
 //= require jquery_ujs
-//= require underscore/underscore
+//= require underscore
 //= require bootstrap
 //= require angular
 //= require angular-route
 //= require angular-resource
 //= require angular-ui-bootstrap-tpls
-//= require holderjs/holder
 //= require websocket_rails/main
 
-//= require angular-underscore/angular-underscore.js
-//= require angular-filters/dist/angular-filters.min.js
+//= require angular-underscore
+//= require angular-filters
 //= require teamstatus.console
 //= require jobs
 //= require teamstatus.console.boards
