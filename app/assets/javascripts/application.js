@@ -23,8 +23,10 @@
 //= require angular-underscore
 //= require angular-filters
 //= require websocket_rails/main
+//= require bugsnag
 
 //= require welcome
+//= require spa
 
 //= require jquery-migrate-1.2.1.min.js
 // Legacy jQuery support for quicksand plugin
