@@ -13,7 +13,7 @@ ConsoleRails::Application.routes.draw do
   end
 
   authenticated :user do
-    root 'boards#index', as: 'authenticated_root'
+    root 'spa#index', as: 'authenticated_root'
   end
 
   get "about" => 'welcome#about'
@@ -32,32 +32,7 @@ ConsoleRails::Application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  resources :boards do
-    resources :jobs do
-      member do
-        post 'duplicate' => 'jobs#duplicate'
-      end
-    end
-
-    member do
-      post 'public_id' => 'boards#reset_public_id'
-    end
-  end
-
   post 'sources/:id/tap' => 'sources#tap'
-
-  get 'partials/:partial_id' => 'partials#show'
-
-  namespace :integrations do
-    get ':widget_id/config' => 'partials#configuration'
-    get ':widget_id/html' => 'partials#html'
-    get ':widget_id/js' => 'partials#js'
-  end
-
-  get 'dump' => 'dump#show'
-
-  get '/b/:publicId' => 'public_boards#show', as: 'public_board'
-  get '/:publicId' => 'public_boards#show', constraints: {subdomain: 'boards'}
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

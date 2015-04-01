@@ -1,8 +1,0 @@
-{
-	"name": "JIRA issue list",
-	"id": "jira-issue-list",
-	"description": "Display list of issues from JIRA",
-	"widgetSettings": {
-		"title": "Issues"
-	}
-}
