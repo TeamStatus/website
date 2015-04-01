@@ -20,10 +20,10 @@
 //= require angular-resource
 //= require angular-devise
 //= require angular-ui-bootstrap-tpls
-//= require websocket_rails/main
-
 //= require angular-underscore
 //= require angular-filters
+//= require websocket_rails/main
+
 //= require welcome
 
 //= require jquery-migrate-1.2.1.min.js
@@ -35,3 +35,6 @@
 //= require plugins/quicksand/jquery.quicksand.js
 // Custom scripts mainly used to trigger libraries
 //= require script.min.js
+
+//= require angular-rails-templates
+//= require_tree ../templates
