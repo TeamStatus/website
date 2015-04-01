@@ -45,6 +45,7 @@ gem 'compass-rails'
 
 # Views
 gem 'angularjs-rails'
+gem 'angular-rails-templates'
 gem 'angular-ui-bootstrap-rails'
 gem 'less-rails'
 gem 'bootstrap-sass'
@@ -105,7 +106,7 @@ end
 gem 'unicorn'
 
 # Error reporting
-gem "bugsnag"
+gem 'bugsnag'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
