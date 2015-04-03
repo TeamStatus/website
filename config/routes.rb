@@ -34,6 +34,12 @@ ConsoleRails::Application.routes.draw do
 
   post 'sources/:id/tap' => 'sources#tap'
 
+  namespace :api, defaults: {format: :json}  do
+    namespace :v1 do
+      resources :tap
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

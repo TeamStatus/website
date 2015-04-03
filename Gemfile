@@ -10,6 +10,7 @@ gem 'rack-google-analytics'
 # Authentication
 gem 'devise'
 gem 'devise-encryptable'
+gem 'simple_token_authentication', '~> 1.0'
 gem 'devise_invitable'
 gem 'angular_rails_csrf'
 gem 'omniauth-google-oauth2'
