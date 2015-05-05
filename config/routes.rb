@@ -32,11 +32,11 @@ ConsoleRails::Application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
-  post 'sources/:id/tap' => 'sources#tap'
-
   namespace :api, defaults: {format: :json}  do
     namespace :v1 do
-      resources :tap
+      resources :taps, only: [:update] do
+        put "data" => 'taps#data'
+      end
     end
   end
 
