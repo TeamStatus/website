@@ -45,13 +45,11 @@ gem 'coffee-rails'
 gem 'compass-rails'
 
 # Views
-gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'angular-ui-bootstrap-rails'
 gem 'less-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
-gem 'jquery-rails'
 
 gem 'haml-rails'
 
@@ -120,4 +118,6 @@ source "https://rails-assets.org" do
   gem 'rails-assets-moment'
   gem 'rails-assets-moment-timezone'
   gem 'rails-assets-epoch'
+  gem 'rails-assets-ng-epoch'
+  gem 'rails-assets-angular-websocket'
 end
