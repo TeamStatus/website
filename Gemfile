@@ -52,7 +52,6 @@ gem 'less-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
-gem 'rickshaw_rails'
 
 gem 'haml-rails'
 
@@ -120,4 +119,5 @@ source "https://rails-assets.org" do
   gem 'rails-assets-d3'
   gem 'rails-assets-moment'
   gem 'rails-assets-moment-timezone'
+  gem 'rails-assets-epoch'
 end

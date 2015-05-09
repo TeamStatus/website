@@ -1,0 +1,19 @@
+!!!
+%html{lang: "en", "xmlns:fb" => "http://ogp.me/ns/fb#", "xmlns:og" => "og: http://ogp.me/ns#"}
+  %head
+    != stylesheet_link_tag "embedable"
+
+    != yield :head
+
+  %body.page{:class => body_class}
+
+    - if body_class == 'welcome-index'
+      != yield
+    - else
+      #content
+        .container
+          != yield
+
+    !=javascript_include_tag 'embedable'
+
+    != yield :scripts

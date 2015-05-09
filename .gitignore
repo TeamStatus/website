@@ -36,3 +36,5 @@
 /.ruby-version
 
 /lib/pullers/node_modules/
+
+/.idea

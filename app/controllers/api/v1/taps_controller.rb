@@ -4,7 +4,7 @@ module Api
 
       def data
       end
-      
+
       private
 
       def tap_params

@@ -40,6 +40,10 @@ ConsoleRails::Application.routes.draw do
     end
   end
 
+  namespace :embedable do
+    resources :taps, only: [:show]
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
